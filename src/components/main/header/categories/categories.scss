@@ -1,0 +1,110 @@
+.categ_nav {
+    display: grid;
+    grid-template-rows: 200px 260px;
+    grid-row-gap: 30px;
+
+    .categ_nav_top {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 30px;
+
+        .categ_nav_top_left_bg {
+            background: no-repeat center url('./assets/womenCateg.jpg');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 255px;
+            height: 100%;
+
+            &:hover .categ_nav_top_left {
+                background-color: #f0f0f0;
+                width: 100%;
+                overflow: hidden;
+            }
+        }
+
+        .categ_nav_top_right_bg {
+            background: no-repeat center url('./assets/manCateg.jpg');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 255px;
+            height: 100%;
+
+            &:hover .categ_nav_top_right {
+                background-color: #f0f0f0;
+                width: 100%;
+                overflow: hidden;
+            }
+        }
+
+        .categ_nav_top_left,
+        .categ_nav_top_right {
+            padding: 12px 24px;
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 4px;
+            max-width: 100%;
+            min-width: 118px;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 22px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+    }
+
+    .categ_nav_bottom_bg {
+        background: no-repeat center url('./assets/accessoriesCateg.jpg');
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        max-width: 540px;
+
+        .categ_nav_bottom {
+            padding: 12px 24px;
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 4px;
+            max-width: 100%;
+            min-width: 166px;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 22px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+            &:hover .categ_nav_bottom {
+                background-color: #f0f0f0;
+                width: 100%;
+            }
+    }
+}
+
+@media screen and (max-width: 1190px) {
+    .categ_nav {
+        .categ_nav_top {
+            .categ_nav_top_left_bg,
+            .categ_nav_top_right_bg {
+                background-size: cover;
+            }
+        }
+        .categ_nav_bottom_bg {
+            background-size: cover;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .categ_nav {
+        .categ_nav_top {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 30px;
+        }
+    }
+}

@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useLocation, Route, Switch } from 'react-router-dom';
 import { Header } from '../header/Header';
+import { Footer } from '../footer/Footer';
+import { HomePage } from '../../pages/home/HomePage';
 
 import './app.scss';
 
@@ -17,7 +19,7 @@ export const App = () => {
       <Header />
       <Switch>
         <Route exact path='/'>
-          {/* <MainPage /> */}
+          <HomePage />
         </Route>
         <Route exact path='/women'>
           {/* <ProductsPage productType='women' /> */}
@@ -32,7 +34,7 @@ export const App = () => {
           {/* <ProductPage productType='men' /> */}
         </Route>
       </Switch>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

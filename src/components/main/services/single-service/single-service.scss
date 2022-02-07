@@ -1,0 +1,14 @@
+.service_item {
+    display: flex;
+
+        .service_item_img {
+            padding-right: 8px;
+        }
+
+        .service_item_description {
+
+            .title {
+                font-weight: 600;
+            }
+        }
+}

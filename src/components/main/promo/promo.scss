@@ -1,0 +1,84 @@
+.main-news {
+    display: grid;
+    margin-top: 96px;
+    grid-column-gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    min-height: 260px;
+  
+    .left-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: no-repeat center url('./assets/newCollection.jpg');
+    }
+  
+    .btn {
+      max-width: 290px;
+      padding: 16px 24px;
+      text-align: center;
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+  
+      &:hover {
+        background-color: #f0f0f0;
+      }
+  
+      .title {
+        font-weight: 600;
+        line-height: 13px;
+        color: #a0a0a0;
+        letter-spacing: 0.06em;
+      }
+  
+      .text {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 18px;
+        color: #121212;
+        margin-top: 8px;
+      }
+  
+      .text-color {
+        color: #e91e63;
+      }
+    }
+  
+    .right-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: no-repeat center url('./assets/sale.jpg');
+    }
+  }
+  
+  @media all and (max-width: 790px) {
+    .main-news {
+      grid-row-gap: 30px;
+      margin-top: 48px;
+  
+      .left-card,
+      .right-card {
+        background-size: cover;
+      }
+    }
+  }
+  
+  @media all and (max-width: 390px) {
+    .main-news {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  
+      .left-card,
+      .right-card {
+        .btn {
+          .text {
+            font-size: 12px;
+            line-height: 14px;
+          }
+        }
+      }
+    }
+  }
+  
