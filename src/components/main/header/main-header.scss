@@ -8,19 +8,19 @@
     min-height: 490px;
 }
 
-@media screen and (max-width: 700) {
+@media screen and (max-width: 700px) {
     .main-header {
       grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
     }
 }
 
-@media screen and (max-width: 590) {
+@media screen and (max-width: 590px) {
     .main-header {
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     }
 }
 
-@media screen and (max-width: 480) {
+@media screen and (max-width: 480px) {
     .main-header {
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
