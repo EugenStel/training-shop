@@ -1,0 +1,22 @@
+.header_icons_nav {
+    display: flex;
+    column-gap: 24px;
+
+    .header_icons_nav_item {
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .header_icons_nav {
+        display: flex;
+        column-gap: 12px;
+    }
+    .header_icons_nav_item {
+        .header_icons_nav_item_img {
+            width: 80%;
+        }
+    }
+}

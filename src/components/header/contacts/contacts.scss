@@ -1,0 +1,36 @@
+.contacts {
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 12px;
+    display: flex;
+
+    .contacts_item {
+        padding-right: 24px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #fff;
+
+        &:last-child {
+            padding-right: 0;
+        }
+
+        .contacts_item_img {
+            padding-right: 8px;
+        }
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .contacts {
+        font-size: 9px;
+        line-height: 11px;
+    }
+}
+
+
+@media screen and (max-width: 540px) {
+    .contacts {
+        flex-direction: column;
+    }
+}
