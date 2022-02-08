@@ -4,6 +4,7 @@ import { PRODUCT_TYPES } from "../../constants/main/productTypes";
 import { Clothes } from "../../components/main/clothes/Clothes";
 import { Promo } from "../../components/main/promo/Promo";
 import { MainSubscribe } from "../../components/main/subscribe/Subscribe";
+import { Blog } from "../../components/main/blog/Blog";
 
 export const HomePage = () => {
     return (
@@ -17,9 +18,9 @@ export const HomePage = () => {
                 <Promo />
             </div>
             <MainSubscribe />
-            {/* <div className="wrapper">
-            </div> */}
-
+            <div className="wrapper">
+                <Blog />
+            </div>
         </>
     );
 }

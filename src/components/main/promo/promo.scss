@@ -1,22 +1,22 @@
-.main-news {
+.promo {
     display: grid;
     margin-top: 96px;
     grid-column-gap: 30px;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     min-height: 260px;
   
-    .left-card {
+    .promo_left {
         display: flex;
         align-items: center;
         justify-content: center;
         background: no-repeat center url('./assets/newCollection.jpg');
     }
 
-    .btn {
+    .card_btn {
         max-width: 290px;
         padding: 16px 24px;
         text-align: center;
-        background-color: #ffffff;
+        background-color: #fff;
         border-radius: 4px;
         border: none;
         cursor: pointer;
@@ -46,7 +46,7 @@
         }
     }
 
-    .right-card {
+    .promo_right {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -55,22 +55,22 @@
 }
 
 @media screen and (max-width: 790px) {
-    .main-news {
+    .promo {
         grid-row-gap: 30px;
         margin-top: 48px;
-  
-        .left-card, .right-card {
+
+        .promo_left, .promo_right {
             background-size: cover;
         }
     }
 }
 
 @media screen and (max-width: 390px) {
-    .main-news {
+    .promo {
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  
-        .left-card, .right-card {
-            .btn {
+
+        .promo_left, .promo_right {
+            .card_btn {
                 .text {
                     font-size: 12px;
                     line-height: 14px;

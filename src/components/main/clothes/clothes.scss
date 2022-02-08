@@ -21,14 +21,19 @@
             line-height: 13px;
             padding-right: 32px;
             letter-spacing: 0.06em;
-            color: #707070;
+            color: #121212;
+            opacity: .6;
 
             .clothes-menu-item {
                 &:hover {
-                    font-weight: 500;
-                    color: #121212;
-                    transition: all 0.3s;
+                    color: #9C9C9C;
+                    opacity: 1;
+                    transition: all .3s ease;
                     cursor: pointer;
+                }
+                &:active {
+                    color: #121212;
+                    opacity: 1;
                 }
             }
         }
@@ -55,7 +60,7 @@
 
         &:hover {
             background: #e7e7e7;
-            transition: all 0.3s;
+            transition: all .3s ease;
         }
     }
 }

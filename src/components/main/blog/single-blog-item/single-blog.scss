@@ -1,0 +1,102 @@
+.blog_item {
+    margin-top: 48px;
+    position: relative;
+  
+    .description {
+        max-width: 90%;
+        padding: 24px 16px 28px;
+        background: #ffffff;
+        position: absolute;
+        top: 60%;
+        left: 6%;
+
+
+        .item_title {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 22px;
+            letter-spacing: 0.06em;
+        }
+
+        .item_text {
+            font-size: 14px;
+            line-height: 22px;
+            color: #707070;
+            margin-top: 12px;
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .blog_item {
+        text-align: center;
+
+        .item_img {
+            width: 80%;
+        }
+
+        .description {
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .item_title {
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 18px;
+                letter-spacing: 0.06em;
+            }
+    
+            .item_text {
+                font-size: 10px;
+                line-height: 18px;
+                color: #707070;
+                margin-top: 12px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 725px) {
+    .blog_item {
+        .item_img {
+            width: 100%;
+        }
+
+        .description {
+            padding: 18px;
+            width: 402px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .item_title {
+                font-size: 12px;
+                line-height: 18px;
+            }
+
+            .item_text {
+                font-size: 10px;
+                line-height: 18px;
+                margin-top: 8px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .blog_item {
+        .description {
+            width: 302px;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .blog_item {
+        .description {
+            width: 252px;
+        }
+    }
+}

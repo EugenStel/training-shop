@@ -1,13 +1,13 @@
-.subscribe-block {
+.subscribe {
     margin-top: 96px;
     background: linear-gradient(180deg, #f3f2f2 0%, #dcdbdb 100%);
     display: flex;
     justify-content: center;
 
-    .small-block-wrapper {
+    .subscribe_block {
         position: relative;
-  
-        .small-block {
+
+        .small_block {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -15,14 +15,14 @@
             border-radius: 4px;
             margin: 60px 0;
             padding: 80px 96px 96px;
-  
+
             .title {
                 font-weight: 600;
                 line-height: 13px;
                 letter-spacing: 0.06em;
                 color: #a0a0a0;
             }
-  
+
             .subtitle {
                 margin-top: 16px;
                 font-weight: 600;
@@ -36,7 +36,7 @@
                     color: #e91e63;
                 }
             }
-  
+
         .input {
             margin-top: 34px;
             width: 100%;
@@ -51,7 +51,7 @@
             line-height: 18px;
             color: #9c9c9c;
             outline: 0;
-  
+
                 &::placeholder {
                     font-weight: 500;
                     font-size: 16px;
@@ -62,7 +62,7 @@
                     color: transparent;
                 }
         }
-  
+
         .button {
             margin-top: 24px;
             font-weight: 500;
@@ -82,7 +82,7 @@
             }
         }
       }
-  
+
         .woman {
             position: absolute;
             top: 35px;
@@ -102,17 +102,17 @@
         display: none;
     }
 }
-  
+
 @media screen and (max-width: 790px) {
-    .subscribe-block {
+    .subscribe {
         margin-top: 48px;
     }
 }
-  
+
 @media screen and (max-width: 580px) {
-    .subscribe-block {
-        .small-block-wrapper {
-            .small-block {
+    .subscribe {
+        .subscribe_block {
+            .small_block {
                 padding: 24px;
             }
         }
@@ -120,18 +120,18 @@
 }
 
 @media screen and (max-width: 390px) {
-    .subscribe-block {
-        .small-block-wrapper {
-            .small-block {
+    .subscribe {
+        .subscribe_block {
+            .small_block {
                 .subtitle {
                     font-size: 20px;
                     line-height: 26px;
                 }
-  
+
                 .input {
                     min-width: 240px;
                 }
-    
+
                 .button {
                     max-width: 240px;
                     display: flex;

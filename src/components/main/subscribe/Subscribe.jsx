@@ -6,9 +6,9 @@ import './subscribe.scss';
 
 export const MainSubscribe = () => {
     return (
-        <div className='subscribe-block'>
-            <div className='small-block-wrapper'>
-                <div className='small-block'>
+        <div className='subscribe'>
+            <div className='subscribe_block'>
+                <div className='small_block'>
                     <div className='title'>SPECIAL OFFER</div>
                     <span className='subtitle'>
                         SUBSCRIBE <br /> AND <span className='percent'>GET 10% OFF</span>
