@@ -1,0 +1,19 @@
+.scope {
+    display: flex;
+    column-gap: 28px;
+    font-weight: 500;
+    line-height: 18px;
+    font-size: 11px;
+    margin: 32px 0;
+
+    & img {
+        margin-right: 6px;
+    }
+
+    .truck,
+    .refresh,
+    .mail {
+        display: flex;
+        align-items: center;
+    }
+}

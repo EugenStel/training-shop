@@ -1,0 +1,35 @@
+.filters {
+    background: #f8f8f8;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 30px;
+    padding: 24px 42px;
+
+    .filter-item-color {
+        display: flex;
+        align-items: center;
+        border: none;
+        background: #f8f8f8;
+        column-gap: 8px;
+        cursor: pointer;
+
+        .color {
+            font-size: 13px;
+            line-height: 34px;
+            color: #404040;
+        }
+    }
+
+    .title {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 22px;
+        letter-spacing: 0.06em;
+        padding: 6px;
+    }
+
+    .filter {
+        height: 220px;
+        overflow-y: auto;
+    }
+}

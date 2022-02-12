@@ -1,0 +1,37 @@
+.products_page_header {
+    background: #f8f8f8;
+    padding: 6px 0;
+
+    .header_top {
+        display: flex;
+        justify-content: space-between;
+
+        .share {
+            display: flex;
+            align-items: center;
+            color: #6e6e6e;
+            font-weight: 500;
+            font-size: 11px;
+            line-height: 18px;
+            cursor: pointer;
+
+            .share_icon {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .header_bottom {
+        display: flex;
+        justify-content: center;
+
+        .title {
+            padding: 10px 0 24px;
+            font-weight: 600;
+            font-size: 26px;
+            line-height: 36px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+    }
+}

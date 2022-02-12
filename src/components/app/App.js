@@ -3,6 +3,8 @@ import { useLocation, Route, Switch } from 'react-router-dom';
 import { Header } from '../header/Header';
 import { Footer } from '../footer/Footer';
 import { HomePage } from '../../pages/home/HomePage';
+import { ProductsPage } from '../../pages/products/Products';
+import { SinglePage } from '../../pages/product/SingleProduct';
 
 import './app.scss';
 
@@ -22,16 +24,16 @@ export const App = () => {
           <HomePage />
         </Route>
         <Route exact path='/women'>
-          {/* <ProductsPage productType='women' /> */}
+          <ProductsPage productType='women' />
         </Route>
         <Route exact path='/men'>
-          {/* <ProductsPage productType='men' /> */}
+          <ProductsPage productType='men' />
         </Route>
         <Route path='/women/:id'>
-          {/* <ProductPage productType='women' /> */}
+          <SinglePage productType='women' />
         </Route>
         <Route path='/men/:id'>
-          {/* <ProductPage productType='men' /> */}
+          <SinglePage productType='men' />
         </Route>
       </Switch>
       <Footer />

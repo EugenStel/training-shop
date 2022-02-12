@@ -1,0 +1,35 @@
+.reviews {
+    .reviews-text {
+        .title {
+            display: flex;
+            justify-content: space-between;
+
+            .name {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 22px;
+                color: #121212;
+            }
+
+            .time-rating {
+                display: flex;
+                column-gap: 8px;
+                font-weight: 500;
+                font-size: 11px;
+                line-height: 18px;
+                color: #a0a0a0;
+            }
+        }
+
+        .text {
+            margin: 20px 0 48px;
+            font-size: 14px;
+            line-height: 22px;
+            color: #504f4f;
+
+            &:last-child {
+                margin-bottom: 32px;
+            }
+        }
+    }
+}
