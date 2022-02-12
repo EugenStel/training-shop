@@ -16,7 +16,7 @@ export const ProductsPage = ({ productType }) => {
     };
 
     return (
-        <div className="products_categ">
+        <div className='products-page' data-test-id={`products-page-${productType}`}>
             <ProductsHeader productType={productType} />
             <div className="wrapper">
                 <ProductsControl onFilterOpen={onFilterOpen} isFilterOpen={isFilterOpen} />
