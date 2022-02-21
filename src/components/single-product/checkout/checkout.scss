@@ -1,10 +1,10 @@
 .checkout_image {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
 }
 
-@media all and (max-width: 470px) {
+@media screen and (max-width: 470px) {
   .checkout_image {
     flex-direction: column;
     row-gap: 20px;

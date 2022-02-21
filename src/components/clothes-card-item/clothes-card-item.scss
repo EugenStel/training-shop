@@ -1,0 +1,44 @@
+.cards-item {
+    position: relative;
+
+    .cards-item-img {
+        width: 100%;
+    }
+
+    .sale {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #e91e63;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 13px;
+        padding: 8px;
+    }
+
+    .cards-item-name {
+        font-size: 14px;
+        line-height: 16px;
+        color: #707070;
+        padding: 14px 0;
+    }
+
+    .cards-item-price {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media all and (max-width: 1190px) {
+    .cards-item {
+        .cards-item-a {
+            .cards-item-img {
+                width: 100%;
+            }
+        }
+    }
+}

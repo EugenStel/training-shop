@@ -9,7 +9,7 @@
         grid-column-gap: 30px;
 
         .categ_nav_top_left_bg {
-            background: no-repeat center url('./assets/womenCateg.jpg');
+            background: no-repeat center url("./assets/womenCateg.jpg");
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,7 +24,7 @@
         }
 
         .categ_nav_top_right_bg {
-            background: no-repeat center url('./assets/manCateg.jpg');
+            background: no-repeat center url("./assets/manCateg.jpg");
             display: flex;
             justify-content: center;
             align-items: center;
@@ -56,7 +56,7 @@
     }
 
     .categ_nav_bottom_bg {
-        background: no-repeat center url('./assets/accessoriesCateg.jpg');
+        background: no-repeat center url("./assets/accessoriesCateg.jpg");
         display: flex;
         justify-content: center;
         align-items: center;
@@ -78,15 +78,16 @@
             text-transform: uppercase;
         }
 
-            &:hover .categ_nav_bottom {
-                background-color: #f0f0f0;
-                width: 100%;
-            }
+        &:hover .categ_nav_bottom {
+            background-color: #f0f0f0;
+            width: 100%;
+        }
     }
 }
 
 @media screen and (max-width: 1190px) {
     .categ_nav {
+        justify-content: center;
         .categ_nav_top {
             .categ_nav_top_left_bg,
             .categ_nav_top_right_bg {

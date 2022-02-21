@@ -1,29 +1,52 @@
 import PropTypes from 'prop-types';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from "swiper";
 
-import nextButton from './assets/nextArrow.jpg'
-import prevButton from './assets/prevArrow.jpg'
 
 import './sliders.scss';
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+
 
 export const Sliders = ({ slides }) => {
     return (
-        <div className='slider'>
-            {slides.map(({ id, imgSrc, title, description, alt }) => (
-                <div key={id} className='slider-block'>
-                    <img src={prevButton} alt='slide-next' className='slide__prev-btn' />
-                    <img src={nextButton} alt='slide-next' className='slide__next-btn' />
-                    <img src={imgSrc} alt={alt} className='slider-img' />
-                    {title && description && (
-                        <div className='slide_content_button'>
-                            <div className='slide_content_button-title'>{title}</div>
-                            <div className='slide_content_button-description'>{description}</div>
+        <div className='slider' data-test-id='main-slider'>
+            <Swiper
+                onSlideChange={() => console.log('slide change')}
+                navigation={true}
+                modules={[Navigation]}
+            >
+                {slides.map(({ id, imgSrc, title, description, alt }) => (
+                    <SwiperSlide key={id}>
+                        <div key={id} className='slider-block'>
+                            <img src={imgSrc} alt={alt} className='slider-img' />
+                            {title && description && (
+                                <div className='slide_content_button'>
+                                    <div className='slide_content_button-title'>{title}</div>
+                                    <div className='slide_content_button-description'>{description}</div>
+                                </div>
+                            )}
                         </div>
-                    )}
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+
+        </div>
+    )
+};
+
+
+export const SinglePageSlider = ({ slides }) => {
+    return (
+        <div className='slider'>
+            {slides.map(({ id, imgSrc, alt }) => (
+                <div key={id} className='slider-block'>
+                    <img src={imgSrc} alt={alt} className='slider-img' />
                 </div>
             ))}
         </div>
     );
-};
+}
 
 
 Sliders.propTypes = {

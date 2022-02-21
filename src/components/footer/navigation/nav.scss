@@ -10,17 +10,17 @@
             color: #121212;
 
             display: flex;
-            
+
             img {
                 padding-right: 8px;
             }
-            
+
             .mail-text {
                 text-decoration: underline;
             }
 
             &:not(:first-child) {
-                opacity: .8;
+                opacity: 0.8;
             }
 
             &:first-child {
@@ -33,9 +33,20 @@
         }
     }
 }
-  
+
 @media screen and (max-width: 700px) {
     .footer_links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        // flex-direction: column;
+        align-items: center;
+        row-gap: 16px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .footer_links {
+        display: flex;
         flex-direction: column;
         align-items: center;
         row-gap: 16px;

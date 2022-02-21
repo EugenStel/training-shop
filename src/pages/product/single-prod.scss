@@ -1,22 +1,11 @@
 .page-product {
     .page-product-main {
         margin-top: 32px;
-        display: flex;
         column-gap: 16px;
-        align-items: flex-start;
-        justify-content: space-around;
-
-        .slider-product {
-            margin-right: 14px;
-            width: 558px;
-            display: flex;
-            column-gap: 16px;
-            align-items: flex-start;
-            justify-content: center;
-            flex-shrink: 0;
-        }
+        display: flex;
 
         .params {
+            flex-basis: 50%;
             .bold {
                 font-weight: 600;
                 color: #121212;
@@ -285,7 +274,7 @@
         }
         .products {
             .products-cards {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     }

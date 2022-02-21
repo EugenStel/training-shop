@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import up from './assets/chevron-left.svg'
 import down from './assets/chevron-right.svg'
 import { SMALL_IMG } from '../../../constants/products/slider-product';
-import { Sliders } from '../../sliders/Sliders';
+// import { Sliders } from '../../sliders/Sliders';
+import { SinglePageSlider } from '../../sliders/Sliders';
 
 
 import './product-slider.scss';
@@ -21,7 +22,7 @@ export const ProductSlider = ({ slides }) => {
                     ))}
                 </div>
             </div>
-            <Sliders slides={slides} />
+            <SinglePageSlider slides={slides} />
         </div>
     )
 }

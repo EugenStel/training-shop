@@ -1,10 +1,10 @@
 .clothes {
     margin-top: 96px;
-  
+
     .clothes-header {
         display: flex;
         justify-content: space-between;
-  
+
         .clothes-title {
             font-weight: 600;
             font-size: 22px;
@@ -12,7 +12,7 @@
             letter-spacing: 0.06em;
             text-transform: uppercase;
         }
-  
+
         .clothes-menu {
             display: flex;
             align-items: center;
@@ -22,13 +22,13 @@
             padding-right: 32px;
             letter-spacing: 0.06em;
             color: #121212;
-            opacity: .6;
+            opacity: 0.6;
 
             .clothes-menu-item {
                 &:hover {
-                    color: #9C9C9C;
+                    color: #9c9c9c;
                     opacity: 1;
-                    transition: all .3s ease;
+                    transition: all 0.3s ease;
                     cursor: pointer;
                 }
                 &:active {
@@ -45,7 +45,7 @@
         gap: 30px;
         margin: 48px 0;
     }
-  
+
     .clothes-button {
         width: 100%;
         padding: 16px 0;
@@ -60,7 +60,7 @@
 
         &:hover {
             background: #e7e7e7;
-            transition: all .3s ease;
+            transition: all 0.3s ease;
         }
     }
 }
@@ -68,11 +68,11 @@
 @media screen and (max-width: 910px) {
     .clothes {
         margin-top: 48px;
-  
+
         .clothes-header {
             flex-direction: column;
             row-gap: 16px;
-  
+
             .clothes-menu {
                 flex-direction: column;
                 row-gap: 16px;
@@ -98,7 +98,6 @@
     }
 }
 
-
 @media screen and (max-width: 560px) {
     .clothes {
         .cards {
@@ -117,6 +116,7 @@
             grid-template-columns: repeat(1, 1fr);
             gap: 20px;
             margin: 48px 0;
+            justify-content: center;
         }
     }
 }

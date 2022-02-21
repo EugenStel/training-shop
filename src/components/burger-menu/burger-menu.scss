@@ -1,0 +1,22 @@
+.burger_menu {
+    position: absolute;
+    width: 50vw;
+    height: 100vh;
+    background-color: rgba($color: #fff, $alpha: 0.8);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+
+    .menu_item {
+        font-size: 14px;
+        margin: 10px 0;
+        font-weight: 500;
+        z-index: 2;
+        text-transform: uppercase;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}
