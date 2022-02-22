@@ -15,7 +15,7 @@ export const UserIconsNav = ({ handleMobileOpen, mobileOpen }) => {
                 ))}
                 <Cart />
             </div>
-            <div onClick={handleMobileOpen}>
+            <div onClick={handleMobileOpen} data-test-id='burger-menu-btn'>
                 <BurgerIcon mobileOpen={mobileOpen} />
             </div>
         </>
