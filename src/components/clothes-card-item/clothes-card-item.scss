@@ -33,12 +33,21 @@
     }
 }
 
-@media all and (max-width: 1190px) {
+@media screen and (max-width: 1190px) {
     .cards-item {
         .cards-item-a {
             .cards-item-img {
                 width: 100%;
             }
         }
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .cards-item-price {
+        font-weight: normal;
+        font-size: 12px !important;
+        line-height: 12px;
+        flex-direction: column;
     }
 }
