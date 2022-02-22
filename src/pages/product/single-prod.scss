@@ -1,7 +1,8 @@
 .page-product {
     .page-product-main {
         margin-top: 32px;
-        column-gap: 16px;
+        margin-bottom: 104px;
+        column-gap: 26px;
         display: flex;
 
         .params {
@@ -213,24 +214,6 @@
                     margin-top: 28px;
                 }
             }
-        }
-    }
-
-    .products {
-        margin-top: 104px;
-
-        .products-title {
-            font-weight: 600;
-            font-size: 22px;
-            line-height: 25px;
-            letter-spacing: 0.06em;
-        }
-
-        .products-cards {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-top: 48px;
         }
     }
 }

@@ -1,31 +1,69 @@
 import PropTypes from 'prop-types';
 import up from './assets/chevron-left.svg'
 import down from './assets/chevron-right.svg'
-import { SMALL_IMG } from '../../../constants/products/slider-product';
-// import { Sliders } from '../../sliders/Sliders';
-import { SinglePageSlider } from '../../sliders/Sliders';
+import { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Controller, FreeMode, Navigation, Thumbs } from "swiper";
 
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
 
 import './product-slider.scss';
 
 export const ProductSlider = ({ slides }) => {
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const [controlledSwiper, setControlledSwiper] = useState(null);
+    const setNext = () => controlledSwiper.slideNext();
+    const setPrev = () => controlledSwiper.slidePrev();
+
     return (
-        <div className='slider_product'>
+        <div className='slider_product' data-test-id='product-slider'>
             <div className='side_block'>
                 <div className='arr_up_down'>
-                    <img src={up} alt='arr_up' className='arr_up' />
-                    <img src={down} alt='arr_down' className='arr_down' />
+                    <img src={up} alt='arr_up' className='arr_up' onClick={setPrev} />
+                    <img src={down} alt='arr_down' className='arr_down' onClick={setNext} />
                 </div>
-                <div className='small_img'>
-                    {SMALL_IMG.map(({ id, imgSrc, alt }) => (
-                        <img key={id} src={imgSrc} className='small_img' alt={alt} />
-                    ))}
+                <div className='small_img-wrapper'>
+                    <Swiper
+                        onSwiper={setThumbsSwiper}
+                        slidesPerView={4}
+                        spaceBetween={20}
+                        watchSlidesProgress
+                        modules={[Navigation, Thumbs, Controller]}
+                        direction='vertical'
+                    >
+                        {slides.map(({ id, imgSrc, alt }) => (
+                            <SwiperSlide key={id}>
+                                <img key={id} src={imgSrc} className='small_img' alt={alt} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+
                 </div>
             </div>
-            <SinglePageSlider slides={slides} />
+            <div className='slider-product'>
+                <Swiper
+                    onSwiper={setControlledSwiper}
+                    navigation={true}
+                    modules={[FreeMode, Navigation, Thumbs, Controller]}
+                    thumbs={{ swiper: thumbsSwiper }}
+                >
+                    {slides.map(({ id, imgSrc, alt }) => {
+                        return (
+                            <div key={id} className='slider-block'>
+                                <SwiperSlide key={id}>
+                                    <img src={imgSrc} alt={alt} className='slider-img' />
+                                </SwiperSlide>
+                            </div>
+                        )
+                    })}
+                </Swiper>
+            </div>
         </div>
     )
 }
+
 
 ProductSlider.propTypes = {
     slides: PropTypes.arrayOf(

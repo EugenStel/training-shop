@@ -31,6 +31,34 @@
     }
 }
 
+.slider-product {
+    width: 25vw;
+    .swiper-button-prev {
+        left: 10px;
+        cursor: pointer;
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url(./assets/prevArrow.jpg);
+    }
+    .swiper-button-prev::after {
+        content: "";
+    }
+    .swiper-button-next {
+        right: 10%;
+        cursor: pointer;
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url(./assets/nextArrow.jpg);
+    }
+    .swiper-button-next::after {
+        content: "";
+    }
+}
+
 .slider-block {
     position: relative;
 

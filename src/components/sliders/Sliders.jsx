@@ -36,18 +36,6 @@ export const Sliders = ({ slides }) => {
 };
 
 
-export const SinglePageSlider = ({ slides }) => {
-    return (
-        <div className='slider'>
-            {slides.map(({ id, imgSrc, alt }) => (
-                <div key={id} className='slider-block'>
-                    <img src={imgSrc} alt={alt} className='slider-img' />
-                </div>
-            ))}
-        </div>
-    );
-}
-
 
 Sliders.propTypes = {
     slides: PropTypes.arrayOf(

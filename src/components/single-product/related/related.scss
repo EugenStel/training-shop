@@ -1,0 +1,33 @@
+.products {
+    width: 100%;
+    .related-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .related-control {
+            display: flex;
+            gap: 30px;
+            border-radius: 50%;
+
+            img {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .products-title {
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 25px;
+        letter-spacing: 0.06em;
+    }
+
+    .products-cards {
+        margin-top: 48px;
+
+        .products-swiper {
+            max-width: 1110px;
+        }
+    }
+}

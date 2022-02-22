@@ -1,7 +1,7 @@
 .slider_product {
-    flex-basis: 50%;
     display: flex;
     column-gap: 16px;
+    width: 50%;
 
     .side_block {
         display: flex;
@@ -19,15 +19,21 @@
             }
         }
 
-        .small_img {
+        .small_img-wrapper {
             width: 94px;
             display: flex;
             flex-direction: column;
             row-gap: 12px;
-            filter: opacity(0.4);
+            max-height: 500px;
 
-            &.active {
-                filter: none;
+            .small_img {
+                cursor: pointer;
+            }
+            .swiper-slide {
+                opacity: 0.6;
+            }
+            .swiper-slide-thumb-active {
+                opacity: 1;
             }
         }
     }

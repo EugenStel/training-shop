@@ -8,13 +8,14 @@ import { SLIDER_PRODUCT } from "../../constants/products/slider-product";
 import { COLOR_IMG } from "../../constants/products/slider-product";
 import { CLOTHES_CARDS } from "../../constants/main/clothes-cards";
 import { CardRating } from "../../components/clothes-card-item/card-raiting/CardRaiting";
-import { ClothesCardItem } from "../../components/clothes-card-item/ClothesCardItem";
 import { Reviews } from "../../components/single-product/reviews/Reviews";
+import { Related } from "../../components/single-product/related/Related";
 
 import hanger from '../../components/single-product/assets/clothes-hanger.jpg'
 import favourite from '../../components/single-product/control/assets/heart.svg'
 import compare from '../../components/single-product/control/assets/scale.svg'
 import annotation from '../../components/single-product/reviews/assets/annotation.svg'
+
 
 import './single-prod.scss'
 
@@ -106,16 +107,10 @@ export const SinglePage = ({ productType }) => {
                     </div>
                 </div>
             </div>
-            <div className='products wrapper'>
-                <div className='products-title'>RELATED PRODUCTS</div>
-                <div className='products-cards'>
-                    {CLOTHES_CARDS[productType]
-                        .filter((_, index) => index <= 3)
-                        .map((cardItem) => (
-                            <ClothesCardItem card={cardItem} productType={productType} key={cardItem.id} />
-                        ))}
-                </div>
-            </div>
+
+            <Related productType={productType} />
+
+
         </div>
     )
 }

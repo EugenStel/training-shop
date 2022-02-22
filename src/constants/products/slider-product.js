@@ -17,6 +17,27 @@ export const SLIDER_PRODUCT = [
         alt: 'suit',
         title: '',
         description: ''
+    },
+    {
+        id: '2',
+        imgSrc: firsImg,
+        alt: 'suit',
+        title: '',
+        description: ''
+    },
+    {
+        id: '3',
+        imgSrc: firsImg,
+        alt: 'suit',
+        title: '',
+        description: ''
+    },
+    {
+        id: '4',
+        imgSrc: firsImg,
+        alt: 'suit',
+        title: '',
+        description: ''
     }
 ]
 
