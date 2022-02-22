@@ -29,9 +29,22 @@ export const Related = ({ productType }) => {
                     <div className="products-swiper" data-test-id='related-slider'>
                         <Swiper
                             spaceBetween={20}
-                            slidesPerView={4}
                             modules={[Controller]}
                             onSwiper={setControlledSwiper}
+                            breakpoints={{
+                                260: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 10,
+                                },
+                                650: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 15,
+                                },
+                                1000: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 20,
+                                },
+                            }}
                         >
                             {CLOTHES_CARDS[productType].map((cardItem) => {
                                 return (
