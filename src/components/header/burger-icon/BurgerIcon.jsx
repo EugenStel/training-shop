@@ -5,8 +5,7 @@ import './burger-icon.scss'
 
 export const BurgerIcon = ({ mobileOpen }) => {
     return (
-        <div className='burger'>
-            <img src={mobileOpen ? closeIcon : burgerIcon} alt='burger' />
-        </div>
+
+        <img src={mobileOpen ? closeIcon : burgerIcon} alt='burger' className='burger' />
     )
 }
