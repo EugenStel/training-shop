@@ -9,7 +9,7 @@ import './prod-control.scss'
 export const ProductsControl = ({ onFilterOpen, isFilterOpen }) => {
     return (
         <div className='products_control'>
-            <button className='filter' type='button'>
+            <button className='filter' type='button' data-test-id='filter-button'>
                 {!isFilterOpen ? (
                     <img src={filterIcon} alt='filter' className='filter_img' onClick={onFilterOpen} />
                 ) : (

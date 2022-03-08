@@ -8,3 +8,39 @@
         justify-items: center;
     }
 }
+
+.goods-counter {
+    margin-top: 20px;
+    padding: 0 0 12px;
+
+    &__body {
+        display: flex;
+        gap: 32px;
+    }
+
+    &__column {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    &__found {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    &__title {
+        margin-right: 5px;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        font-size: 14px;
+        line-height: 22px;
+        opacity: 0.6;
+    }
+}

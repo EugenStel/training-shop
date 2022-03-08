@@ -6,14 +6,14 @@ import arrow from '../categories/header/breadcrumbs/assets/arrow.svg'
 
 import './prod-head.scss'
 
-export const ProductHeader = ({ productType, name, id, raiting }) => {
+export const ProductHeader = ({ productType, name, rating, reviews }) => {
     return (
         <div className='product-page-header'>
             <div className='header_product_top wrapper'>
                 <div className='breadcrumbs_product'>
                     <Breadcrumbs productType={productType} />
                     <img src={arrow} alt="arrow" className="arrow" />
-                    <span className='product'>{name}{id}</span>
+                    <span className='product'>{name}</span>
                 </div>
                 <div className='share'>
                     <img src={shareButton} alt='share' className='share-img' />
@@ -21,12 +21,12 @@ export const ProductHeader = ({ productType, name, id, raiting }) => {
                 </div>
             </div>
             <div className='header_product_title wrapper'>
-                <span className='title'>{name}Text</span>
+                <span className='title'>{name}</span>
             </div>
             <div className='header_product_bottom wrapper'>
                 <div className='rating'>
-                    <CardRating rating={raiting} />
-                    <span className='reviews'>2 Reviews</span>
+                    <CardRating rating={rating} />
+                    <span className='reviews'>{reviews} Reviews</span>
                 </div>
                 <div className='count'>
                     <span className='sku'>
@@ -44,7 +44,7 @@ export const ProductHeader = ({ productType, name, id, raiting }) => {
 ProductHeader.propTypes = {
     productType: PropTypes.string.isRequired,
     name: PropTypes.string,
-    raiting: PropTypes.number
+    rating: PropTypes.number
 };
 
 ProductHeader.defaultProps = {

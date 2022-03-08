@@ -5,13 +5,16 @@ import arrow from './assets/arrow.svg'
 import './breadcrumbs.scss'
 
 export const Breadcrumbs = ({ productType }) => {
+    console.log(productType)
     return (
         <div className='breadcrumbs'>
             <Link to='/' className='home'>
                 <span className='home'>Home page</span>
             </Link>
             <img src={arrow} alt="arrow" />
-            <span className='current_page'>{productType}</span>
+            <Link to={`/${productType}`} className='home'>
+                <span className='current_page'>{productType}</span>
+            </Link>
         </div>
     )
 }

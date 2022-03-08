@@ -12,6 +12,7 @@ import 'swiper/css/thumbs';
 import './product-slider.scss';
 
 export const ProductSlider = ({ slides }) => {
+    const host = 'https://training.cleverland.by/shop';
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [controlledSwiper, setControlledSwiper] = useState(null);
     const setNext = () => controlledSwiper.slideNext();
@@ -33,9 +34,9 @@ export const ProductSlider = ({ slides }) => {
                         modules={[Navigation, Thumbs, Controller]}
                         direction='vertical'
                     >
-                        {slides.map(({ id, imgSrc, alt }) => (
+                        {slides?.images?.map(({ id, url, color }) => (
                             <SwiperSlide key={id}>
-                                <img key={id} src={imgSrc} className='small_img' alt={alt} />
+                                <img key={id} src={`${host}${url}`} className='small_img' alt={color} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
@@ -49,11 +50,11 @@ export const ProductSlider = ({ slides }) => {
                     modules={[FreeMode, Navigation, Thumbs, Controller]}
                     thumbs={{ swiper: thumbsSwiper }}
                 >
-                    {slides.map(({ id, imgSrc, alt }) => {
+                    {slides?.images?.map(({ id, url, color }) => {
                         return (
                             <div key={id} className='slider-block'>
                                 <SwiperSlide key={id}>
-                                    <img src={imgSrc} alt={alt} className='slider-img' />
+                                    <img src={`${host}${url}`} alt={color} className='slider-img' />
                                 </SwiperSlide>
                             </div>
                         )
@@ -65,12 +66,12 @@ export const ProductSlider = ({ slides }) => {
 }
 
 
-ProductSlider.propTypes = {
-    slides: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string,
-            imgSrc: PropTypes.string,
-            alt: PropTypes.string
-        })
-    ).isRequired
-};
+// ProductSlider.propTypes = {
+//     slides: PropTypes.arrayOf(
+//         PropTypes.shape({
+//             id: PropTypes.string,
+//             url: PropTypes.string,
+//             color: PropTypes.string
+//         })
+//     ).isRequired
+// };

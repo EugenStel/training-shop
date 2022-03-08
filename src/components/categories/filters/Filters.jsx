@@ -2,30 +2,41 @@ import { FilterItem } from "./filter-item/FilterItem";
 import { FILTERS } from "../../../constants/products/filters";
 import './filters.scss'
 
-export const Filters = () => {
+export const Filters = ({
+    uniqColors,
+    uniqSizes,
+    uniqBrand,
+    onColorChange,
+    onSizeChange,
+    onBrandChange,
+    onPriceChange,
+    productType
+}) => {
+
+
     return (
-        <div className='filters'>
-            <div className='color'>
+        <div className='filters' data-test-id={`filters-${productType}`}>
+            <div className='color' data-test-id='filters-color'>
                 <div className='title'>COLOR</div>
-                <div className='filter'>
-                    {FILTERS.byColor.map(({ id, color_name }) => (
-                        <FilterItem key={id} id={id} text={color_name} type='color' />
+                <div className='filter'  >
+                    {uniqColors.map((item, index) => (
+                        <FilterItem key={index} id={index} text={item} type='color' onValueChange={onColorChange} />
                     ))}
                 </div>
             </div>
-            <div className='size'>
+            <div className='size' data-test-id='filters-size'>
                 <div className='title'>SIZE</div>
                 <div className='filter'>
-                    {FILTERS.bySize.map(({ id, size }) => (
-                        <FilterItem key={id} id={id} text={size} type='size' />
+                    {uniqSizes.map((item, index) => (
+                        <FilterItem key={index} id={index} text={item} type='size' onValueChange={onSizeChange} />
                     ))}
                 </div>
             </div>
-            <div className='brand'>
+            <div className='brand' data-test-id='filters-brand'>
                 <div className='title'>BRAND</div>
                 <div className='filter'>
-                    {FILTERS.byBrand.map(({ id, brand_name }) => (
-                        <FilterItem key={id} id={id} text={brand_name} type='brand' />
+                    {uniqBrand.map((item, index) => (
+                        <FilterItem key={index} id={index} text={item} type='brand' onValueChange={onBrandChange} />
                     ))}
                 </div>
             </div>
@@ -33,7 +44,7 @@ export const Filters = () => {
                 <div className='title'>PRICE</div>
                 <div className='filter'>
                     {FILTERS.byPrice.map(({ id, price }) => (
-                        <FilterItem key={id} id={id} text={price} type='price' />
+                        <FilterItem key={id} id={id} text={price} type='price' onValueChange={onPriceChange} />
                     ))}
                 </div>
             </div>

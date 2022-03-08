@@ -88,19 +88,4 @@ export const SMALL_IMG = [
         imgSrc: firstSml,
         alt: 'firstSml'
     }
-    // {
-    //     id: '2',
-    //     imgSrc: secondSml,
-    //     alt: 'secondSml'
-    // },
-    // {
-    //     id: '3',
-    //     imgSrc: thirdSml,
-    //     alt: 'thirdSml'
-    // },
-    // {
-    //     id: '4',
-    //     imgSrc: fourthSml,
-    //     alt: 'fourthSml'
-    // }
 ]

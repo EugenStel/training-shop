@@ -1,5 +1,4 @@
 import { ClothesCardItem } from "../../clothes-card-item/ClothesCardItem"
-import { CLOTHES_CARDS } from "../../../constants/main/clothes-cards"
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Controller } from 'swiper';
@@ -10,7 +9,7 @@ import prev from '../../sliders/assets/leftButton.svg'
 
 import './related.scss'
 
-export const Related = ({ productType }) => {
+export const Related = ({ productType, products }) => {
     const [controlledSwiper, setControlledSwiper] = useState(null);
 
     const setNext = () => controlledSwiper.slideNext();
@@ -46,7 +45,7 @@ export const Related = ({ productType }) => {
                                 },
                             }}
                         >
-                            {CLOTHES_CARDS[productType].map((cardItem) => {
+                            {products[productType].map((cardItem) => {
                                 return (
                                     <SwiperSlide key={cardItem.id}>
                                         <ClothesCardItem card={cardItem} productType={productType} key={cardItem.id} />

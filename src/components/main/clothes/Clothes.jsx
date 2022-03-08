@@ -1,31 +1,48 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
 import { ClothesCardItem } from '../../clothes-card-item/ClothesCardItem';
-import { CLOTHES_MENU } from '../../../constants/main/clothes-menu';
-import { CLOTHES_CARDS } from '../../../constants/main/clothes-cards';
+import { useEffect, useState } from 'react';
+import { PRODUCTS_DATA } from '../../../constants/products';
+import { MAIN_CLOTHES_BLOCK_MENU } from '../../../constants/main/main-clothes-block-menu';
 
 import './clothes.scss'
+
+
 export const Clothes = ({ productType }) => {
+
+    const [clothes, setClothes] = useState([]);
+
+    useEffect(() => {
+        const filterDefaultValue = 'isNewArrivals'
+        setClothes(PRODUCTS_DATA[productType].filter((item) => item.particulars[filterDefaultValue]))
+    }, [productType])
+
+    const clothesMenuHandler = (e) => {
+        let filterText = e.target.getAttribute("data-filter")
+        let arr = PRODUCTS_DATA[productType].filter((item) => item.particulars[filterText])
+        setClothes(arr)
+    }
+
     return (
         <>
             <div className='clothes' data-test-id={`clothes-${productType}`}>
                 <div className='clothes-header'>
                     <div className='clothes-title'>{`${productType}’s`}</div>
                     <div className='clothes-menu'>
-                        {CLOTHES_MENU.map(({ id, name }) => (
-                            <div className='clothes-menu-item' key={id}>
+                        {MAIN_CLOTHES_BLOCK_MENU.map(({ id, name, particularName }) => (
+                            <div className='clothes-menu-item' key={id}
+                                onClick={clothesMenuHandler}
+                                data-filter={particularName}
+                                data-test-id={`clothes-${productType}-${particularName}`}>
                                 {name}
                             </div>
                         ))}
                     </div>
                 </div>
                 <div className='cards'>
-                    {CLOTHES_CARDS[productType]
-                        .filter((_, index) => index <= 7)
-                        .map((card) => (
-                            <ClothesCardItem key={card.id} card={card} productType={productType} />
-                        ))}
+                    {clothes?.map((card) => (
+                        <ClothesCardItem key={card.id} card={card} productType={productType} />
+                    ))}
                 </div>
                 <Link to={`/${productType}`} className='cards-item-a'>
                     <button className='clothes-button' type='button'>
