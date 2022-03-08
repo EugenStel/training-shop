@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import up from './assets/chevron-left.svg'
 import down from './assets/chevron-right.svg'
 import { useState } from 'react';
