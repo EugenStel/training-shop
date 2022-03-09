@@ -24,17 +24,13 @@ export const SinglePage = ({ productType }) => {
     const [size, setSize] = useState('')
     const [color, setColor] = useState('')
 
-
     let uniqueColors = new Set(product?.images?.map(({ color }) => color));
-
 
     useEffect(() => {
         setProduct(PRODUCTS_DATA[productType].find((item) => item?.id === id))
         setSize(product?.sizes[0])
         setColor(product?.images[0]?.color)
     }, [productType, id, product])
-
-
 
 
     const sizeHandler = (e) => {
@@ -52,6 +48,32 @@ export const SinglePage = ({ productType }) => {
     const uniqColors = [...new Set(arrColors?.join(',').split(','))]
 
     let reviewsCounter = product?.reviews?.length;
+
+    let sizes = [].slice.call(document.querySelectorAll('.button-size'));
+    sizes.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            sizes.forEach((s) => {
+                if (s !== this) {
+                    s.classList.remove('selected');
+                }
+            });
+            this.classList.add('selected');
+        }, false);
+    });
+
+    let colors = [].slice.call(document.querySelectorAll('img.right_img_item'));
+    colors.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            colors.forEach((c) => {
+                if (c !== this) {
+                    c.classList.remove('selected');
+                }
+            });
+            this.classList.add('selected');
+        }, false);
+    });
 
 
     return (
@@ -81,7 +103,7 @@ export const SinglePage = ({ productType }) => {
                     </div>
                     <div className='size-btn'>
                         {product?.sizes?.map((text) => {
-                            return <button type='button' key={text} onClick={sizeHandler}>{text}</button>
+                            return <button type='button' key={text} onClick={sizeHandler} className='button-size'>{text}</button>
                         })}
                     </div>
                     <div className='hanger'>

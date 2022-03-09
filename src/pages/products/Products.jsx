@@ -94,7 +94,6 @@ export const ProductsPage = ({ productType }) => {
         setColor('')
         setBrand('')
         setPrice([])
-
     }, [productType])
 
 
