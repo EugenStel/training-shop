@@ -21,15 +21,19 @@ export const SinglePage = ({ productType }) => {
     const host = 'https://training.cleverland.by/shop';
     const { id } = useParams();
     const [product, setProduct] = useState();
-    const [size, setSize] = useState()
-    const [color, setColor] = useState()
+    const [size, setSize] = useState('')
+    const [color, setColor] = useState('')
+
 
     let uniqueColors = new Set(product?.images?.map(({ color }) => color));
 
 
     useEffect(() => {
         setProduct(PRODUCTS_DATA[productType].find((item) => item?.id === id))
-    }, [productType, id])
+        setSize(product?.sizes[0])
+        setColor(product?.images[0]?.color)
+    }, [productType, id, product])
+
 
 
 

@@ -23,6 +23,19 @@ export const Clothes = ({ productType }) => {
         setClothes(arr)
     }
 
+    let navLink = [].slice.call(document.querySelectorAll('.clothes-menu-item'));
+    navLink.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            navLink.forEach((nl) => {
+                if (nl !== this) {
+                    nl.classList.remove('active');
+                }
+            });
+            this.classList.add('active');
+        }, false);
+    });
+
     return (
         <>
             <div className='clothes' data-test-id={`clothes-${productType}`}>
