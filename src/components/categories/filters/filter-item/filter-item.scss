@@ -16,3 +16,17 @@
         padding-top: 2px;
     }
 }
+
+@media screen and (max-width: 400px) {
+    .checkbox_label {
+        .checkbox_input {
+            width: 16px;
+            height: 16px;
+        }
+        .checkbox_text {
+            font-size: 11px;
+            line-height: 24px;
+            padding-top: 2px;
+        }
+    }
+}

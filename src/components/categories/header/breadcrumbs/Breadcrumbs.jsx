@@ -5,7 +5,6 @@ import arrow from './assets/arrow.svg'
 import './breadcrumbs.scss'
 
 export const Breadcrumbs = ({ productType }) => {
-    console.log(productType)
     return (
         <div className='breadcrumbs'>
             <Link to='/' className='home'>

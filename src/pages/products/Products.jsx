@@ -140,7 +140,7 @@ export const ProductsPage = ({ productType }) => {
                     />}
             </div>
             {
-                isShowCounter && <div className="category__counter goods-counter">
+                isShowCounter && <div className="category__counter goods-counter wrapper">
                     <div className="goods-counter__container _container">
                         <div className="goods-counter__body">
                             {isShowCounter && (

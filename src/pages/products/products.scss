@@ -1,17 +1,16 @@
 .products-page {
     .cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(255px, 0.2fr));
+        grid-template-columns: repeat(auto-fit, minmax(255px, 255px));
         grid-gap: 30px;
         gap: 30px;
         margin: 48px 20px;
-        justify-items: center;
+        justify-content: center;
     }
 }
 
 .goods-counter {
-    margin-left: 20px;
-    margin-top: 20px;
+    margin-top: 20px !important;
     padding: 0 0 12px;
 
     &__body {

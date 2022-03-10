@@ -39,3 +39,20 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+@media screen and (max-width: 400px) {
+    .filters {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 10px 10px;
+        .color,
+        .size,
+        .brand {
+            margin-bottom: 10px;
+            .title {
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 10px;
+            }
+        }
+    }
+}
