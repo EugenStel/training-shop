@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getItemsInCart } from "../../redux/cart/cartSelectors";
 import { ProductHeader } from "../../components/product-head/Product-head";
 import { Checkout } from "../../components/single-product/checkout/Checkout";
 import { Opportunity } from "../../components/single-product/opportunity/Opportunity";
@@ -14,15 +16,28 @@ import favourite from '../../components/single-product/control/assets/heart.svg'
 import compare from '../../components/single-product/control/assets/scale.svg'
 import annotation from '../../components/single-product/reviews/assets/annotation.svg'
 
+import { addItem, deleteItem } from "../../redux/cart/cartActions";
+
 
 import './single-prod.scss'
 
 export const SinglePage = ({ productType }) => {
+    const dispatch = useDispatch();
+    const items = useSelector(getItemsInCart)
+
     const host = 'https://training.cleverland.by/shop';
+
     const { id } = useParams();
+
     const [product, setProduct] = useState();
     const [size, setSize] = useState('')
     const [color, setColor] = useState('')
+
+    let tempId = Date.now().toString()
+
+    const isItemAdded = items.filter((item) => item.color === color && item.size === size).length;
+
+
 
     let uniqueColors = new Set(product?.images?.map(({ color }) => color));
 
@@ -75,6 +90,20 @@ export const SinglePage = ({ productType }) => {
         }, false);
     });
 
+    const addItemToCart = () => {
+        if (isItemAdded) {
+            dispatch(deleteItem(items.find((item) => item.color === color && item.size === size).id));
+        } else
+            dispatch(addItem({
+                name: product.name,
+                price: product.price,
+                color: color,
+                url: `${host}${product.images[0].url}`,
+                size: size,
+                amount: 1,
+                id: tempId,
+            }))
+    }
 
     return (
         <div className='page-product' data-test-id={`product-page-${productType}`}>
@@ -103,7 +132,8 @@ export const SinglePage = ({ productType }) => {
                     </div>
                     <div className='size-btn'>
                         {product?.sizes?.map((text) => {
-                            return <button type='button' key={text} onClick={sizeHandler} className='button-size'>{text}</button>
+                            // return <button type='button' key={text} onClick={sizeHandler} className='button-size'>{text}</button>
+                            return <button type='button' key={text} onClick={sizeHandler} className={text === size ? 'button-size selected' : 'button-size'}>{text}</button>
                         })}
                     </div>
                     <div className='hanger'>
@@ -112,8 +142,8 @@ export const SinglePage = ({ productType }) => {
                     </div>
                     <div className='pay'>
                         <div className='cost'>$ {product?.price}</div>
-                        <button type='button' className='pay-btn'>
-                            ADD TO CARD
+                        <button type='button' className='pay-btn' onClick={addItemToCart} data-test-id='add-cart-button'>
+                            {!isItemAdded ? 'ADD TO CARD' : 'REMOVE TO CARD'}
                         </button>
                         <img src={favourite} alt='favourite' className='heart-img' />
                         <img src={compare} alt='compare' className='scale-img' />

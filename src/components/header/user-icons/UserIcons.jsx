@@ -4,7 +4,7 @@ import { BurgerIcon } from "../burger-icon/BurgerIcon";
 
 import './user-icons.scss'
 
-export const UserIconsNav = ({ handleMobileOpen, mobileOpen }) => {
+export const UserIconsNav = ({ handleMobileOpen, mobileOpen, handleCartOpen, cartOpen }) => {
     return (
         <>
             <div className='header_icons_nav'>
@@ -13,7 +13,9 @@ export const UserIconsNav = ({ handleMobileOpen, mobileOpen }) => {
                         <img src={imgSrc} alt={alt} className='header_icons_nav_item_img' />
                     </a>
                 ))}
-                <Cart />
+                <div onClick={handleCartOpen}>
+                    <Cart cartOpen={cartOpen} />
+                </div>
             </div>
             <div onClick={handleMobileOpen} data-test-id='burger-menu-btn'>
                 <BurgerIcon mobileOpen={mobileOpen} />

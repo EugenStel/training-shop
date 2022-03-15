@@ -1,0 +1,1 @@
+export const getItemsInCart = ({ cart: { items } }) => items;
