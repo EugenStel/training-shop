@@ -35,7 +35,6 @@ export const Header = () => {
     };
 
 
-
     return (
         <div className='header' data-test-id='header'>
             <div className='header_contacts'>
@@ -57,7 +56,7 @@ export const Header = () => {
                 </div>
             </div>
             {mobileOpen && <BurgerMenu handleMobileClose={handleMobileClose} onClickOutside={() => { setMobileOpen(false) }} />}
-            {cartOpen && <Drawer handleCartOpen={handleCartOpen} onClickOutside={() => { handleCartClose(false) }} handleCartClose={handleCartClose} />}
+            {cartOpen && <Drawer setCartOpen={setCartOpen} handleCartOpen={handleCartOpen} onClickOutside={() => { handleCartClose(false) }} handleCartClose={handleCartClose} />}
         </div>
     )
 }

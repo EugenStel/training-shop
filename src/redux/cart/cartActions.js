@@ -15,3 +15,8 @@ export const changeAmount = (payload) => ({
     payload
 })
 
+export const setCartOpen = (payload) => ({
+    type: cartActionTypes.SET_CART_OPEN,
+    payload
+})
+

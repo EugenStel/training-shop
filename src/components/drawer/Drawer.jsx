@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getItemsInCart } from "../../redux/cart/cartSelectors";
 import { deleteItem, changeAmount } from "../../redux/cart/cartActions";
@@ -10,32 +10,19 @@ import minus from './assets/minus.svg'
 
 import './drawer.scss'
 
-export const Drawer = ({ onClickOutside, handleCartClose }) => {
+export const Drawer = ({ handleCartClose, setCartOpen }) => {
     const dispatch = useDispatch()
     const items = useSelector(getItemsInCart)
     const ref = useRef(null);
+    const refbtn = useRef(null)
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (ref.current && !ref.current.contains(event.target)) {
-                onClickOutside && onClickOutside();
-                document.body.style.overflow = 'visible'
-            }
-        };
-        const escFunction = (event) => {
-            if (event.keyCode === 27) {
-                onClickOutside && onClickOutside();
-                document.body.style.overflow = 'visible'
-            }
-        };
 
-        document.addEventListener("keydown", escFunction);
-        document.addEventListener('click', handleClickOutside);
-        return () => {
-            document.removeEventListener('click', handleClickOutside);
-            document.removeEventListener("keydown", escFunction);
-        };
-    }, [onClickOutside])
+    function closeCartOnClick(event) {
+        if (event.target.className === "overlay") {
+            setCartOpen(false);
+            document.body.style.overflow = 'visible'
+        }
+    }
 
     const handleRemoveItem = (id) => dispatch(deleteItem(id));
 
@@ -43,8 +30,8 @@ export const Drawer = ({ onClickOutside, handleCartClose }) => {
     const totalPrice = items.reduce((total, { amount, price }) => total + amount * price, 0).toFixed(2);
     return (
         <>
-            <div className="overlay">
-                <div className="drawer" ref={ref} data-test-id='cart'>
+            <div className="overlay" onClick={(event) => closeCartOnClick(event)}>
+                <div className="drawer" ref={ref} data-test-id='cart' >
                     <h2 className="drawer-header">Shopping Cart
                         <img src={close} alt="remove" onClick={handleCartClose} />
                     </h2>
@@ -91,7 +78,9 @@ export const Drawer = ({ onClickOutside, handleCartClose }) => {
                                                         className="removeBtn"
                                                         src={trash}
                                                         alt="remove"
-                                                        onClick={() => handleRemoveItem(id)} />
+                                                        onClick={() => handleRemoveItem(id)}
+                                                        ref={refbtn}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>

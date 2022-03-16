@@ -1,12 +1,19 @@
 import { cartActionTypes } from "./cartActionTypes";
 
 const initialState = {
+    isCartOpen: false,
     items: [],
 };
 
 
 export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
+        case cartActionTypes.SET_CART_OPEN: {
+            return {
+                ...state,
+                isCartOpen: action.payload,
+            };
+        }
         case cartActionTypes.ADD_ITEM_TO_CART: {
             return {
                 ...state,
