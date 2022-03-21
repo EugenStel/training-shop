@@ -6,7 +6,7 @@ import { ProductHeader } from "../../components/product-head/Product-head";
 import { Checkout } from "../../components/single-product/checkout/Checkout";
 import { Opportunity } from "../../components/single-product/opportunity/Opportunity";
 import { ProductSlider } from "../../components/single-product/slider/ProductSlider";
-import { PRODUCTS_DATA } from "../../constants/products";
+// import { PRODUCTS_DATA } from "../../constants/products";
 import { CardRating } from "../../components/clothes-card-item/card-raiting/CardRaiting";
 import { Reviews } from "../../components/single-product/reviews/Reviews";
 import { Related } from "../../components/single-product/related/Related";
@@ -15,6 +15,7 @@ import hanger from '../../components/single-product/assets/clothes-hanger.jpg'
 import favourite from '../../components/single-product/control/assets/heart.svg'
 import compare from '../../components/single-product/control/assets/scale.svg'
 import annotation from '../../components/single-product/reviews/assets/annotation.svg'
+import { getProducts } from "../../redux/products/productsSelectors";
 
 import { addItem, deleteItem } from "../../redux/cart/cartActions";
 
@@ -24,6 +25,7 @@ import './single-prod.scss'
 export const SinglePage = ({ productType }) => {
     const dispatch = useDispatch();
     const items = useSelector(getItemsInCart)
+    const products = useSelector(getProducts)
 
     const host = 'https://training.cleverland.by/shop';
 
@@ -42,10 +44,10 @@ export const SinglePage = ({ productType }) => {
     let uniqueColors = new Set(product?.images?.map(({ color }) => color));
 
     useEffect(() => {
-        setProduct(PRODUCTS_DATA[productType].find((item) => item?.id === id))
+        setProduct(products[productType]?.find((item) => item?.id === id))
         setSize(product?.sizes[0])
         setColor(product?.images[0]?.color)
-    }, [productType, id, product])
+    }, [productType, id, product, products])
 
 
     const sizeHandler = (e) => {
@@ -195,7 +197,7 @@ export const SinglePage = ({ productType }) => {
                 </div>
             </div>
 
-            <Related productType={productType} products={PRODUCTS_DATA} />
+            <Related productType={productType} products={products} />
         </div>
     )
 }

@@ -2,24 +2,27 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ClothesCardItem } from '../../clothes-card-item/ClothesCardItem';
 import { useEffect, useState } from 'react';
-import { PRODUCTS_DATA } from '../../../constants/products';
+import { useSelector } from 'react-redux';
+import { getProducts } from '../../../redux/products/productsSelectors';
+// import { PRODUCTS_DATA } from '../../../constants/products';
 import { MAIN_CLOTHES_BLOCK_MENU } from '../../../constants/main/main-clothes-block-menu';
 
 import './clothes.scss'
 
 
 export const Clothes = ({ productType }) => {
+    const products = useSelector(getProducts)
 
     const [clothes, setClothes] = useState([]);
 
     useEffect(() => {
         const filterDefaultValue = 'isNewArrivals'
-        setClothes(PRODUCTS_DATA[productType].filter((item) => item.particulars[filterDefaultValue]))
-    }, [productType])
+        setClothes(products[productType]?.filter((item) => item.particulars[filterDefaultValue]))
+    }, [productType, products])
 
     const clothesMenuHandler = (e) => {
         let filterText = e.target.getAttribute("data-filter")
-        let arr = PRODUCTS_DATA[productType].filter((item) => item.particulars[filterText])
+        let arr = products[productType]?.filter((item) => item.particulars[filterText])
         setClothes(arr)
     }
 

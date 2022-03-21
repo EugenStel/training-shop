@@ -4,12 +4,17 @@ import { ProductsHeader } from "../../components/categories/header/ProductsHeade
 import { ProductsControl } from "../../components/categories/control/ProductsControl"
 import { Filters } from "../../components/categories/filters/Filters"
 import { ClothesCardItem } from "../../components/clothes-card-item/ClothesCardItem"
-import { PRODUCTS_DATA } from "../../constants/products"
+// import { PRODUCTS_DATA } from "../../constants/products"
+import { useSelector } from "react-redux"
+import { getProducts } from "../../redux/products/productsSelectors"
 
 import './products.scss'
 
 export const ProductsPage = ({ productType }) => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+    const products = useSelector(getProducts)
+
 
     const [color, setColor] = useState("");
     const [size, setSize] = useState("");
@@ -27,17 +32,17 @@ export const ProductsPage = ({ productType }) => {
         setIsFilterOpen(!isFilterOpen);
     };
 
-    const arrBrand = PRODUCTS_DATA[productType].map((item) => {
+    const arrBrand = products[productType]?.map((item) => {
         return item.brand
     })
     const uniqBrand = [...new Set(arrBrand)]
 
-    const arrSizes = PRODUCTS_DATA[productType].map((item) => {
+    const arrSizes = products[productType]?.map((item) => {
         return item.sizes
     })
     const uniqSizes = [...new Set(arrSizes.join(',').split(','))]
 
-    const arrColors = PRODUCTS_DATA[productType].map((item) => {
+    const arrColors = products[productType]?.map((item) => {
         return item.images.map((obj) => {
             return obj.color
         })
@@ -97,7 +102,7 @@ export const ProductsPage = ({ productType }) => {
     }, [productType])
 
 
-    const filteredGoods = PRODUCTS_DATA[productType].filter((n) => {
+    const filteredGoods = products[productType]?.filter((n) => {
         return (
             (!color.length ||
                 n.images
