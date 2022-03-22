@@ -4,7 +4,6 @@ import { ClothesCardItem } from '../../clothes-card-item/ClothesCardItem';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getProducts } from '../../../redux/products/productsSelectors';
-// import { PRODUCTS_DATA } from '../../../constants/products';
 import { MAIN_CLOTHES_BLOCK_MENU } from '../../../constants/main/main-clothes-block-menu';
 
 import './clothes.scss'

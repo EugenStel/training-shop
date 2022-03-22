@@ -6,7 +6,6 @@ import { ProductHeader } from "../../components/product-head/Product-head";
 import { Checkout } from "../../components/single-product/checkout/Checkout";
 import { Opportunity } from "../../components/single-product/opportunity/Opportunity";
 import { ProductSlider } from "../../components/single-product/slider/ProductSlider";
-// import { PRODUCTS_DATA } from "../../constants/products";
 import { CardRating } from "../../components/clothes-card-item/card-raiting/CardRaiting";
 import { Reviews } from "../../components/single-product/reviews/Reviews";
 import { Related } from "../../components/single-product/related/Related";

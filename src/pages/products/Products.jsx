@@ -4,7 +4,6 @@ import { ProductsHeader } from "../../components/categories/header/ProductsHeade
 import { ProductsControl } from "../../components/categories/control/ProductsControl"
 import { Filters } from "../../components/categories/filters/Filters"
 import { ClothesCardItem } from "../../components/clothes-card-item/ClothesCardItem"
-// import { PRODUCTS_DATA } from "../../constants/products"
 import { useSelector } from "react-redux"
 import { getProducts } from "../../redux/products/productsSelectors"
 
