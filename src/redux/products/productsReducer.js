@@ -14,14 +14,14 @@ export const productsReducer = (state = initialState, action) => {
         case productsActionTypes.FETCH_PRODUCTS: {
             return {
                 ...state,
-                isLoading: true,
+                // isLoading: true,
                 products: action.payload
             };
         }
         case productsActionTypes.FETCH_PRODUCTS_FAILURE: {
             return {
                 ...state,
-                isLoading: true,
+                isLoading: false,
                 isError: true
             };
         }
@@ -31,6 +31,16 @@ export const productsReducer = (state = initialState, action) => {
                 isLoading: false
             };
         }
+        case productsActionTypes.HIDE_LOADER:
+            return {
+                ...state,
+                isLoading: false,
+            };
+        case productsActionTypes.SHOW_LOADER:
+            return {
+                ...state,
+                isLoading: true,
+            };
         default:
             return state
     }

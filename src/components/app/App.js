@@ -18,7 +18,6 @@ export const App = () => {
   // const products = useSelector(getProducts)
   const error = useSelector(getErrorByFetch)
   const loading = useSelector(getLoadingStatus)
-
   const { pathname } = useLocation();
 
 
