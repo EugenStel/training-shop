@@ -26,7 +26,7 @@ export const SinglePage = ({ productType }) => {
     const items = useSelector(getItemsInCart)
     const products = useSelector(getProducts)
     const error = useSelector(getErrorByFetch)
-    console.log(error)
+
 
     const host = 'https://training.cleverland.by/shop';
 
@@ -110,9 +110,8 @@ export const SinglePage = ({ productType }) => {
 
     return (
         <div className='page-product' data-test-id={`product-page-${productType}`}>
-            {error ? null : <ProductHeader productType={productType} id={id} name={product?.name} rating={product?.rating} reviews={reviewsCounter} />}
-
-            {error ? null :
+            {error || !product ? null : <ProductHeader productType={productType} id={id} name={product?.name} rating={product?.rating} reviews={reviewsCounter} />}
+            {error || !product ? null :
                 <div className='page-product-main wrapper'>
                     <ProductSlider slides={product} />
                     <div className='params'>
@@ -203,7 +202,7 @@ export const SinglePage = ({ productType }) => {
 
 
 
-            {error ? null : <Related productType={productType} products={products} />}
+            {error || !product ? null : <Related productType={productType} products={products} />}
         </div>
     )
 }
