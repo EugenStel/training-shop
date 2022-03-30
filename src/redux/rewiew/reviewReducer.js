@@ -11,6 +11,15 @@ const initialState = {
 
 export const reviewReducer = (state = initialState, action) => {
     switch (action.type) {
+        case reviewsActionsTypes.CLEAR: {
+            return {
+                ...state,
+                reviewResponse: null,
+                isLoading: false,
+                reviewError: null,
+                buttonDisable: true
+            };
+        }
         case reviewsActionsTypes.SEND_REVIEW_SUCCESS: {
             return {
                 ...state,

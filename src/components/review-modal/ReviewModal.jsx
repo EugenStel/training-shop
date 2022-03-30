@@ -37,6 +37,7 @@ export const ReviewModal = ({ showReviewForm, handleCloseForm, id }) => {
         raiting = newRating;
     };
 
+
     return (
         <>
             <div className={classNames('overlay', { active: showReviewForm })}

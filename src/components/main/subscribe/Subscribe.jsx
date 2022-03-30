@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import men from './assets/menSubscibe.svg';
 import woman from './assets/womenSubscribe.png';
-import { sendMainEmail, enableMainButton, disableMainButton } from '../../../redux/email/emailActions';
+import { sendMainEmail, enableMainButton, disableMainButton, clear } from '../../../redux/email/emailActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoaderButtons } from '../../loader-buttons/LoaderButtons'
 import { getEmailMainLoading, getEmailMainError, getEmailMainResponce, getButtonMainStatus } from '../../../redux/email/emailSelectors'
@@ -35,6 +35,10 @@ export const MainSubscribe = () => {
         setEmail('')
     }
 
+    useEffect(() => {
+        dispatch(clear())
+    }, [dispatch])
+
     return (
         <div className='subscribe'>
             <div className='subscribe_block'>
@@ -47,7 +51,8 @@ export const MainSubscribe = () => {
                         <input type='text'
                             data-test-id='main-subscribe-mail-field'
                             placeholder='Enter your email'
-                            className='input' value={email}
+                            className='input'
+                            value={email}
                             onChange={handleInputChange}
                             onKeyUp={() => { isValidEmailAddress(email) }} />
                         {errorMail ? <span className='error_mail'>{errorMail}</span> : <span className='success_email'>{emailResponce}</span>}

@@ -60,6 +60,12 @@ export const disableFooterButton = () => (dispatch) => {
     });
 }
 
+export const clear = () => (dispatch) => {
+    dispatch({
+        type: emailActionTypes.CLEAR,
+    });
+}
+
 
 export const sendMainEmail = (email) => (dispatch) => {
     dispatch(showEmailMainLoader())
@@ -72,7 +78,7 @@ export const sendMainEmail = (email) => (dispatch) => {
                 type: emailActionTypes.SEND_EMAIL_MAIN_SUCCESS,
                 payload: 'Успешно'
             })
-            dispatch(enableMainButton())
+            dispatch(disableMainButton())
         })
         .catch(({ message }) => {
             dispatch(hideEmailMainLoader())
@@ -96,7 +102,7 @@ export const sendFooterEmail = (email) => (dispatch) => {
                 type: emailActionTypes.SEND_EMAIL_FOOTER_SUCCESS,
                 payload: 'Успешно'
             })
-            dispatch(enableFooterButton())
+            dispatch(disableFooterButton())
         })
         .catch(({ message }) => {
             dispatch(hideEmailFooterLoader())

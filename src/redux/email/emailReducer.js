@@ -13,6 +13,18 @@ const initialState = {
 
 export const emailReducer = (state = initialState, action) => {
     switch (action.type) {
+        case emailActionTypes.CLEAR: {
+            return {
+                emailMainResponce: null,
+                isLoadingMain: false,
+                emailMainError: null,
+                emailFooterResponce: null,
+                isLoadingFooter: false,
+                emailFooterError: null,
+                buttonMainDisable: true,
+                buttonFooterDisable: true
+            }
+        }
         case emailActionTypes.BUTTON_MAIN_ENABLE: {
             return {
                 ...state,
@@ -40,25 +52,29 @@ export const emailReducer = (state = initialState, action) => {
         case emailActionTypes.SEND_EMAIL_MAIN_SUCCESS: {
             return {
                 ...state,
-                emailMainResponce: action.payload
+                emailMainResponce: action.payload,
+                emailMainError: null
             };
         }
         case emailActionTypes.SEND_EMAIL_MAIN_FAILURE: {
             return {
                 ...state,
-                emailMainError: action.payload
+                emailMainError: action.payload,
+                emailMainResponce: null
             };
         }
         case emailActionTypes.SEND_EMAIL_FOOTER_SUCCESS: {
             return {
                 ...state,
-                emailFooterResponce: action.payload
+                emailFooterResponce: action.payload,
+                emailFooterError: null
             };
         }
         case emailActionTypes.SEND_EMAIL_FOOTER_FAILURE: {
             return {
                 ...state,
-                emailFooterError: action.payload
+                emailFooterError: action.payload,
+                emailFooterResponce: null
             };
         }
         case emailActionTypes.SHOW_EMAIL_MAIN_LOADER: {

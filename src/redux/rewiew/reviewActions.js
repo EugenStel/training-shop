@@ -31,6 +31,12 @@ export const closeModal = () => (dispatch) => {
     })
 }
 
+export const clear = () => (dispatch) => {
+    dispatch({
+        type: reviewsActionsTypes.CLEAR
+    })
+}
+
 export const sendReview = (review) => (dispatch) => {
     dispatch(showLoader())
     axios.post(REVIEW_API, {
@@ -46,6 +52,7 @@ export const sendReview = (review) => (dispatch) => {
                 payload: res
             })
             dispatch(closeModal())
+            dispatch(clear())
             dispatch(fetchProducts())
         })
         .catch(({ message }) => {

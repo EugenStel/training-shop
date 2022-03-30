@@ -11,8 +11,6 @@
 .form_review_wrap {
     position: fixed;
     display: none;
-    width: 80%;
-    height: 50%;
     justify-content: center;
     align-items: center;
     top: 50%;
@@ -28,6 +26,7 @@
         position: relative;
         box-shadow: 0px 0px 25px 0px rgba(34, 60, 80, 0.56);
         display: flex;
+        width: 500px;
         flex-direction: column;
         align-items: center;
         padding: 40px;

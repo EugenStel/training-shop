@@ -1,10 +1,10 @@
 import { SocialIcons } from "../../header/social-networks/Social"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getEmailFooterLoading, getEmailFooterError, getEmailFooterResponce } from "../../../redux/email/emailSelectors";
 import { getButtonFooterStatus } from "../../../redux/email/emailSelectors";
 import { useDispatch, useSelector } from 'react-redux';
 import { LoaderFooterButtons } from "../../loader-buttons/LoaderButtons";
-import { sendFooterEmail, enableFooterButton, disableFooterButton } from "../../../redux/email/emailActions";
+import { sendFooterEmail, enableFooterButton, disableFooterButton, clear } from "../../../redux/email/emailActions";
 
 import './subscribe.scss'
 
@@ -31,9 +31,12 @@ export const FooterSubscribe = () => {
         e.preventDefault();
         dispatch(disableFooterButton())
         dispatch(sendFooterEmail(email))
-        console.log('submiting')
         setEmail('')
     }
+
+    useEffect(() => {
+        dispatch(clear())
+    }, [dispatch])
 
     return (
         <div className='footer_subscriber'>
@@ -45,6 +48,7 @@ export const FooterSubscribe = () => {
                             data-test-id='footer-mail-field'
                             placeholder='Enter your email'
                             className='footer_input'
+                            value={email}
                             onChange={handleInputChange}
                             onKeyUp={() => { isValidEmailAddress(email) }} />
 
