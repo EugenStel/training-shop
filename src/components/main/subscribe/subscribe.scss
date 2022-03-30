@@ -37,20 +37,21 @@
                 }
             }
 
-        .input {
-            margin-top: 34px;
-            width: 100%;
-            background: #f8f8f8;
-            border: none;
-            min-height: 64px;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 18px;
-            color: #9c9c9c;
-            outline: 0;
+            .input {
+                margin-top: 34px;
+                width: 100%;
+                background: #f8f8f8;
+                border: none;
+                min-height: 64px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 18px;
+                color: #9c9c9c;
+                outline: 0;
+                margin-bottom: 5px;
 
                 &::placeholder {
                     font-weight: 500;
@@ -61,34 +62,47 @@
                 &:focus::placeholder {
                     color: transparent;
                 }
-        }
+            }
 
-        .button {
-            margin-top: 24px;
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 18px;
-            letter-spacing: 0.06em;
-            padding: 22px 0;
-            width: 100%;
-            border: none;
-            background: #121212;
-            color: #ffffff;
-            cursor: pointer;
-  
-            &:hover {
-                background: #414141;
-                transition: all 0.3s;
+            .button {
+                position: relative;
+                margin-top: 18px;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 18px;
+                letter-spacing: 0.06em;
+                padding: 22px 0;
+                width: 100%;
+                border: none;
+                color: #414141;
+                border: 1px solid #414141;
+            }
+            .true {
+                cursor: not-allowed;
+            }
+            .false {
+                cursor: pointer;
+                background: #121212;
+                color: #ffffff;
+                &:hover {
+                    border: 1px solid #ffffff;
+                    transition: all 0.3s;
+                }
+            }
+            .error_mail {
+                color: red;
+            }
+            .success_email {
+                color: green;
             }
         }
-      }
 
         .woman {
             position: absolute;
             top: 35px;
             left: -259px;
         }
-  
+
         .men {
             position: absolute;
             bottom: 11px;
@@ -98,7 +112,8 @@
 }
 
 @media screen and (max-width: 960px) {
-    .woman, .men {
+    .woman,
+    .men {
         display: none;
     }
 }

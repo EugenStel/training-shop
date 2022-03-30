@@ -1,10 +1,40 @@
+import { useState } from 'react';
 import men from './assets/menSubscibe.svg';
 import woman from './assets/womenSubscribe.png';
+import { sendMainEmail, enableMainButton, disableMainButton } from '../../../redux/email/emailActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { LoaderButtons } from '../../loader-buttons/LoaderButtons'
+import { getEmailMainLoading, getEmailMainError, getEmailMainResponce, getButtonMainStatus } from '../../../redux/email/emailSelectors'
 
 import './subscribe.scss';
 
 
 export const MainSubscribe = () => {
+    const [email, setEmail] = useState('')
+    const dispatch = useDispatch()
+    const loading = useSelector(getEmailMainLoading)
+    const errorMail = useSelector(getEmailMainError)
+    const emailResponce = useSelector(getEmailMainResponce)
+    const buttonDisable = useSelector(getButtonMainStatus)
+
+    const handleInputChange = (e) => {
+        setEmail(e.target.value)
+    }
+
+    function isValidEmailAddress(emailAddress) {
+        let pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        if (pattern.test(emailAddress)) {
+            dispatch(enableMainButton())
+        }
+    }
+
+    const handleSubmit = (e, email) => {
+        e.preventDefault();
+        dispatch(disableMainButton())
+        dispatch(sendMainEmail(email))
+        setEmail('')
+    }
+
     return (
         <div className='subscribe'>
             <div className='subscribe_block'>
@@ -13,14 +43,22 @@ export const MainSubscribe = () => {
                     <span className='subtitle'>
                         SUBSCRIBE <br /> AND <span className='percent'>GET 10% OFF</span>
                     </span>
-                    <input type='text' placeholder='Enter your email' className='input' />
-                    <button className='button' type='button'>
-                        SUBSCRIBE
-                    </button>
+                    <form onSubmit={(e) => handleSubmit(e, email)}>
+                        <input type='text'
+                            data-test-id='main-subscribe-mail-field'
+                            placeholder='Enter your email'
+                            className='input' value={email}
+                            onChange={handleInputChange}
+                            onKeyUp={() => { isValidEmailAddress(email) }} />
+                        {errorMail ? <span className='error_mail'>{errorMail}</span> : <span className='success_email'>{emailResponce}</span>}
+                        <button className={`button ${buttonDisable}`} type='submit' disabled={buttonDisable} data-test-id='main-subscribe-mail-button'>
+                            {loading && <LoaderButtons />}SUBSCRIBE
+                        </button>
+                    </form>
                 </div>
                 <img src={woman} alt='woman' className='woman' />
                 <img src={men} alt='men' className='men' />
             </div>
-        </div>
+        </div >
     )
 }

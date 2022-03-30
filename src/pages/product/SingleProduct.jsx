@@ -9,6 +9,9 @@ import { ProductSlider } from "../../components/single-product/slider/ProductSli
 import { CardRating } from "../../components/clothes-card-item/card-raiting/CardRaiting";
 import { Reviews } from "../../components/single-product/reviews/Reviews";
 import { Related } from "../../components/single-product/related/Related";
+import { ReviewModal } from "../../components/review-modal/ReviewModal";
+import { getModalStatus } from "../../redux/rewiew/reviewSelectors";
+import { showModal, closeModal } from "../../redux/rewiew/reviewActions";
 
 import hanger from '../../components/single-product/assets/clothes-hanger.jpg'
 import favourite from '../../components/single-product/control/assets/heart.svg'
@@ -21,11 +24,13 @@ import { addItem, deleteItem } from "../../redux/cart/cartActions";
 
 import './single-prod.scss'
 
+
 export const SinglePage = ({ productType }) => {
     const dispatch = useDispatch();
     const items = useSelector(getItemsInCart)
     const products = useSelector(getProducts)
     const error = useSelector(getErrorByFetch)
+    const statusModal = useSelector(getModalStatus)
 
 
     const host = 'https://training.cleverland.by/shop';
@@ -36,10 +41,20 @@ export const SinglePage = ({ productType }) => {
     const [size, setSize] = useState('')
     const [color, setColor] = useState('')
 
+    const handleOpenForm = () => {
+        dispatch(showModal())
+    }
+
+    const handleCloseForm = () => {
+        dispatch(closeModal())
+    }
+
+
+    statusModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
+
     let tempId = Date.now().toString()
 
     const isItemAdded = items.filter((item) => item.color === color && item.size === size).length;
-
 
 
     let uniqueColors = new Set(product?.images?.map(({ color }) => color));
@@ -110,6 +125,7 @@ export const SinglePage = ({ productType }) => {
 
     return (
         <div className='page-product' data-test-id={`product-page-${productType}`}>
+            {statusModal && <ReviewModal showReviewForm={statusModal} handleCloseForm={handleCloseForm} id={id} />}
             {error || !product ? null : <ProductHeader productType={productType} id={id} name={product?.name} rating={product?.rating} reviews={reviewsCounter} />}
             {error || !product ? null :
                 <div className='page-product-main wrapper'>
@@ -136,7 +152,6 @@ export const SinglePage = ({ productType }) => {
                         </div>
                         <div className='size-btn'>
                             {product?.sizes?.map((text) => {
-                                // return <button type='button' key={text} onClick={sizeHandler} className='button-size'>{text}</button>
                                 return <button type='button' key={text} onClick={sizeHandler} className={text === size ? 'button-size selected' : 'button-size'}>{text}</button>
                             })}
                         </div>
@@ -188,7 +203,7 @@ export const SinglePage = ({ productType }) => {
                                     </div>
                                     <div className='annotation'>
                                         <img src={annotation} alt='annotation' className='annotation-img' />
-                                        <span className='write-reviews'>Write a review</span>
+                                        <span className='write-reviews' onClick={handleOpenForm} data-test-id='review-button'>Write a review</span>
                                     </div>
                                 </div>
                             </div>
