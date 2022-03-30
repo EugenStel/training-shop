@@ -14,7 +14,6 @@ export const productsReducer = (state = initialState, action) => {
         case productsActionTypes.FETCH_PRODUCTS: {
             return {
                 ...state,
-                // isLoading: true,
                 products: action.payload
             };
         }

@@ -15,7 +15,6 @@ export const ReviewModal = ({ showReviewForm, handleCloseForm, id }) => {
     const error = useSelector(getReviewError)
     const dispatch = useDispatch()
 
-
     let raiting = 1;
     const validationsSchema = yup.object().shape({
         name: yup.string().trim().required('Enter your name'),
@@ -40,7 +39,7 @@ export const ReviewModal = ({ showReviewForm, handleCloseForm, id }) => {
 
     return (
         <>
-            <div className={classNames('overlay', { active: showReviewForm })}
+            <div className={classNames('overlay_review', { active: showReviewForm })}
                 onClick={handleCloseForm}
             >
             </div>

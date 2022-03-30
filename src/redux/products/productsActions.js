@@ -16,6 +16,7 @@ export const hideLoader = () => (dispatch) => {
     });
 };
 
+
 export const fetchProducts = () => (dispatch) => {
     dispatch(showLoader());
     axios.get(API_URL)

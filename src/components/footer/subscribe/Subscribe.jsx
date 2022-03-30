@@ -5,7 +5,7 @@ import { getButtonFooterStatus } from "../../../redux/email/emailSelectors";
 import { useDispatch, useSelector } from 'react-redux';
 import { LoaderFooterButtons } from "../../loader-buttons/LoaderButtons";
 import { sendFooterEmail, enableFooterButton, disableFooterButton, clear } from "../../../redux/email/emailActions";
-
+import { useLocation } from 'react-router-dom';
 import './subscribe.scss'
 
 export const FooterSubscribe = () => {
@@ -15,6 +15,13 @@ export const FooterSubscribe = () => {
     const errorMail = useSelector(getEmailFooterError)
     const emailResponce = useSelector(getEmailFooterResponce)
     const buttonDisable = useSelector(getButtonFooterStatus)
+
+    const location = useLocation();
+
+    useEffect(() => {
+        dispatch(clear())
+    }, [dispatch, location]);
+
 
     const handleInputChange = (e) => {
         setEmail(e.target.value)
@@ -34,9 +41,6 @@ export const FooterSubscribe = () => {
         setEmail('')
     }
 
-    useEffect(() => {
-        dispatch(clear())
-    }, [dispatch])
 
     return (
         <div className='footer_subscriber'>

@@ -18,6 +18,7 @@ import favourite from '../../components/single-product/control/assets/heart.svg'
 import compare from '../../components/single-product/control/assets/scale.svg'
 import annotation from '../../components/single-product/reviews/assets/annotation.svg'
 import { getProducts, getErrorByFetch } from "../../redux/products/productsSelectors";
+import { getReviewResponce } from "../../redux/rewiew/reviewSelectors";
 
 import { addItem, deleteItem } from "../../redux/cart/cartActions";
 
@@ -31,6 +32,8 @@ export const SinglePage = ({ productType }) => {
     const products = useSelector(getProducts)
     const error = useSelector(getErrorByFetch)
     const statusModal = useSelector(getModalStatus)
+    const response = useSelector(getReviewResponce)
+    console.log(response)
 
 
     const host = 'https://training.cleverland.by/shop';
@@ -40,6 +43,8 @@ export const SinglePage = ({ productType }) => {
     const [product, setProduct] = useState();
     const [size, setSize] = useState('')
     const [color, setColor] = useState('')
+
+
 
     const handleOpenForm = () => {
         dispatch(showModal())
