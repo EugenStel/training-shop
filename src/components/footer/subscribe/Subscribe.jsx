@@ -10,6 +10,7 @@ import './subscribe.scss'
 
 export const FooterSubscribe = () => {
     const [email, setEmail] = useState('')
+    const [emailValidMessage, setEmailValidMessage] = useState(false)
     const dispatch = useDispatch()
     const loading = useSelector(getEmailFooterLoading)
     const errorMail = useSelector(getEmailFooterError)
@@ -22,6 +23,16 @@ export const FooterSubscribe = () => {
         dispatch(clear())
     }, [dispatch, location]);
 
+    useEffect(() => {
+        if (emailResponce) {
+            setEmail('')
+        }
+    }, [emailResponce])
+
+    useEffect(() => {
+        setEmail('')
+    }, [location]);
+
 
     const handleInputChange = (e) => {
         setEmail(e.target.value)
@@ -31,6 +42,12 @@ export const FooterSubscribe = () => {
         let pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
         if (pattern.test(emailAddress)) {
             dispatch(enableFooterButton())
+            setEmailValidMessage(false)
+        } else if (!email.length) {
+            setEmailValidMessage(false)
+        } else {
+            setEmailValidMessage(true)
+            dispatch(disableFooterButton())
         }
     }
 
@@ -38,7 +55,6 @@ export const FooterSubscribe = () => {
         e.preventDefault();
         dispatch(disableFooterButton())
         dispatch(sendFooterEmail(email))
-        setEmail('')
     }
 
 
@@ -61,7 +77,8 @@ export const FooterSubscribe = () => {
                         </button>
                     </form>
                     {loading && <LoaderFooterButtons />}
-                    {errorMail ? <span className='error_mail'>{errorMail}</span> : <span className='success_email'>{emailResponce}</span>}
+                    {emailValidMessage && <p className="error_email_valid">Некорректный email</p>}
+                    {errorMail ? <p className='error_mail'>{errorMail}</p> : <p className='success_email'>{emailResponce}</p>}
                 </div>
                 <SocialIcons size='18px' />
             </div>

@@ -11,6 +11,7 @@ import './subscribe.scss';
 
 export const MainSubscribe = () => {
     const [email, setEmail] = useState('')
+    const [emailValidMessage, setEmailValidMessage] = useState(false)
     const dispatch = useDispatch()
     const loading = useSelector(getEmailMainLoading)
     const errorMail = useSelector(getEmailMainError)
@@ -21,19 +22,34 @@ export const MainSubscribe = () => {
         setEmail(e.target.value)
     }
 
+
     function isValidEmailAddress(emailAddress) {
         let pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
         if (pattern.test(emailAddress)) {
             dispatch(enableMainButton())
+            setEmailValidMessage(false)
+        } else if (!email.length) {
+            setEmailValidMessage(false)
+        } else {
+            setEmailValidMessage(true)
+            dispatch(disableMainButton())
         }
     }
+
 
     const handleSubmit = (e, email) => {
         e.preventDefault();
         dispatch(disableMainButton())
         dispatch(sendMainEmail(email))
-        setEmail('')
     }
+
+
+    useEffect(() => {
+        if (emailResponce) {
+            setEmail('')
+        }
+    }, [emailResponce])
+
 
     useEffect(() => {
         dispatch(clear())
@@ -48,6 +64,7 @@ export const MainSubscribe = () => {
                         SUBSCRIBE <br /> AND <span className='percent'>GET 10% OFF</span>
                     </span>
                     <form onSubmit={(e) => handleSubmit(e, email)}>
+
                         <input type='text'
                             data-test-id='main-subscribe-mail-field'
                             placeholder='Enter your email'
@@ -55,7 +72,8 @@ export const MainSubscribe = () => {
                             value={email}
                             onChange={handleInputChange}
                             onKeyUp={() => { isValidEmailAddress(email) }} />
-                        {errorMail ? <span className='error_mail'>{errorMail}</span> : <span className='success_email'>{emailResponce}</span>}
+                        {emailValidMessage && <p>Некорректный email</p>}
+                        {errorMail ? <p className='error_mail'>{errorMail}</p> : <p className='success_email'>{emailResponce}</p>}
                         <button className={`button ${buttonDisable}`} type='submit' disabled={buttonDisable} data-test-id='main-subscribe-mail-button'>
                             {loading && <LoaderButtons />}SUBSCRIBE
                         </button>

@@ -87,6 +87,7 @@ export const sendMainEmail = (email) => (dispatch) => {
                 type: emailActionTypes.SEND_EMAIL_MAIN_FAILURE,
                 payload: message
             })
+            dispatch(enableMainButton())
         })
 }
 
@@ -111,5 +112,6 @@ export const sendFooterEmail = (email) => (dispatch) => {
                 type: emailActionTypes.SEND_EMAIL_FOOTER_FAILURE,
                 payload: message
             })
+            dispatch(enableFooterButton())
         })
 }

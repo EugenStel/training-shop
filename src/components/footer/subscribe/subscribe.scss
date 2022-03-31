@@ -18,6 +18,11 @@
         .footer_email {
             display: flex;
 
+            .error_email_valid {
+                color: white;
+                margin-left: 10px;
+            }
+
             .footer_input {
                 min-width: 400px;
                 background: #414141;
