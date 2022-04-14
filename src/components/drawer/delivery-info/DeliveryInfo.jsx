@@ -114,14 +114,14 @@ export const Delivery = ({
                             onChange={changePhonehandler}
                             mask="+375 (00) 000 00 00"
                         />
-                        {phoneError && <div className='errors'><span>Enter you phone correct</span></div>}
+                        {phoneError && <div className='errors'><span>Поле должно быть заполнено</span></div>}
                     </label>
                 </div>
                 <div className='delivery-email'>
                     <label htmlFor="">E-mail
                         <input type="text" placeholder='e-mail' name='email' required className='input-delivery' onChange={changeEmailhandler} value={email}
                             onBlur={checkEmail} />
-                        {emailError && <div className="errors"><span>Enter you email correct</span></div>}
+                        {emailError && <div className="errors"><span>Поле должно быть заполнено</span></div>}
                     </label>
 
                 </div>
@@ -154,7 +154,7 @@ export const Delivery = ({
                 <div className="delivery-agree">
                     <input type="checkbox" id="agree" name="agree" onChange={changleAgreeHandler} checked={agree} />
                     <label htmlFor="agree">I agree to the processing of my personal information</label>
-                    {rulesAgreeError && <div className="errors"><span>Required field</span></div>}
+                    {rulesAgreeError && <div className="errors"><span>Вы должны согласиться на обработку личной информации</span></div>}
                 </div>
             </form>
         </>
