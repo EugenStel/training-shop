@@ -23,7 +23,7 @@ export const PaypalMethod = ({ paymentEmailError, setPaymentEmailError }) => {
     return (
         <div className="paypal-payment">
             <h2>E-mail</h2>
-            <input type='text' placeholder='Enter your email' name="cashEmail" className='input' value={email} onChange={handlerChange} onBlur={checkEmailPayment} />
+            <input type='text' placeholder='e-mail' name="cashEmail" className='input' value={email} onChange={handlerChange} onBlur={checkEmailPayment} />
             {paymentEmailError && <div className="errors"><span>Enter you email correct</span></div>}
         </div>
 
