@@ -325,7 +325,8 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
         const month = cardDate?.split('/')[0]
         const year = cardDate?.split('/')[1]
         const currentYear = parseInt(new Date().getFullYear().toString().substr(2, 2))
-        const compare = currentYear <= +year ? true : false
+        const currentMonth = parseInt(new Date().getMonth())
+        const compare = currentYear < +year ? true : currentYear === +year ? currentMonth < +month ? true : false : false
         if (pattern.test(month) && compare) {
             setCardDateError(false)
         } else {
