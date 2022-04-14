@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/training-shop/static/css/main.4bc89fc5.css",
-    "main.js": "/training-shop/static/js/main.7cb57a05.js",
+    "main.css": "/training-shop/static/css/main.882c0a3a.css",
+    "main.js": "/training-shop/static/js/main.1f2b4ddf.js",
     "static/media/menSubscibe.svg": "/training-shop/static/media/menSubscibe.910c585a7b3e1473a485269ba5130cc4.svg",
     "static/media/womenSubscribe.png": "/training-shop/static/media/womenSubscribe.45f56053b659a2d2bdd8.png",
     "static/media/OneSlide.jpg": "/training-shop/static/media/OneSlide.ba5d4eb3d9420781b5f8.jpg",
@@ -17,10 +17,14 @@
     "static/media/discover.svg": "/training-shop/static/media/discover.76f082d0a32466d9a6b10aa09422255a.svg",
     "static/media/americanExpress.svg": "/training-shop/static/media/americanExpress.fbf3244f9aba6eecfcda23f37f16c396.svg",
     "static/media/paypal.svg": "/training-shop/static/media/paypal.c2ef749dc181f8bb81a7a71d88fbef56.svg",
+    "static/media/paypal_payment.svg": "/training-shop/static/media/paypal_payment.437bf6d0e7839bed4aa289787d080fc5.svg",
     "static/media/visa.svg": "/training-shop/static/media/visa.63ffe2b8734454965720cabfb626b999.svg",
     "static/media/AES256.svg": "/training-shop/static/media/AES256.3b80fc0e50c959ca17a6453a5beb7093.svg",
     "static/media/Stripe.svg": "/training-shop/static/media/Stripe.e69b1ffece468f869876bd9e7855c608.svg",
+    "static/media/visa_payment.svg": "/training-shop/static/media/visa_payment.d6778287e1c9892d7520e89f8218d877.svg",
+    "static/media/mastercard_payment.svg": "/training-shop/static/media/mastercard_payment.41f0ce172db985cbe3260cac18428ac5.svg",
     "static/media/mastercard.svg": "/training-shop/static/media/mastercard.bb7d85682952980118ae9551e1c667fb.svg",
+    "static/media/icon-EyeSlash.svg": "/training-shop/static/media/icon-EyeSlash.fdf4b75030bafd20619477a1afaa4227.svg",
     "static/media/truckIcon.svg": "/training-shop/static/media/truckIcon.a8092486d5e34f0a5ef12728500e4bcb.svg",
     "static/media/grid-icon.svg": "/training-shop/static/media/grid-icon.e14ce47c52f142cd39827bdd8bc39b12.svg",
     "static/media/instagramIcon.svg": "/training-shop/static/media/instagramIcon.2a030663c04e39e407430b43aa937d84.svg",
@@ -29,6 +33,7 @@
     "static/media/share-button.svg": "/training-shop/static/media/share-button.13f271dbf5a3d618bd5d3edc2f75b1a2.svg",
     "static/media/globeIcon.svg": "/training-shop/static/media/globeIcon.afab6c089df5bad8489c353cb9672c4d.svg",
     "static/media/pinterestIcon.svg": "/training-shop/static/media/pinterestIcon.999453765058229adcc060214525170e.svg",
+    "static/media/icon-Eye.svg": "/training-shop/static/media/icon-Eye.bd69647bf3dcc378b68e001309d6ca91.svg",
     "static/media/supportIcon.svg": "/training-shop/static/media/supportIcon.387710c1f8eec63ce36f5dddd238cee9.svg",
     "static/media/locationIcon.svg": "/training-shop/static/media/locationIcon.f361d0b96122f8aeff226ef55eeadc4e.svg",
     "static/media/ClockIcon.svg": "/training-shop/static/media/ClockIcon.6aceee367a13b3fd92d05cf249f7f947.svg",
@@ -67,11 +72,11 @@
     "static/media/close-icon.svg": "/training-shop/static/media/close-icon.c1acda466a6f57fc13cc7c251b46df83.svg",
     "static/media/filter-close-icon.svg": "/training-shop/static/media/filter-close-icon.c1acda466a6f57fc13cc7c251b46df83.svg",
     "static/media/arrow.svg": "/training-shop/static/media/arrow.9f4dd338b481a943c89e0ee673f34fe5.svg",
-    "main.4bc89fc5.css.map": "/training-shop/static/css/main.4bc89fc5.css.map",
-    "main.7cb57a05.js.map": "/training-shop/static/js/main.7cb57a05.js.map"
+    "main.882c0a3a.css.map": "/training-shop/static/css/main.882c0a3a.css.map",
+    "main.1f2b4ddf.js.map": "/training-shop/static/js/main.1f2b4ddf.js.map"
   },
   "entrypoints": [
-    "static/css/main.4bc89fc5.css",
-    "static/js/main.7cb57a05.js"
+    "static/css/main.882c0a3a.css",
+    "static/js/main.1f2b4ddf.js"
   ]
 }
