@@ -1,0 +1,110 @@
+.cards-payment {
+    margin-top: 25px;
+    h2 {
+        font-weight: 600;
+        font-size: 12px !important;
+        line-height: 18px;
+        text-transform: uppercase;
+        color: #121212;
+    }
+    .input-card-number {
+        display: block;
+        margin-top: 10px;
+        width: 100%;
+        background: #f8f8f8;
+        border: none;
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 18px;
+        color: #9c9c9c;
+        outline: 0;
+        margin-bottom: 5px;
+    
+        &::placeholder {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 18px;
+            color: #9c9c9c;
+        }
+        &:focus::placeholder {
+            color: transparent;
+        }
+    }
+    .input-card-date {
+        margin-top: 10px;
+        width: 50%;
+        background: #f8f8f8;
+        border: none;
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 18px;
+        color: #9c9c9c;
+        outline: 0;
+        margin-bottom: 5px;
+        margin-right: 10px;
+    
+        &::placeholder {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 18px;
+            color: #9c9c9c;
+        }
+        &:focus::placeholder {
+            color: transparent;
+        }
+    }
+
+    .input-card-cvv {
+        display: inline-block;
+        margin-top: 10px;
+        width: 100%;
+        background: #f8f8f8;
+        border: none;
+        min-height: 64px;
+        display: flex;
+        padding: 8px;
+        align-items: flex-start;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 18px;
+        color: #9c9c9c;
+        outline: 0;
+        margin-bottom: 5px;
+    
+        &::placeholder {
+
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 18px;
+            color: #9c9c9c;
+        }
+        &:focus::placeholder {
+            color: transparent;
+        }
+    }
+    
+}
+
+.card-info {
+    display: flex;
+    align-items: center;
+}
+
+.cvv-wrapper {
+    position: relative;
+    img {
+        cursor: pointer;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

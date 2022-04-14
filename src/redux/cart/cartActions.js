@@ -20,3 +20,9 @@ export const setCartOpen = (payload) => ({
     payload
 })
 
+export const clearCart = () => (dispatch) => {
+    dispatch({
+        type: cartActionTypes.CLEAR_CART,
+    })
+}
+
