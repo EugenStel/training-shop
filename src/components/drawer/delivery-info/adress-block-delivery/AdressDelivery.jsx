@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { getCountries } from '../../../../redux/order/orderSelectors'
 import './adress-delivery.scss'
 export const AdressDelivery = ({
     errorHouse,
@@ -10,20 +11,13 @@ export const AdressDelivery = ({
     setErrorCity,
     setErrorStreet,
     setErrorHouse }) => {
-    const [countries, setCountries] = useState([])
-    const API_COUNTRIES = 'https://training.cleverland.by/shop/countries'
 
     const [country, setCountry] = useState(JSON.parse(localStorage.getItem('country')))
     const [city, setCity] = useState(JSON.parse(localStorage.getItem('city')))
     const [street, setStreet] = useState(JSON.parse(localStorage.getItem('street')))
     const [house, setHouse] = useState(JSON.parse(localStorage.getItem('house')))
+    const countriesSelect = useSelector(getCountries)
 
-    useEffect(() => {
-        axios.get(API_COUNTRIES)
-            .then((res) => {
-                setCountries(res.data)
-            })
-    }, [])
 
     const changeCountryHandler = ({ target: { value } }) => {
         setCountry(value)
@@ -79,22 +73,30 @@ export const AdressDelivery = ({
         <div className="adress-block-delivery">
             <div className="adress-country ">
                 <h2>Country</h2>
-                <select name="country" id="" className='input-delivery' onChange={changeCountryHandler} defaultValue={country}
-                    onBlur={checkCountry}>
-                    <option value="" disabled hidden>Please choose...</option>
-                    {countries.map(({ _id, name }) => {
+                <input
+                    type="text"
+                    name="country"
+                    list='countries'
+                    placeholder="Country"
+                    className="input-delivery"
+                    value={country}
+                    onBlur={checkCountry}
+                    onChange={changeCountryHandler}
+                />
+                <datalist id="countries">
+                    {countriesSelect?.map(({ name, _id }) => {
                         return (
-                            <option name={name} key={_id} >{name}</option>
+                            <option key={_id}>{name}</option>
                         )
                     })}
-                </select>
+                </datalist>
                 {errorCountry && <div className="errors"><span>Required field</span></div>}
             </div>
             <div className="adress-city">
                 <h2>City</h2>
                 <input type="text"
                     name='city'
-                    placeholder="Enter city"
+                    placeholder="City"
                     className='input-delivery'
                     onChange={changeCityHandler}
                     value={city}
@@ -105,7 +107,7 @@ export const AdressDelivery = ({
             </div>
             <div className="adress-street">
                 <h2>Street</h2>
-                <input type="text" name='street' placeholder="Enter street" className='input-delivery' onChange={changeStreetHandler} value={street}
+                <input type="text" name='street' placeholder="Street" className='input-delivery' onChange={changeStreetHandler} value={street}
                     onBlur={checkStreet}
                 />
                 {errorStreet && <div className="errors"><span>Required field</span></div>}
@@ -113,14 +115,14 @@ export const AdressDelivery = ({
             <div className="house-info">
                 <div className="adress-house">
                     <h2>House</h2>
-                    <input type="text" name='house' placeholder="Enter house" className='input-delivery' onChange={changeHouseHandler} value={house}
+                    <input type="text" name='house' placeholder="House" className='input-delivery' onChange={changeHouseHandler} value={house}
                         onBlur={checkHouse}
                     />
                     {errorHouse && <div className="errors"><span>Required field</span></div>}
                 </div>
                 <div className="adress-appartment">
                     <h2>Apartment</h2>
-                    <input type="text" placeholder="Enter apartment" name='appartment' className='input-delivery' />
+                    <input type="text" placeholder="Apartment" name='appartment' className='input-delivery' />
                 </div>
             </div>
         </div>

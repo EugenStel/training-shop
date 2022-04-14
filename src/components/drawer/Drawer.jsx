@@ -76,10 +76,6 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
         localStorage.setItem('cashEmail', JSON.stringify(''))
     }
 
-    // useEffect(() => {
-    //     clearLocalStorage()
-    // }, [])
-
     const closeCartOnClick = ({ target }) => {
         if (target.className === "overlay") {
             clearLocalStorage()
@@ -105,7 +101,6 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
         const house = JSON.parse(localStorage.getItem('house'))
         const postcode = JSON.parse(localStorage.getItem('postcode'))
         const storeAdress = JSON.parse(localStorage.getItem('storeAdress'))
-        // const countryStore = JSON.parse(localStorage.getItem('countryStore'))
         const card = JSON.parse(localStorage.getItem('card'))
         const cardDate = JSON.parse(localStorage.getItem('cardDate'))
         const cardCVV = JSON.parse(localStorage.getItem('cardCVV'))

@@ -12,6 +12,7 @@ export const StoreDelivery = ({ storeAdressError, setStoreAdressError, errorCoun
     const dispatch = useDispatch()
     const countriesSelect = useSelector(getCountries)
     const citiesSelect = useSelector(getCities)
+    console.log(countriesSelect)
 
     useEffect(() => {
         dispatch(fetchCountries())
@@ -58,19 +59,28 @@ export const StoreDelivery = ({ storeAdressError, setStoreAdressError, errorCoun
         <div className="delivery-store">
             <label htmlFor="">
                 Address of store
-                <select name="country" id="" className='input-delivery' onChange={changeCountryHandler} value={country} onBlur={checkCountry}>
-                    <option value="" disabled hidden>Please choose country...</option>
-                    {countriesSelect?.map(({ _id, name }) => {
+                <input
+                    type="text"
+                    name="country"
+                    list='countries'
+                    placeholder="Country"
+                    className="input-delivery"
+                    value={country}
+                    onBlur={checkCountry}
+                    onChange={changeCountryHandler}
+                />
+                <datalist id="countries">
+                    {countriesSelect?.map(({ name, _id }) => {
                         return (
-                            <option name={name} key={_id} >{name}</option>
+                            <option key={_id}>{name}</option>
                         )
                     })}
-                </select>
+                </datalist>
                 {errorCountry && <div className='errors'><span>Chose country and then enter store address</span></div>}
                 <input
                     type="text"
                     list='stores'
-                    placeholder="Enter store address"
+                    placeholder="Store address"
                     className="input-delivery"
                     disabled={country === '' ? true : false}
                     value={storeAdress}

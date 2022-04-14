@@ -119,7 +119,7 @@ export const Delivery = ({
                 </div>
                 <div className='delivery-email'>
                     <label htmlFor="">E-mail
-                        <input type="text" placeholder='Enter you e-mail' name='email' required className='input-delivery' onChange={changeEmailhandler} value={email}
+                        <input type="text" placeholder='e-mail' name='email' required className='input-delivery' onChange={changeEmailhandler} value={email}
                             onBlur={checkEmail} />
                         {emailError && <div className="errors"><span>Enter you email correct</span></div>}
                     </label>
