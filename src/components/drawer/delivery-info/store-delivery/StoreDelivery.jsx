@@ -76,7 +76,7 @@ export const StoreDelivery = ({ storeAdressError, setStoreAdressError, errorCoun
                         )
                     })}
                 </datalist>
-                {errorCountry && <div className='errors'><span>Chose country and then enter store address</span></div>}
+                {errorCountry && <div className='errors'><span>Поле должно быть заполнено</span></div>}
                 <input
                     type="text"
                     list='stores'
@@ -98,7 +98,7 @@ export const StoreDelivery = ({ storeAdressError, setStoreAdressError, errorCoun
                         </datalist> :
                         null
                 }
-                {storeAdressError && <div className='errors'><span>Chose store country and then enter store address</span></div>}
+                {storeAdressError && <div className='errors'><span>Поле должно быть заполнено</span></div>}
             </label>
         </div>
     )

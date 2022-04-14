@@ -90,7 +90,7 @@ export const AdressDelivery = ({
                         )
                     })}
                 </datalist>
-                {errorCountry && <div className="errors"><span>Required field</span></div>}
+                {errorCountry && <div className="errors"><span>Поле должно быть заполнено</span></div>}
             </div>
             <div className="adress-city">
                 <h2>City</h2>
@@ -103,14 +103,14 @@ export const AdressDelivery = ({
                     disabled={country === '' ? true : false}
                     onBlur={checkCity}
                 />
-                {errorCity && <div className="errors"><span>Required field</span></div>}
+                {errorCity && <div className="errors"><span>Поле должно быть заполнено</span></div>}
             </div>
             <div className="adress-street">
                 <h2>Street</h2>
                 <input type="text" name='street' placeholder="Street" className='input-delivery' onChange={changeStreetHandler} value={street}
                     onBlur={checkStreet}
                 />
-                {errorStreet && <div className="errors"><span>Required field</span></div>}
+                {errorStreet && <div className="errors"><span>Поле должно быть заполнено</span></div>}
             </div>
             <div className="house-info">
                 <div className="adress-house">
@@ -118,7 +118,7 @@ export const AdressDelivery = ({
                     <input type="text" name='house' placeholder="House" className='input-delivery' onChange={changeHouseHandler} value={house}
                         onBlur={checkHouse}
                     />
-                    {errorHouse && <div className="errors"><span>Required field</span></div>}
+                    {errorHouse && <div className="errors"><span>Поле должно быть заполнено</span></div>}
                 </div>
                 <div className="adress-appartment">
                     <h2>Apartment</h2>
