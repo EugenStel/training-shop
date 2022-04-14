@@ -46,9 +46,8 @@ export const CardsMethod = ({
         const year = cardDate.split('/')[1]
         const currentYear = parseInt(new Date().getFullYear().toString().substr(2, 2))
         const currentMonth = parseInt(new Date().getMonth())
-        const compareYear = currentYear <= +year ? true : false
-        const compareMonth = currentMonth < +month ? true : false
-        if (pattern.test(month) && compareYear && compareMonth) {
+        const compare = currentYear < +year ? true : currentYear === +year ? currentMonth < +month ? true : false : false
+        if (pattern.test(month) && compare) {
             setCardDateError(false)
             localStorage.setItem("cardDate", JSON.stringify(cardDate))
         } else {
