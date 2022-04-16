@@ -56,8 +56,13 @@ export const AdressDelivery = ({
         } else {
             switch (inputType) {
                 case 'country':
-                    setErrorCountry(false)
-                    localStorage.setItem("country", JSON.stringify(inputValue))
+                    if (country.toLowerCase() === 'Беларусь'.toLowerCase()) {
+                        setErrorCountry(false)
+                        localStorage.setItem("country", JSON.stringify(country))
+                    } else {
+                        setErrorCountry(true)
+                        localStorage.setItem("country", JSON.stringify(country))
+                    }
                     break
                 case 'city':
                     setErrorCity(false)
@@ -77,6 +82,16 @@ export const AdressDelivery = ({
         }
     }
 
+    const keyUpCountryHandler = () => {
+        if (country.toLowerCase() === 'Беларусь'.toLowerCase()) {
+            setErrorCountry(false)
+            localStorage.setItem("country", JSON.stringify(country))
+        } else {
+            setErrorCountry(true)
+            localStorage.setItem("country", JSON.stringify(country))
+        }
+    }
+
     return (
         <div className="adress-block-delivery">
             <div className="adress-country ">
@@ -90,14 +105,13 @@ export const AdressDelivery = ({
                     value={country}
                     onChange={changeCountryHandler}
                     onBlur={() => checkInputs(country, 'country')}
+                    onKeyUp={keyUpCountryHandler}
                 />
                 <datalist id="countries">
-                    {countriesSelect?.map(({ name, _id }) => (
-                        <option key={_id}>{name}</option>
-                    )
-                    )}
+                    <option key={countriesSelect[0]?._id}>{countriesSelect[0]?.name}</option>
                 </datalist>
                 {errorCountry && <div className="errors">Поле должно быть заполнено</div>}
+                {errorCountry && <div className="errors">Доставка доступна только по РБ</div>}
             </div>
             <div className="adress-city">
                 <h2>City</h2>

@@ -226,7 +226,13 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
     };
 
     const checkInputs = (country, city, street, house) => {
-        !country ? setErrorCountry(true) : setErrorCountry(false)
+        if (country.toLowerCase() === 'Беларусь'.toLowerCase()) {
+            setErrorCountry(false)
+            localStorage.setItem("country", JSON.stringify(country))
+        } else {
+            setErrorCountry(true)
+            localStorage.setItem("country", JSON.stringify(country))
+        }
         !city ? setErrorCity(true) : setErrorCity(false)
         !street ? setErrorStreet(true) : setErrorStreet(false)
         !house ? setErrorHouse(true) : setErrorHouse(false)
@@ -309,9 +315,9 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
                             <div className="cart-items">
                                 {isOrderError || orderResponse ? null :
                                     <div className="cart-stages">
-                                        <div className={isItemInCart && "active"}> Item in Cart </div> &frasl;
-                                        <div className={isDelivery && "active"}> Delivery Info </div> &frasl;
-                                        <div className={isPayment && "active"}> Payment </div>
+                                        <div className={isItemInCart ? "active" : null}> Item in Cart </div> &frasl;
+                                        <div className={isDelivery ? "active" : null}> Delivery Info </div> &frasl;
+                                        <div className={isPayment ? "active" : null}> Payment </div>
                                     </div>
                                 }
 
