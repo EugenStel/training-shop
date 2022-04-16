@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useLocation, Route, Switch } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Header } from '../header/Header';
 import { Footer } from '../footer/Footer';
 import { HomePage } from '../../pages/home/HomePage';
 import { ProductsPage } from '../../pages/products/Products';
 import { SinglePage } from '../../pages/product/SingleProduct';
-import { useSelector, useDispatch } from 'react-redux';
 import { getErrorByFetch, getLoadingStatus } from '../../redux/products/productsSelectors';
 import { fetchProducts } from '../../redux/products/productsActions';
 import { Loader } from '../loader/Loader';
@@ -15,20 +15,19 @@ import './app.scss';
 
 export const App = () => {
   const dispatch = useDispatch()
-  // const products = useSelector(getProducts)
   const error = useSelector(getErrorByFetch)
   const loading = useSelector(getLoadingStatus)
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
 
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname])
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(fetchProducts())
-  }, [dispatch]);
+  }, [dispatch])
 
   return (
     <div className='app' data-test-id='app'>

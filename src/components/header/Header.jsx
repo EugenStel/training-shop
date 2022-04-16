@@ -1,16 +1,16 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { Contacts } from "./contacts/Contacts";
 import { SocialIcons } from "./social-networks/Social";
 import { HeaderMenu } from "./menu/Menu";
 import { UserIconsNav } from "./user-icons/UserIcons";
-import Logo from './assets/logo-CleverShop.svg'
-import { Link } from "react-router-dom";
 import { BurgerMenu } from "../burger-menu/BurgerMenu";
 import { Drawer } from "../drawer/Drawer";
 import { clearErrors } from "../../redux/order/orderActions";
 import { clearCart } from "../../redux/cart/cartActions";
-import { useSelector, useDispatch } from "react-redux";
 import { getOrderResponse } from "../../redux/order/orderSelectors";
+import Logo from './assets/logo-CleverShop.svg'
 import './header.scss'
 
 export const Header = () => {
@@ -20,19 +20,19 @@ export const Header = () => {
     const orderResponse = useSelector(getOrderResponse)
 
     const handleMobileOpen = () => {
-        setMobileOpen(!mobileOpen);
+        setMobileOpen(!mobileOpen)
         !mobileOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'visible'
-    };
+    }
 
     const handleMobileClose = () => {
-        setMobileOpen(false);
+        setMobileOpen(false)
         document.body.style.overflow = 'visible'
-    };
+    }
 
     const handleCartOpen = () => {
-        setCartOpen(!cartOpen);
+        setCartOpen(!cartOpen)
         !cartOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'visible'
-    };
+    }
 
     const clearLocalStorage = () => {
         localStorage.setItem('email', JSON.stringify(''))
@@ -51,7 +51,7 @@ export const Header = () => {
     }
 
     const handleCartClose = () => {
-        setCartOpen(false);
+        setCartOpen(false)
         clearLocalStorage()
         document.body.style.overflow = 'visible'
         if (orderResponse) {

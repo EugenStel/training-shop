@@ -8,6 +8,7 @@ import { ErrorOrder } from "./error-order/ErrorOrder";
 import { SuccsessOrder } from "./succsess-order/SuccsessOrder";
 import { getCities, getOrderError, getOrderResponse } from "../../redux/order/orderSelectors";
 import { sendOrder, clearErrors } from "../../redux/order/orderActions";
+import { PATTERN_EMAIL, PATTERN_PHONE, PATTERN_MONTH } from "../../constants/order/patterns";
 
 import close from './assets/close.svg'
 
@@ -23,9 +24,9 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
     const orderResponse = useSelector(getOrderResponse)
     const dispatch = useDispatch()
 
-    const totalPrice = items.reduce((total, { amount, price }) => total + amount * price, 0).toFixed(2);
+    const totalPrice = items.reduce((total, { amount, price }) => total + amount * price, 0).toFixed(2)
 
-    const ref = useRef(null);
+    const ref = useRef(null)
 
     const [isItemInCart, setIsItemInCart] = useState(true)
     const [isDelivery, setIsDelivery] = useState(false)
@@ -79,7 +80,7 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
     const closeCartOnClick = ({ target }) => {
         if (target.className === "overlay") {
             clearLocalStorage()
-            setCartOpen(false);
+            setCartOpen(false)
             document.body.style.overflow = 'visible'
         }
     }
@@ -106,6 +107,24 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
         const cardCVV = JSON.parse(localStorage.getItem('cardCVV'))
         const cashEmail = JSON.parse(localStorage.getItem('cashEmail'))
         const prodAndSum = JSON.parse(localStorage.getItem('order'))
+        const orderToSend = {
+            'deliveryMethod': deliveryMethod,
+            'paymentMethod': paymentMethod,
+            'products': prodAndSum.products,
+            "totalPrice": prodAndSum.totalPrice,
+            'email': email,
+            'phone': phone,
+            'country': country,
+            'cashEmail': cashEmail,
+            'city': city,
+            'street': street,
+            'house': house,
+            'postcode': postcode,
+            'storeAddress': storeAdress,
+            'card': card,
+            'cardDate': cardDate,
+            'cardCVV': cardCVV
+        }
         if (isItemInCart) {
             setIsItemInCart(false)
             setIsDelivery(true)
@@ -136,68 +155,17 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
             if (paymentMethod === 'paypal') {
                 checkEmailPayment(cashEmail)
                 if (cashEmail && !paymentEmailError) {
-                    dispatch(sendOrder({
-                        'deliveryMethod': deliveryMethod,
-                        'paymentMethod': paymentMethod,
-                        'products': prodAndSum.products,
-                        "totalPrice": prodAndSum.totalPrice,
-                        'email': email,
-                        'phone': phone,
-                        'country': country,
-                        'cashEmail': cashEmail,
-                        'city': city,
-                        'street': street,
-                        'house': house,
-                        'postcode': postcode,
-                        'storeAddress': storeAdress,
-                        'card': card,
-                        'cardDate': cardDate,
-                        'cardCVV': cardCVV
-                    }))
+                    dispatch(sendOrder(orderToSend))
                     setIsPayment(false)
                 }
             } else if (paymentMethod === 'card') {
                 chechCardMethods(card, cardDate, cardCVV)
                 if (card && cardDate && cardCVV && cardPaymentErros.every(value => value === false)) {
-                    dispatch(sendOrder({
-                        'deliveryMethod': deliveryMethod,
-                        'paymentMethod': paymentMethod,
-                        'products': prodAndSum.products,
-                        "totalPrice": prodAndSum.totalPrice,
-                        'email': email,
-                        'phone': phone,
-                        'country': country,
-                        'cashEmail': cashEmail,
-                        'city': city,
-                        'street': street,
-                        'house': house,
-                        'postcode': postcode,
-                        'storeAddress': storeAdress,
-                        'card': card,
-                        'cardDate': cardDate,
-                        'cardCVV': cardCVV
-                    }))
+                    dispatch(sendOrder(orderToSend))
                     setIsPayment(false)
                 }
             } else if (paymentMethod === 'cash') {
-                dispatch(sendOrder({
-                    'deliveryMethod': deliveryMethod,
-                    'paymentMethod': paymentMethod,
-                    'products': prodAndSum.products,
-                    "totalPrice": prodAndSum.totalPrice,
-                    'email': email,
-                    'phone': phone,
-                    'country': country,
-                    'cashEmail': cashEmail,
-                    'city': city,
-                    'street': street,
-                    'house': house,
-                    'postcode': postcode,
-                    'storeAddress': storeAdress,
-                    'card': card,
-                    'cardDate': cardDate,
-                    'cardCVV': cardCVV
-                }))
+                dispatch(sendOrder(orderToSend))
                 setIsPayment(false)
             }
         } else {
@@ -209,20 +177,14 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
     const checkOfficeDel = (email, phone, country, city, street, house, postcode) => {
         checkEmail(email)
         checkPhone(phone)
-        checkCountry(country)
-        checkCity(city)
-        checkStreet(street)
-        checkHouse(house)
+        checkInputs(country, city, street, house)
         checkPostCode(postcode)
     }
 
-    const checkExpressDel = (email, phone, country, city, streen, house) => {
+    const checkExpressDel = (email, phone, country, city, street, house) => {
         checkEmail(email)
         checkPhone(phone)
-        checkCountry(country)
-        checkCity(city)
-        checkStreet(streen)
-        checkHouse(house)
+        checkInputs(country, city, street, house)
     }
 
     const checkStoreDel = (email, phone, storeAdress) => {
@@ -246,56 +208,28 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
     }
 
     const checkEmail = (email) => {
-        const order = JSON.parse(localStorage.getItem('order'))
-        const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i)
-        if (pattern.test(email)) {
-            order.email = email;
-            localStorage.setItem("order", JSON.stringify(order))
-            setEmailError(false);
+        if (PATTERN_EMAIL.test(email)) {
+            setEmailError(false)
+            localStorage.setItem("email", JSON.stringify(email))
         } else {
-            setEmailError(true);
+            setEmailError(true)
         }
     }
 
     const checkPhone = (phone) => {
-        const order = JSON.parse(localStorage.getItem('order'))
-        const pattern = new RegExp(/(\+?375 \((25|29|33|44)\) ([0-9]{3}( [0-9]{2}){2}))/)
-        if (pattern.test(phone)) {
+        if (PATTERN_PHONE.test(phone)) {
             setPhoneError(false)
-            order.phone = phone;
-            localStorage.setItem("order", JSON.stringify(order))
+            localStorage.setItem("phone", JSON.stringify(phone))
         } else {
             setPhoneError(true)
         }
     };
 
-    const checkCountry = (country) => {
-        if (!country) {
-            setErrorCountry(true)
-        } else {
-            setErrorCountry(false)
-        }
-    }
-    const checkCity = (city) => {
-        if (!city) {
-            setErrorCity(true)
-        } else {
-            setErrorCity(false)
-        }
-    }
-    const checkStreet = (street) => {
-        if (!street) {
-            setErrorStreet(true)
-        } else {
-            setErrorStreet(false)
-        }
-    }
-    const checkHouse = (house) => {
-        if (!house) {
-            setErrorHouse(true)
-        } else {
-            setErrorHouse(false)
-        }
+    const checkInputs = (country, city, street, house) => {
+        !country ? setErrorCountry(true) : setErrorCountry(false)
+        !city ? setErrorCity(true) : setErrorCity(false)
+        !street ? setErrorStreet(true) : setErrorStreet(false)
+        !house ? setErrorHouse(true) : setErrorHouse(false)
     }
 
     const checkPostCode = (postCode) => {
@@ -314,20 +248,17 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
         }
     }
 
-
     const checkCreditCardNumber = (card) => {
         let cardNumber = card.split('-').join('')
         cardNumber.length === 16 ? setCardNumberError(false) : setCardNumberError(true)
     }
 
     const checkCreditCardDate = (cardDate) => {
-        const pattern = new RegExp(/(0[1-9])|(1[012])/)
-        const month = cardDate?.split('/')[0]
-        const year = cardDate?.split('/')[1]
+        const [month, year] = cardDate.split('/');
         const currentYear = parseInt(new Date().getFullYear().toString().substr(2, 2))
         const currentMonth = parseInt(new Date().getMonth())
         const compare = currentYear < +year ? true : currentYear === +year ? currentMonth < +month ? true : false : false
-        if (pattern.test(month) && compare) {
+        if (PATTERN_MONTH.test(month) && compare) {
             setCardDateError(false)
         } else {
             setCardDateError(true)
@@ -345,11 +276,10 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
     }
 
     const checkEmailPayment = (cashEmail) => {
-        const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i)
-        if (pattern.test(cashEmail)) {
-            setPaymentEmailError(false);
+        if (PATTERN_EMAIL.test(cashEmail)) {
+            setPaymentEmailError(false)
         } else {
-            setPaymentEmailError(true);
+            setPaymentEmailError(true)
         }
     }
 
@@ -379,9 +309,9 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
                             <div className="cart-items">
                                 {isOrderError || orderResponse ? null :
                                     <div className="cart-stages">
-                                        <div className={isItemInCart ? "active" : null}> Item in Cart </div> &frasl;
-                                        <div className={isDelivery ? "active" : null}> Delivery Info </div> &frasl;
-                                        <div className={isPayment ? "active" : null}> Payment </div>
+                                        <div className={isItemInCart && "active"}> Item in Cart </div> &frasl;
+                                        <div className={isDelivery && "active"}> Delivery Info </div> &frasl;
+                                        <div className={isPayment && "active"}> Payment </div>
                                     </div>
                                 }
 
@@ -425,9 +355,7 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
                                 {orderResponse && <SuccsessOrder handleCartClose={handleCartClose} />}
                             </div>
                             <div className="cartTotalBLock">
-                                {isOrderError || orderResponse ?
-                                    null
-                                    :
+                                {(!isOrderError || !orderResponse) &&
                                     <ul className='cartTotalBLock'>
                                         <li>
                                             <span>Total:</span>
@@ -436,7 +364,7 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
                                         </li>
                                     </ul>
                                 }
-                                {orderResponse ? null :
+                                {!orderResponse &&
                                     <div className="control">
                                         <button className='blackButton' onClick={handleFurtherClick}>
                                             {isItemInCart ? 'Further' : isDelivery ? 'Further' : isPayment ? paymentMethod === 'cash' ? 'Ready' : 'Check out' : 'Back to payment'}

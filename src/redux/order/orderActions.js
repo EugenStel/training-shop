@@ -1,5 +1,5 @@
-import { orderActionTypes } from "./orderActionTypes"
 import axios from "axios"
+import { orderActionTypes } from "./orderActionTypes"
 
 const API_COUNTRIES = 'https://training.cleverland.by/shop/countries'
 const API_CITIES = 'https://training.cleverland.by/shop/search/cities'
@@ -23,7 +23,6 @@ export const fetchCities = (storeAdress, country) => (dispatch) => {
             })
         })
 }
-
 
 export const fetchCountries = () => (dispatch) => {
     axios.get(API_COUNTRIES)

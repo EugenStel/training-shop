@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import MaskInput from "react-maskinput";
+import MaskInput from "react-maskinput"
 import { AdressDelivery } from './adress-block-delivery/AdressDelivery'
 import { PostcodeDelivery } from './post-code-delivery/PostDelivery'
 import { StoreDelivery } from './store-delivery/StoreDelivery'
+import { PATTERN_EMAIL, PATTERN_PHONE } from '../../../constants/order/patterns'
 import './delivery-info.scss'
 export const Delivery = ({
     emailError,
@@ -22,10 +23,7 @@ export const Delivery = ({
     setPostCodeError,
     setStoreAdressError,
     rulesAgreeError,
-    setRulesAgreeError,
-    checkAgreeRules,
     agree,
-    setAgree,
     changleAgreeHandler }) => {
 
     const [chosedDelivery, setChosedDelivery] = useState('office')
@@ -39,14 +37,11 @@ export const Delivery = ({
 
     useEffect(() => {
         if (chosedDelivery === 'office') {
-            let deliveryMethod = 'pickup from post offices'
-            localStorage.setItem("deliveryMethod", JSON.stringify(deliveryMethod))
+            localStorage.setItem("deliveryMethod", JSON.stringify('pickup from post offices'))
         } else if (chosedDelivery === 'express') {
-            let deliveryMethod = 'express delivery'
-            localStorage.setItem("deliveryMethod", JSON.stringify(deliveryMethod))
+            localStorage.setItem("deliveryMethod", JSON.stringify('express delivery'))
         } else {
-            let deliveryMethod = 'store pickup'
-            localStorage.setItem("deliveryMethod", JSON.stringify(deliveryMethod))
+            localStorage.setItem("deliveryMethod", JSON.stringify('store pickup'))
         }
     }, [chosedDelivery])
 
@@ -59,19 +54,17 @@ export const Delivery = ({
     }
 
     const checkEmail = () => {
-        const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i)
-        if (pattern.test(email)) {
-            setEmailError(false);
+        if (PATTERN_EMAIL.test(email)) {
+            setEmailError(false)
             localStorage.setItem("email", JSON.stringify(email))
         } else {
-            setEmailError(true);
+            setEmailError(true)
             localStorage.setItem("email", JSON.stringify(email))
         }
     }
 
     const checkPhone = () => {
-        const pattern = new RegExp(/(\+?375 \((25|29|33|44)\) ([0-9]{3}( [0-9]{2}){2}))/)
-        if (pattern.test(phone)) {
+        if (PATTERN_PHONE.test(phone)) {
             setPhoneError(false)
             localStorage.setItem("phone", JSON.stringify(phone))
         } else {
@@ -114,18 +107,18 @@ export const Delivery = ({
                             onChange={changePhonehandler}
                             mask="+375 (00) 000 00 00"
                         />
-                        {phoneError && <div className='errors'><span>Поле должно быть заполнено</span></div>}
+                        {phoneError && <div className='errors'>Поле должно быть заполнено</div>}
                     </label>
                 </div>
                 <div className='delivery-email'>
                     <label htmlFor="">E-mail
                         <input type="text" placeholder='e-mail' name='email' required className='input-delivery' onChange={changeEmailhandler} value={email}
                             onBlur={checkEmail} />
-                        {emailError && <div className="errors"><span>Поле должно быть заполнено</span></div>}
+                        {emailError && <div className="errors">Поле должно быть заполнено</div>}
                     </label>
 
                 </div>
-                {chosedDelivery === 'office' || chosedDelivery === 'express' ?
+                {(chosedDelivery === 'office' || chosedDelivery === 'express') &&
                     < AdressDelivery
                         errorHouse={errorHouse}
                         errorStreet={errorStreet}
@@ -135,26 +128,23 @@ export const Delivery = ({
                         setErrorCity={setErrorCity}
                         setErrorStreet={setErrorStreet}
                         setErrorHouse={setErrorHouse}
-                    /> :
-                    null}
-                {chosedDelivery === 'office' ?
+                    />}
+                {chosedDelivery === 'office' &&
                     < PostcodeDelivery
                         postCodeError={postCodeError}
                         setPostCodeError={setPostCodeError}
-                    /> :
-                    null}
-                {chosedDelivery === 'store' ?
+                    />}
+                {chosedDelivery === 'store' &&
                     < StoreDelivery
                         storeAdressError={storeAdressError}
                         setStoreAdressError={setStoreAdressError}
                         errorCountry={errorCountry}
                         setErrorCountry={setErrorCountry}
-                    /> :
-                    null}
+                    />}
                 <div className="delivery-agree">
                     <input type="checkbox" id="agree" name="agree" onChange={changleAgreeHandler} checked={agree} />
                     <label htmlFor="agree">I agree to the processing of my personal information</label>
-                    {rulesAgreeError && <div className="errors"><span>Вы должны согласиться на обработку личной информации</span></div>}
+                    {rulesAgreeError && <div className="errors">Вы должны согласиться на обработку личной информации</div>}
                 </div>
             </form>
         </>

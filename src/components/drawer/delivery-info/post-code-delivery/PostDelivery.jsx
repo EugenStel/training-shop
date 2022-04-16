@@ -32,7 +32,7 @@ export const PostcodeDelivery = ({ postCodeError, setPostCodeError }) => {
                     onChange={postCodeChangeHandler}
                     mask="BY 000000"
                 />
-                {postCodeError && <div className='errors'><span>Поле должно быть заполнено</span></div>}
+                {postCodeError && <div className='errors'>Поле должно быть заполнено</div>}
             </label>
         </div>
     )
