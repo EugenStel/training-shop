@@ -1,20 +1,18 @@
+import { useRef } from 'react'
 import { getItemsInCart } from '../../../redux/cart/cartSelectors'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeAmount, deleteItem } from '../../../redux/cart/cartActions'
-import { useRef } from 'react'
 import plus from '../assets/plus-sm.svg'
 import minus from '../assets/minus.svg'
 import trash from '../assets/trash.svg'
 
-
 import './cart-roducts.scss'
-
 
 export const CartProducts = () => {
     const items = useSelector(getItemsInCart)
     const dispatch = useDispatch()
     const refbtn = useRef(null)
-    const handleRemoveItem = (id) => dispatch(deleteItem(id));
+    const handleRemoveItem = (id) => dispatch(deleteItem(id))
     return (
         <>
             {

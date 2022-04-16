@@ -1,7 +1,8 @@
 import { useState } from "react"
+import MaskInput from "react-maskinput";
 import iconEye from './assets/icon-Eye.svg'
 import iconEyeSlash from './assets/icon-EyeSlash.svg'
-import MaskInput from "react-maskinput";
+import { PATTERN_MONTH } from "../../../../constants/order/patterns";
 import './cards-method.scss'
 
 export const CardsMethod = ({
@@ -15,7 +16,7 @@ export const CardsMethod = ({
     const [cardNumber, setCardNumber] = useState(JSON.parse(localStorage.getItem('card')))
     const [cardDate, setCardDate] = useState(JSON.parse(localStorage.getItem('cardDate')))
     const [cardCVV, setCardCVV] = useState(JSON.parse(localStorage.getItem('cardCVV')))
-    const [isRevealCVV, setIsRevealCVV] = useState(false);
+    const [isRevealCVV, setIsRevealCVV] = useState(false)
 
     const handleChangeCardNumber = ({ target }) => {
         setCardNumber(target.value)
@@ -41,13 +42,11 @@ export const CardsMethod = ({
     }
 
     const checkCreditCardDate = () => {
-        const pattern = new RegExp(/(0[1-9])|(1[012])/)
-        const month = cardDate.split('/')[0]
-        const year = cardDate.split('/')[1]
+        const [month, year] = cardDate.split('/')
         const currentYear = parseInt(new Date().getFullYear().toString().substr(2, 2))
         const currentMonth = parseInt(new Date().getMonth())
         const compare = currentYear < +year ? true : currentYear === +year ? currentMonth < +month ? true : false : false
-        if (pattern.test(month) && compare) {
+        if (PATTERN_MONTH.test(month) && compare) {
             setCardDateError(false)
             localStorage.setItem("cardDate", JSON.stringify(cardDate))
         } else {
@@ -80,7 +79,7 @@ export const CardsMethod = ({
                     onChange={handleChangeCardNumber}
                     mask="0000-0000-0000-0000"
                 />
-                {cardNumberError && <div className='errors'><span>Проверьте правильность введенных данных</span></div>}
+                {cardNumberError && <div className='errors'>Проверьте правильность введенных данных</div>}
                 <div className="card-info">
                     <MaskInput
                         type="text"
@@ -92,7 +91,7 @@ export const CardsMethod = ({
                         onBlur={checkCreditCardDate}
                         mask="00/00"
                     />
-                    {cardDateError && <div className='errors'><span>Enter correct year or month</span></div>}
+                    {cardDateError && <div className='errors'>Enter correct year or month</div>}
                     <div className="cvv-wrapper">
                         <MaskInput
                             type={isRevealCVV ? "text" : "password"}
@@ -104,7 +103,7 @@ export const CardsMethod = ({
                             onBlur={checkCardCVV}
                             mask="0000"
                         />
-                        {cardCVVError && <div className='errors'><span>Too short</span></div>}
+                        {cardCVVError && <div className='errors'>Too short</div>}
                         <img
                             title={isRevealCVV ? "Hide password" : "Show password"}
                             src={isRevealCVV ? iconEyeSlash : iconEye}

@@ -4,7 +4,6 @@ import { fetchCities, fetchCountries } from '../../../../redux/order/orderAction
 import { getCountries, getCities } from '../../../../redux/order/orderSelectors'
 import './store.delivery.scss'
 
-
 export const StoreDelivery = ({ storeAdressError, setStoreAdressError, errorCountry, setErrorCountry }) => {
 
     const [country, setCountry] = useState(JSON.parse(localStorage.getItem('country')))
@@ -12,7 +11,6 @@ export const StoreDelivery = ({ storeAdressError, setStoreAdressError, errorCoun
     const dispatch = useDispatch()
     const countriesSelect = useSelector(getCountries)
     const citiesSelect = useSelector(getCities)
-    console.log(countriesSelect)
 
     useEffect(() => {
         dispatch(fetchCountries())
@@ -22,9 +20,7 @@ export const StoreDelivery = ({ storeAdressError, setStoreAdressError, errorCoun
         if (storeAdress.length >= 3) {
             dispatch(fetchCities(storeAdress, country))
         }
-
     }, [country, storeAdress.length, storeAdress, dispatch])
-
 
     const changeCountryHandler = ({ target: { value } }) => {
         setCountry(value)
@@ -70,13 +66,12 @@ export const StoreDelivery = ({ storeAdressError, setStoreAdressError, errorCoun
                     onChange={changeCountryHandler}
                 />
                 <datalist id="countries">
-                    {countriesSelect?.map(({ name, _id }) => {
-                        return (
-                            <option key={_id}>{name}</option>
-                        )
-                    })}
+                    {countriesSelect?.map(({ name, _id }) => (
+                        <option key={_id}>{name}</option>
+                    )
+                    )}
                 </datalist>
-                {errorCountry && <div className='errors'><span>Поле должно быть заполнено</span></div>}
+                {errorCountry && <div className='errors'>Поле должно быть заполнено</div>}
                 <input
                     type="text"
                     list='stores'
@@ -88,17 +83,15 @@ export const StoreDelivery = ({ storeAdressError, setStoreAdressError, errorCoun
                     onChange={changeStoreAdressHandler}
                 />
                 {
-                    storeAdress.length >= 3 ?
-                        <datalist id="stores">
-                            {citiesSelect?.map(({ city, _id }) => {
-                                return (
-                                    <option key={_id}>{city}</option>
-                                )
-                            })}
-                        </datalist> :
-                        null
+                    storeAdress.length >= 3 &&
+                    <datalist id="stores">
+                        {citiesSelect?.map(({ city, _id }) => (
+                            <option key={_id}>{city}</option>
+                        )
+                        )}
+                    </datalist>
                 }
-                {storeAdressError && <div className='errors'><span>Поле должно быть заполнено</span></div>}
+                {storeAdressError && <div className='errors'>Поле должно быть заполнено</div>}
             </label>
         </div>
     )
