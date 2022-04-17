@@ -233,7 +233,7 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
             setErrorCountry(true)
             localStorage.setItem("country", JSON.stringify(country))
         }
-        !city ? setErrorCity(true) : setErrorCity(false)
+        citiesSelect.find(item => item.city.toLowerCase() === city.toLowerCase()) ? setErrorCity(false) : setErrorCity(true)
         !street ? setErrorStreet(true) : setErrorStreet(false)
         !house ? setErrorHouse(true) : setErrorHouse(false)
     }
