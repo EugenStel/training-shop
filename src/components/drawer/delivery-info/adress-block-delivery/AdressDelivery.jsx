@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { getCountries } from '../../../../redux/order/orderSelectors'
+import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getCountries, getCities } from '../../../../redux/order/orderSelectors'
+import { fetchCities } from '../../../../redux/order/orderActions'
 import './adress-delivery.scss'
 export const AdressDelivery = ({
     errorHouse,
@@ -16,7 +17,13 @@ export const AdressDelivery = ({
     const [city, setCity] = useState(JSON.parse(localStorage.getItem('city')))
     const [street, setStreet] = useState(JSON.parse(localStorage.getItem('street')))
     const [house, setHouse] = useState(JSON.parse(localStorage.getItem('house')))
+    const dispatch = useDispatch()
     const countriesSelect = useSelector(getCountries)
+    const citiesSelect = useSelector(getCities)
+
+    useEffect(() => {
+        dispatch(fetchCities(city, country))
+    }, [dispatch, city, country])
 
     const changeCountryHandler = ({ target: { value } }) => {
         setCountry(value)
@@ -65,8 +72,13 @@ export const AdressDelivery = ({
                     }
                     break
                 case 'city':
-                    setErrorCity(false)
-                    localStorage.setItem("city", JSON.stringify(inputValue))
+                    if (citiesSelect.find(item => item.city.toLowerCase() === city.toLowerCase())) {
+                        setErrorCity(false)
+                        localStorage.setItem("city", JSON.stringify(city))
+                    } else {
+                        setErrorCity(true)
+                        localStorage.setItem("city", JSON.stringify(city))
+                    }
                     break
                 case 'street':
                     setErrorStreet(false)
@@ -89,6 +101,16 @@ export const AdressDelivery = ({
         } else {
             setErrorCountry(true)
             localStorage.setItem("country", JSON.stringify(country))
+        }
+    }
+
+    const keyUpCityHandler = () => {
+        if (citiesSelect.find(item => item.city.toLowerCase() === city.toLowerCase())) {
+            setErrorCity(false)
+            localStorage.setItem("city", JSON.stringify(city))
+        } else {
+            setErrorCity(true)
+            localStorage.setItem("city", JSON.stringify(city))
         }
     }
 
@@ -124,6 +146,7 @@ export const AdressDelivery = ({
                     value={city}
                     disabled={country === '' ? true : false}
                     onBlur={() => checkInputs(city, 'city')}
+                    onKeyUp={keyUpCityHandler}
                 />
                 {errorCity && <div className="errors">Поле должно быть заполнено</div>}
             </div>
