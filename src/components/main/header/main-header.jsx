@@ -1,4 +1,4 @@
-import { Sliders } from "../../sliders/Sliders";
+import { Sliders } from "../../sliders/sliders";
 import { HEAD_SLIDER } from "../../../constants/main/head-slider";
 import { CategoriesNav } from "./categories/Сategories";
 

@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 import visa from './assets/visa_payment.svg'
 import master from './assets/mastercard_payment.svg'
 import paypal from './assets/paypal_payment.svg'
-import { PaypalMethod } from './paypal-method/PaypalMethod'
-import { CardsMethod } from './cards-method/CardsMethod'
+import { PaypalMethod } from './paypal-method/paypal-method'
+import { CardsMethod } from './cards-method/cards-method'
+import { PAYMENT_VALUES } from '../../../constants/order/forms-data'
 
 import './payment.scss'
 export const Payment = ({
@@ -25,13 +26,13 @@ export const Payment = ({
 
     useEffect(() => {
         if (selectedOption === 'visa' || selectedOption === 'master') {
-            localStorage.setItem("paymentMethod", JSON.stringify('card'))
+            localStorage.setItem("paymentMethod", JSON.stringify(PAYMENT_VALUES.CARD))
             setPaymentMethod(JSON.parse(localStorage.getItem('paymentMethod')))
         } else if (selectedOption === 'paypal') {
-            localStorage.setItem("paymentMethod", JSON.stringify('paypal'))
+            localStorage.setItem("paymentMethod", JSON.stringify(PAYMENT_VALUES.PAYPAL))
             setPaymentMethod(JSON.parse(localStorage.getItem('paymentMethod')))
         } else {
-            localStorage.setItem("paymentMethod", JSON.stringify('cash'))
+            localStorage.setItem("paymentMethod", JSON.stringify(PAYMENT_VALUES.CASH))
             setPaymentMethod(JSON.parse(localStorage.getItem('paymentMethod')))
         }
     }, [selectedOption, setPaymentMethod])

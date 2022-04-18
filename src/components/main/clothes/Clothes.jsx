@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { ClothesCardItem } from '../../clothes-card-item/ClothesCardItem';
+import { ClothesCardItem } from '../../clothes-card-item/clothes-card-item';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getProducts } from '../../../redux/products/productsSelectors';

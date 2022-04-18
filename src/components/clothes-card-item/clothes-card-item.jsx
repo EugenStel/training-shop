@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { CardRating } from './card-raiting/CardRaiting';
+import { CardRating } from './card-raiting/card-raiting';
 
 import './clothes-card-item.scss';
 

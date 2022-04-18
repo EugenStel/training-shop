@@ -1,4 +1,4 @@
-import { CardRating } from '../../clothes-card-item/card-raiting/CardRaiting'
+import { CardRating } from '../../clothes-card-item/card-raiting/card-raiting'
 
 
 

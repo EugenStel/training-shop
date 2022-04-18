@@ -1,6 +1,6 @@
-import { FooterSubscribe } from "./subscribe/Subscribe";
-import { FooterNav } from "./navigation/Nav";
-import { FooterCopy } from "./copyrighting/Copyrighting";
+import { FooterSubscribe } from "./subscribe/subscribe";
+import { FooterNav } from "./navigation/nav";
+import { FooterCopy } from "./copyrighting/copyrighting";
 
 import './footer.scss'
 

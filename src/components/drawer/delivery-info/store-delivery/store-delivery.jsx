@@ -6,7 +6,9 @@ import './store.delivery.scss'
 
 export const StoreDelivery = ({ storeAdressError, setStoreAdressError, errorCountry, setErrorCountry }) => {
 
-    const [country, setCountry] = useState(JSON.parse(localStorage.getItem('country')))
+
+    const objAddress = JSON.parse(localStorage.getItem('addressInfo'))
+    const [country, setCountry] = useState(objAddress?.country)
     const [storeAdress, setStoreAdress] = useState(JSON.parse(localStorage.getItem('storeAdress')))
     const dispatch = useDispatch()
     const countriesSelect = useSelector(getCountries)
@@ -32,23 +34,16 @@ export const StoreDelivery = ({ storeAdressError, setStoreAdressError, errorCoun
     }
 
     const checkCountry = () => {
-        if (!country) {
-            setErrorCountry(true)
-            localStorage.setItem("country", JSON.stringify(country))
-        } else {
-            setErrorCountry(false)
-            localStorage.setItem("country", JSON.stringify(country))
-        }
+        localStorage.setItem('addressInfo', JSON.stringify({
+            ...JSON.parse(localStorage.getItem('addressInfo')),
+            'country': country
+        }))
+        !country ? setErrorCountry(true) : setErrorCountry(false)
     }
 
     const checkStoreAdress = () => {
-        if (storeAdress && citiesSelect.find(item => item.city === storeAdress)) {
-            setStoreAdressError(false)
-            localStorage.setItem("storeAdress", JSON.stringify(storeAdress))
-        } else {
-            setStoreAdressError(true)
-            localStorage.setItem("storeAdress", JSON.stringify(storeAdress))
-        }
+        localStorage.setItem("storeAdress", JSON.stringify(storeAdress))
+        storeAdress && citiesSelect.find(item => item.city === storeAdress) ? setStoreAdressError(false) : setStoreAdressError(true)
     }
 
     return (
