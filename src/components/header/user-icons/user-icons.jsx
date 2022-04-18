@@ -1,5 +1,5 @@
 import { USER_ICONS_NAV } from "../../../constants/header/user-icons-nav";
-import { CartHeader } from "../../cart/cart";
+import { CartHeader } from "../../cart/Cart";
 import { BurgerIcon } from "../burger-icon/BurgerIcon";
 
 import './user-icons.scss'

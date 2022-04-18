@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getItemsInCart } from "../../redux/cart/cartSelectors";
 import { Delivery } from "./delivery-info/delivery-info";
-import { Payment } from "./payment/payment";
+import { Payment } from "./payment/Payment";
 import { CartProducts } from "./cart-products/cart-products";
 import { ErrorOrder } from "./error-order/error-order";
 import { SuccsessOrder } from "./succsess-order/succsess-order";
