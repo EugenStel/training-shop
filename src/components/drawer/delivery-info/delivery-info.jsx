@@ -4,9 +4,7 @@ import { AdressDelivery } from './adress-block-delivery/adress-delivery'
 import { PostcodeDelivery } from './post-code-delivery/post-delivery'
 import { StoreDelivery } from './store-delivery/store-delivery'
 import { PATTERN_EMAIL, PATTERN_PHONE } from '../../../constants/order/patterns'
-import { DELIVERY_VALUES } from '../../../constants/order/forms-data'
 import './delivery-info.scss'
-
 export const Delivery = ({
     emailError,
     phoneError,
@@ -39,11 +37,11 @@ export const Delivery = ({
 
     useEffect(() => {
         if (chosedDelivery === 'office') {
-            localStorage.setItem("deliveryMethod", JSON.stringify(DELIVERY_VALUES.POST_DELIVERY))
+            localStorage.setItem("deliveryMethod", JSON.stringify('pickup from post offices'))
         } else if (chosedDelivery === 'express') {
-            localStorage.setItem("deliveryMethod", JSON.stringify(DELIVERY_VALUES.EXPRESS_DELIVERY))
+            localStorage.setItem("deliveryMethod", JSON.stringify('express delivery'))
         } else {
-            localStorage.setItem("deliveryMethod", JSON.stringify(DELIVERY_VALUES.STORE_PICKUP))
+            localStorage.setItem("deliveryMethod", JSON.stringify('store pickup'))
         }
     }, [chosedDelivery])
 
@@ -56,13 +54,23 @@ export const Delivery = ({
     }
 
     const checkEmail = () => {
-        localStorage.setItem("email", JSON.stringify(email))
-        PATTERN_EMAIL.test(email) ? setEmailError(false) : setEmailError(true)
+        if (PATTERN_EMAIL.test(email)) {
+            setEmailError(false)
+            localStorage.setItem("email", JSON.stringify(email))
+        } else {
+            setEmailError(true)
+            localStorage.setItem("email", JSON.stringify(email))
+        }
     }
 
     const checkPhone = () => {
-        localStorage.setItem("phone", JSON.stringify(phone))
-        PATTERN_PHONE.test(phone) ? setPhoneError(false) : setPhoneError(true)
+        if (PATTERN_PHONE.test(phone)) {
+            setPhoneError(false)
+            localStorage.setItem("phone", JSON.stringify(phone))
+        } else {
+            setPhoneError(true)
+            localStorage.setItem("phone", JSON.stringify(phone))
+        }
     };
 
     return (
