@@ -8,7 +8,7 @@ import { ProductsPage } from '../../pages/products/Products';
 import { SinglePage } from '../../pages/product/single-product';
 import { getErrorByFetch, getLoadingStatus } from '../../redux/products/productsSelectors';
 import { fetchProducts } from '../../redux/products/productsActions';
-import { Loader } from '../loader/loader';
+import { Loader } from '../loader/Loader';
 import { Error } from '../error/Error'
 
 import './app.scss';
