@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-
 import './categories.scss'
 
 export const CategoriesNav = () => {

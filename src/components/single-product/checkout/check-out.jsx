@@ -1,6 +1,6 @@
 import { CHECKOUT } from "../../../constants/products/checkout"
-
 import './checkout.scss'
+
 export const Checkout = () => {
     return (
         <div className='checkout_image'>

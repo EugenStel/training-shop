@@ -34,7 +34,6 @@ export const FooterSubscribe = () => {
         setEmail('')
     }, [location]);
 
-
     const handleInputChange = (e) => {
         setEmail(e.target.value)
     }
@@ -58,7 +57,6 @@ export const FooterSubscribe = () => {
         dispatch(sendFooterEmail(email))
     }
 
-
     return (
         <div className='footer_subscriber'>
             <div className='wrapper'>
@@ -72,7 +70,6 @@ export const FooterSubscribe = () => {
                             value={email}
                             onChange={handleInputChange}
                             onKeyUp={() => { isValidEmailAddress(email) }} />
-
                         <button className={`footer_button ${buttonDisable}`} type='submit' disabled={buttonDisable} data-test-id='footer-subscribe-mail-button'>
                             JOIN US
                         </button>

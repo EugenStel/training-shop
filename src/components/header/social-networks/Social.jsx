@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { SOCIAL_NETWORK_ICONS } from "../../../constants/header/social-network-icons";
-
 import './social.scss'
 
 export const SocialIcons = ({ iconSize }) => {
@@ -14,7 +13,6 @@ export const SocialIcons = ({ iconSize }) => {
         </div>
     )
 }
-
 
 SocialIcons.propTypes = {
     iconSize: PropTypes.oneOf(['14px', '18px'])
