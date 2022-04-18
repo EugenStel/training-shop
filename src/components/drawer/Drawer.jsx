@@ -81,7 +81,7 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
 
     const handleFurtherClick = () => {
         const { country, city, street, house } = JSON.parse(localStorage.getItem('addressInfo'))
-        const { cardNumber, cardDate, cardCVV } = JSON.parse(localStorage.getItem('cardInfo'))
+        const { card, cardDate, cardCVV } = JSON.parse(localStorage.getItem('cardInfo'))
         const deliveryMethod = JSON.parse(localStorage.getItem('deliveryMethod'))
         const paymentMethod = JSON.parse(localStorage.getItem('paymentMethod'))
         const email = JSON.parse(localStorage.getItem('email'))
@@ -135,8 +135,8 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
                     setIsPayment(false)
                 }
             } else if (paymentMethod === PAYMENT_VALUES.CARD) {
-                chechCardMethods(cardNumber, cardDate, cardCVV)
-                if (cardNumber && cardDate && cardCVV && cardPaymentErros.every(value => value === false)) {
+                chechCardMethods(card, cardDate, cardCVV)
+                if (card && cardDate && cardCVV && cardPaymentErros.every(value => value === false)) {
                     dispatch(sendOrder(orderToSend))
                     setIsPayment(false)
                 }
