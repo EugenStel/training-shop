@@ -13,12 +13,13 @@ export const CartProducts = () => {
     const dispatch = useDispatch()
     const refbtn = useRef(null)
     const handleRemoveItem = (id) => dispatch(deleteItem(id))
+    const handleChangeAmount = (id, value) => dispatch(changeAmount({ id, value: Number(value) }))
     return (
         <>
             {
                 items.map(({ id, name, color, size, amount, price, url }) => (
-                    <div className="cartItem" key={id} data-test-id='cart-card'>
-                        <div style={{ backgroundImage: `url(${url})` }} className="cartItemImg"></div>
+                    <div className="cart-item" key={id} data-test-id='cart-card'>
+                        <div style={{ backgroundImage: `url(${url})` }} className="cart-item-img"></div>
                         <div>
                             <div className="cart-item-info">
                                 <p className="cart-item-title">{name}</p>
@@ -34,7 +35,7 @@ export const CartProducts = () => {
                                 </button>
                                 <input type='text'
                                     value={amount}
-                                    onChange={({ target: { value } }) => dispatch(changeAmount({ id, value: Number(value) }))} />
+                                    onChange={({ target: { value } }) => handleChangeAmount(id, value)} />
                                 <button
                                     data-test-id='plus-product'
                                     type='button'
@@ -45,7 +46,7 @@ export const CartProducts = () => {
                                 <div className="cart-price">${`${(price * amount).toFixed(2)}`}</div>
                                 <img
                                     data-test-id='remove-product'
-                                    className="removeBtn"
+                                    className="remove-btn"
                                     src={trash}
                                     alt="remove"
                                     onClick={() => handleRemoveItem(id)}

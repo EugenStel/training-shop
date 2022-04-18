@@ -1,8 +1,6 @@
 import './succsess-order.scss'
 
 export const SuccsessOrder = ({ handleCartClose }) => {
-
-
     return (
         <div className="nice-job">
             <div className="info">

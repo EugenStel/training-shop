@@ -9,6 +9,7 @@ import { SuccsessOrder } from "./succsess-order/succsess-order";
 import { getCities, getOrderError, getOrderResponse } from "../../redux/order/orderSelectors";
 import { sendOrder, clearErrors } from "../../redux/order/orderActions";
 import { PATTERN_EMAIL, PATTERN_PHONE, PATTERN_MONTH } from "../../constants/order/patterns";
+import { DELIVERY_VALUES, PAYMENT_VALUES } from "../../constants/order/forms-data";
 
 import close from './assets/close.svg'
 
@@ -129,21 +130,21 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
             setIsItemInCart(false)
             setIsDelivery(true)
         } else if (isDelivery) {
-            if (deliveryMethod === 'pickup from post offices') {
+            if (deliveryMethod === DELIVERY_VALUES.POST_DELIVERY) {
                 checkOfficeDel(email, phone, country, city, street, house, postcode)
                 checkAgreeRules()
                 if (phone && email && country && city && street && house && postcode && errorsOffice.every(value => value === false)) {
                     setIsDelivery(false)
                     setIsPayment(true)
                 }
-            } else if (deliveryMethod === 'express delivery') {
+            } else if (deliveryMethod === DELIVERY_VALUES.EXPRESS_DELIVERY) {
                 checkExpressDel(email, phone, country, city, street, house)
                 checkAgreeRules()
                 if (phone && email && country && city && street && house && errorsExpress.every(value => value === false)) {
                     setIsDelivery(false)
                     setIsPayment(true)
                 }
-            } else if (deliveryMethod === 'store pickup') {
+            } else if (deliveryMethod === DELIVERY_VALUES.STORE_PICKUP) {
                 checkStoreDel(email, phone, storeAdress)
                 checkAgreeRules()
                 if (phone && email && storeAdress && errorsStore.every(value => value === false)) {
@@ -152,19 +153,19 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
                 }
             }
         } else if (isPayment) {
-            if (paymentMethod === 'paypal') {
+            if (paymentMethod === PAYMENT_VALUES.PAYPAL) {
                 checkEmailPayment(cashEmail)
                 if (cashEmail && !paymentEmailError) {
                     dispatch(sendOrder(orderToSend))
                     setIsPayment(false)
                 }
-            } else if (paymentMethod === 'card') {
+            } else if (paymentMethod === PAYMENT_VALUES.CARD) {
                 chechCardMethods(card, cardDate, cardCVV)
                 if (card && cardDate && cardCVV && cardPaymentErros.every(value => value === false)) {
                     dispatch(sendOrder(orderToSend))
                     setIsPayment(false)
                 }
-            } else if (paymentMethod === 'cash') {
+            } else if (paymentMethod === PAYMENT_VALUES.CASH) {
                 dispatch(sendOrder(orderToSend))
                 setIsPayment(false)
             }
