@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getEmailFooterLoading, getEmailFooterError, getEmailFooterResponce } from "../../../redux/email/emailSelectors";
 import { getButtonFooterStatus } from "../../../redux/email/emailSelectors";
 import { LoaderFooterButtons } from "../../loader-buttons/loader-buttons";
-import { SocialIcons } from "../../header/social-networks/social"
+import { SocialIcons } from "../../header/social-networks/Social"
 import { sendFooterEmail, enableFooterButton, disableFooterButton, clear } from "../../../redux/email/emailActions";
 
 import './subscribe.scss'

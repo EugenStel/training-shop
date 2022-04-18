@@ -1,9 +1,9 @@
 import { MainHeader } from "../../components/main/header/main-header";
-import { ServicesMain } from "../../components/main/services/services";
+import { ServicesMain } from "../../components/main/services/Services";
 import { PRODUCT_TYPES } from "../../constants/main/productTypes";
-import { Clothes } from "../../components/main/clothes/clothes";
-import { Promo } from "../../components/main/promo/promo";
-import { MainSubscribe } from "../../components/main/subscribe/subscribe";
+import { Clothes } from "../../components/main/clothes/Clothes";
+import { Promo } from "../../components/main/promo/Promo";
+import { MainSubscribe } from "../../components/main/subscribe/Subscribe";
 import { Blog } from "../../components/main/blog/Blog";
 
 export const HomePage = () => {

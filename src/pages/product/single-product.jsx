@@ -7,7 +7,7 @@ import { Checkout } from "../../components/single-product/checkout/check-out";
 import { Opportunity } from "../../components/single-product/opportunity/opportunities";
 import { ProductSlider } from "../../components/single-product/slider/product-slider-singl";
 import { CardRating } from "../../components/clothes-card-item/card-raiting/card-raiting";
-import { Reviews } from "../../components/single-product/reviews/reviews";
+import { Reviews } from "../../components/single-product/reviews/Reviews";
 import { Related } from "../../components/single-product/related/related-singl";
 import { ReviewModal } from "../../components/review-modal/review-modal";
 import { getModalStatus } from "../../redux/rewiew/reviewSelectors";

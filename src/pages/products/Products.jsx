@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { ProductsHeader } from "../../components/categories/header/products-header"
 import { ProductsControl } from "../../components/categories/control/products-control"
-import { Filters } from "../../components/categories/filters/filters"
+import { Filters } from "../../components/categories/filters/Filters"
 import { ClothesCardItem } from "../../components/clothes-card-item/clothes-card-item"
 import { getProducts } from "../../redux/products/productsSelectors"
 
