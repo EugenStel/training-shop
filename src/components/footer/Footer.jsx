@@ -6,7 +6,6 @@ import './footer.scss'
 
 export const Footer = () => {
     return (
-
         <div className='footer' data-test-id='footer'>
             <FooterSubscribe />
             <div className='wrapper'>

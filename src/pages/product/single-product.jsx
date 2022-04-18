@@ -12,18 +12,13 @@ import { Related } from "../../components/single-product/related/related";
 import { ReviewModal } from "../../components/review-modal/review-modal";
 import { getModalStatus } from "../../redux/rewiew/reviewSelectors";
 import { showModal, closeModal } from "../../redux/rewiew/reviewActions";
-
 import hanger from '../../components/single-product/assets/clothes-hanger.jpg'
 import favourite from '../../components/single-product/control/assets/heart.svg'
 import compare from '../../components/single-product/control/assets/scale.svg'
 import annotation from '../../components/single-product/reviews/assets/annotation.svg'
 import { getProducts, getErrorByFetch } from "../../redux/products/productsSelectors";
-
 import { addItem, deleteItem } from "../../redux/cart/cartActions";
-
-
 import './single-prod.scss'
-
 
 export const SinglePage = ({ productType }) => {
     const dispatch = useDispatch();
@@ -31,17 +26,11 @@ export const SinglePage = ({ productType }) => {
     const products = useSelector(getProducts)
     const error = useSelector(getErrorByFetch)
     const statusModal = useSelector(getModalStatus)
-
-
     const host = 'https://training.cleverland.by/shop';
-
     const { id } = useParams();
-
     const [product, setProduct] = useState();
     const [size, setSize] = useState('')
     const [color, setColor] = useState('')
-
-
 
     const handleOpenForm = () => {
         dispatch(showModal())
@@ -50,7 +39,6 @@ export const SinglePage = ({ productType }) => {
     const handleCloseForm = () => {
         dispatch(closeModal())
     }
-
 
     statusModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
 

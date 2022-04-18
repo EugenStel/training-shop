@@ -6,7 +6,6 @@ import { Promo } from "../../components/main/promo/Promo";
 import { MainSubscribe } from "../../components/main/subscribe/subscribe";
 import { Blog } from "../../components/main/blog/Blog";
 
-
 export const HomePage = () => {
     return (
         <>
