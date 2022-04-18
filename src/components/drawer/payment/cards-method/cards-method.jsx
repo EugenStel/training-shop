@@ -22,7 +22,7 @@ export const CardsMethod = ({
 
     useEffect(() => {
         localStorage.setItem('cardInfo', JSON.stringify({
-            "cardNumber": cardNumber,
+            "card": cardNumber,
             "cardDate": cardDate,
             "cardCVV": cardCVV,
         }))
