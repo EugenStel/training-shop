@@ -10,8 +10,13 @@ export const PaypalMethod = ({ paymentEmailError, setPaymentEmailError }) => {
     }
 
     const checkEmailPayment = () => {
-        localStorage.setItem("cashEmail", JSON.stringify(email))
-        PATTERN_EMAIL.test(email) ? setPaymentEmailError(false) : setPaymentEmailError(true)
+        if (PATTERN_EMAIL.test(email)) {
+            setPaymentEmailError(false)
+            localStorage.setItem("cashEmail", JSON.stringify(email))
+        } else {
+            setPaymentEmailError(true)
+            localStorage.setItem("cashEmail", JSON.stringify(email))
+        }
     }
 
     return (

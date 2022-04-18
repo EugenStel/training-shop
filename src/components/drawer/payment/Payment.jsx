@@ -4,9 +4,8 @@ import master from './assets/mastercard_payment.svg'
 import paypal from './assets/paypal_payment.svg'
 import { PaypalMethod } from './paypal-method/paypal-method'
 import { CardsMethod } from './cards-method/cards-method'
-import { PAYMENT_VALUES } from '../../../constants/order/forms-data'
-import './payment.scss'
 
+import './payment.scss'
 export const Payment = ({
     setCardNumberError,
     setCardDateError,
@@ -26,13 +25,13 @@ export const Payment = ({
 
     useEffect(() => {
         if (selectedOption === 'visa' || selectedOption === 'master') {
-            localStorage.setItem("paymentMethod", JSON.stringify(PAYMENT_VALUES.CARD))
+            localStorage.setItem("paymentMethod", JSON.stringify('card'))
             setPaymentMethod(JSON.parse(localStorage.getItem('paymentMethod')))
         } else if (selectedOption === 'paypal') {
-            localStorage.setItem("paymentMethod", JSON.stringify(PAYMENT_VALUES.PAYPAL))
+            localStorage.setItem("paymentMethod", JSON.stringify('paypal'))
             setPaymentMethod(JSON.parse(localStorage.getItem('paymentMethod')))
         } else {
-            localStorage.setItem("paymentMethod", JSON.stringify(PAYMENT_VALUES.CASH))
+            localStorage.setItem("paymentMethod", JSON.stringify('cash'))
             setPaymentMethod(JSON.parse(localStorage.getItem('paymentMethod')))
         }
     }, [selectedOption, setPaymentMethod])

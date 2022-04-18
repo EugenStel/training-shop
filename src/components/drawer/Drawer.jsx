@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getItemsInCart } from "../../redux/cart/cartSelectors";
 import { Delivery } from "./delivery-info/delivery-info";
@@ -9,8 +9,6 @@ import { SuccsessOrder } from "./succsess-order/succsess-order";
 import { getCities, getOrderError, getOrderResponse } from "../../redux/order/orderSelectors";
 import { sendOrder, clearErrors } from "../../redux/order/orderActions";
 import { PATTERN_EMAIL, PATTERN_PHONE, PATTERN_MONTH } from "../../constants/order/patterns";
-import { DELIVERY_VALUES, PAYMENT_VALUES } from "../../constants/order/forms-data";
-import { clearLocalStorage } from "../../utils/clear-local-storage";
 
 import close from './assets/close.svg'
 
@@ -63,6 +61,22 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
     const cardPaymentErros = [cardNumberError, cardDateError, cardCVVError]
 
 
+    const clearLocalStorage = () => {
+        localStorage.setItem('email', JSON.stringify(''))
+        localStorage.setItem('phone', JSON.stringify(''))
+        localStorage.setItem('country', JSON.stringify(''))
+        localStorage.setItem('city', JSON.stringify(''))
+        localStorage.setItem('street', JSON.stringify(''))
+        localStorage.setItem('house', JSON.stringify(''))
+        localStorage.setItem('postcode', JSON.stringify(''))
+        localStorage.setItem('countryStore', JSON.stringify(''))
+        localStorage.setItem('storeAdress', JSON.stringify(''))
+        localStorage.setItem('card', JSON.stringify(''))
+        localStorage.setItem('cardDate', JSON.stringify(''))
+        localStorage.setItem('cardCVV', JSON.stringify(''))
+        localStorage.setItem('cashEmail', JSON.stringify(''))
+    }
+
     const closeCartOnClick = ({ target }) => {
         if (target.className === "overlay") {
             clearLocalStorage()
@@ -71,55 +85,65 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
         }
     }
 
-    useEffect(() => {
-        localStorage.setItem('order', JSON.stringify({
-            "products": items,
-            "totalPrice": totalPrice,
-        }))
-    }, [items, totalPrice])
-
+    const order = {
+        "products": items,
+        "totalPrice": totalPrice,
+    }
+    localStorage.setItem('order', JSON.stringify(order))
 
     const handleFurtherClick = () => {
-        const { country, city, street, house } = JSON.parse(localStorage.getItem('addressInfo'))
-        const { card, cardDate, cardCVV } = JSON.parse(localStorage.getItem('cardInfo'))
         const deliveryMethod = JSON.parse(localStorage.getItem('deliveryMethod'))
         const paymentMethod = JSON.parse(localStorage.getItem('paymentMethod'))
         const email = JSON.parse(localStorage.getItem('email'))
         const phone = JSON.parse(localStorage.getItem('phone'))
+        const country = JSON.parse(localStorage.getItem('country'))
+        const city = JSON.parse(localStorage.getItem('city'))
+        const street = JSON.parse(localStorage.getItem('street'))
+        const house = JSON.parse(localStorage.getItem('house'))
         const postcode = JSON.parse(localStorage.getItem('postcode'))
         const storeAdress = JSON.parse(localStorage.getItem('storeAdress'))
+        const card = JSON.parse(localStorage.getItem('card'))
+        const cardDate = JSON.parse(localStorage.getItem('cardDate'))
+        const cardCVV = JSON.parse(localStorage.getItem('cardCVV'))
         const cashEmail = JSON.parse(localStorage.getItem('cashEmail'))
+        const prodAndSum = JSON.parse(localStorage.getItem('order'))
         const orderToSend = {
-            ...JSON.parse(localStorage.getItem('addressInfo')),
-            ...JSON.parse(localStorage.getItem('order')),
-            ...JSON.parse(localStorage.getItem('cardInfo')),
             'deliveryMethod': deliveryMethod,
             'paymentMethod': paymentMethod,
+            'products': prodAndSum.products,
+            "totalPrice": prodAndSum.totalPrice,
             'email': email,
             'phone': phone,
+            'country': country,
             'cashEmail': cashEmail,
+            'city': city,
+            'street': street,
+            'house': house,
             'postcode': postcode,
             'storeAddress': storeAdress,
+            'card': card,
+            'cardDate': cardDate,
+            'cardCVV': cardCVV
         }
         if (isItemInCart) {
             setIsItemInCart(false)
             setIsDelivery(true)
         } else if (isDelivery) {
-            if (deliveryMethod === DELIVERY_VALUES.POST_DELIVERY) {
+            if (deliveryMethod === 'pickup from post offices') {
                 checkOfficeDel(email, phone, country, city, street, house, postcode)
                 checkAgreeRules()
                 if (phone && email && country && city && street && house && postcode && errorsOffice.every(value => value === false)) {
                     setIsDelivery(false)
                     setIsPayment(true)
                 }
-            } else if (deliveryMethod === DELIVERY_VALUES.EXPRESS_DELIVERY) {
+            } else if (deliveryMethod === 'express delivery') {
                 checkExpressDel(email, phone, country, city, street, house)
                 checkAgreeRules()
                 if (phone && email && country && city && street && house && errorsExpress.every(value => value === false)) {
                     setIsDelivery(false)
                     setIsPayment(true)
                 }
-            } else if (deliveryMethod === DELIVERY_VALUES.STORE_PICKUP) {
+            } else if (deliveryMethod === 'store pickup') {
                 checkStoreDel(email, phone, storeAdress)
                 checkAgreeRules()
                 if (phone && email && storeAdress && errorsStore.every(value => value === false)) {
@@ -128,19 +152,19 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
                 }
             }
         } else if (isPayment) {
-            if (paymentMethod === PAYMENT_VALUES.PAYPAL) {
+            if (paymentMethod === 'paypal') {
                 checkEmailPayment(cashEmail)
                 if (cashEmail && !paymentEmailError) {
                     dispatch(sendOrder(orderToSend))
                     setIsPayment(false)
                 }
-            } else if (paymentMethod === PAYMENT_VALUES.CARD) {
+            } else if (paymentMethod === 'card') {
                 chechCardMethods(card, cardDate, cardCVV)
                 if (card && cardDate && cardCVV && cardPaymentErros.every(value => value === false)) {
                     dispatch(sendOrder(orderToSend))
                     setIsPayment(false)
                 }
-            } else if (paymentMethod === PAYMENT_VALUES.CASH) {
+            } else if (paymentMethod === 'cash') {
                 dispatch(sendOrder(orderToSend))
                 setIsPayment(false)
             }
@@ -163,11 +187,10 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
         checkInputs(country, city, street, house)
     }
 
-    const checkStoreDel = (email, phone, storeAdress, country) => {
+    const checkStoreDel = (email, phone, storeAdress) => {
         checkEmail(email)
         checkPhone(phone)
         checkStoreAdress(storeAdress)
-        !country ? setErrorCountry(true) : setErrorCountry(false)
     }
 
     const handleViewCartClick = () => {
@@ -203,14 +226,24 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
     };
 
     const checkInputs = (country, city, street, house) => {
-        country.toLowerCase() === 'Беларусь'.toLowerCase() ? setErrorCountry(false) : setErrorCountry(true)
+        if (country.toLowerCase() === 'Беларусь'.toLowerCase()) {
+            setErrorCountry(false)
+            localStorage.setItem("country", JSON.stringify(country))
+        } else {
+            setErrorCountry(true)
+            localStorage.setItem("country", JSON.stringify(country))
+        }
         citiesSelect.find(item => item.city.toLowerCase() === city.toLowerCase()) ? setErrorCity(false) : setErrorCity(true)
         !street ? setErrorStreet(true) : setErrorStreet(false)
         !house ? setErrorHouse(true) : setErrorHouse(false)
     }
 
     const checkPostCode = (postCode) => {
-        postCode?.length >= 9 ? setPostCodeError(false) : setPostCodeError(true)
+        if (postCode?.length >= 9) {
+            setPostCodeError(false)
+        } else {
+            setPostCodeError(true)
+        }
     }
 
     const checkStoreAdress = (storeAdress) => {
@@ -231,7 +264,11 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
         const currentYear = parseInt(new Date().getFullYear().toString().substr(2, 2))
         const currentMonth = parseInt(new Date().getMonth())
         const compare = currentYear < +year ? true : currentYear === +year ? currentMonth < +month ? true : false : false
-        PATTERN_MONTH.test(month) && compare ? setCardDateError(false) : setCardDateError(true)
+        if (PATTERN_MONTH.test(month) && compare) {
+            setCardDateError(false)
+        } else {
+            setCardDateError(true)
+        }
     }
 
     const checkCardCVV = (cardCVV) => {
@@ -245,7 +282,11 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
     }
 
     const checkEmailPayment = (cashEmail) => {
-        PATTERN_EMAIL.test(cashEmail) ? setPaymentEmailError(false) : setPaymentEmailError(true)
+        if (PATTERN_EMAIL.test(cashEmail)) {
+            setPaymentEmailError(false)
+        } else {
+            setPaymentEmailError(true)
+        }
     }
 
     const checkAgreeRules = () => {
@@ -331,16 +372,7 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
                                         </li>
                                     </ul>
                                 }
-                                {/* {!orderResponse &&
-                                    <div className="control">
-                                        <button type="button" className='blackButton' onClick={handleFurtherClick}>
-                                            {isItemInCart ? 'Further' : isDelivery ? 'Further' : isPayment ? paymentMethod === 'cash' ? 'Ready' : 'Check out' : 'Back to payment'}
-                                        </button>
-                                        {!isItemInCart && <button className='blackButton' onClick={handleViewCartClick}>View Cart</button>}
-
-                                    </div>
-                                } */}
-                                {orderResponse ? null :
+                                {!orderResponse &&
                                     <div className="control">
                                         <button className='blackButton' onClick={handleFurtherClick}>
                                             {isItemInCart ? 'Further' : isDelivery ? 'Further' : isPayment ? paymentMethod === 'cash' ? 'Ready' : 'Check out' : 'Back to payment'}
@@ -349,6 +381,7 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
 
                                     </div>
                                 }
+
                             </div>
                         </>
                         :

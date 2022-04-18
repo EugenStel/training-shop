@@ -13,29 +13,17 @@ export const AdressDelivery = ({
     setErrorStreet,
     setErrorHouse }) => {
 
-    const objAddress = JSON.parse(localStorage.getItem('addressInfo'))
-    const [country, setCountry] = useState(objAddress?.country)
-    const [city, setCity] = useState(objAddress?.city)
-    const [street, setStreet] = useState(objAddress?.street)
-    const [house, setHouse] = useState(objAddress?.house)
+    const [country, setCountry] = useState(JSON.parse(localStorage.getItem('country')))
+    const [city, setCity] = useState(JSON.parse(localStorage.getItem('city')))
+    const [street, setStreet] = useState(JSON.parse(localStorage.getItem('street')))
+    const [house, setHouse] = useState(JSON.parse(localStorage.getItem('house')))
     const dispatch = useDispatch()
     const countriesSelect = useSelector(getCountries)
     const citiesSelect = useSelector(getCities)
 
-
     useEffect(() => {
         dispatch(fetchCities(city, country))
     }, [dispatch, city, country])
-
-    useEffect(() => {
-        localStorage.setItem('addressInfo', JSON.stringify({
-            "country": country,
-            "city": city,
-            "street": street,
-            "house": house,
-        }))
-    }, [country, city, street, house])
-
 
     const changeCountryHandler = ({ target: { value } }) => {
         setCountry(value)
@@ -55,19 +43,19 @@ export const AdressDelivery = ({
             switch (inputType) {
                 case 'country':
                     setErrorCountry(true)
-                    localStorage.setItem(objAddress.country, JSON.stringify(inputValue))
+                    localStorage.setItem("country", JSON.stringify(inputValue))
                     break
                 case 'city':
                     setErrorCity(true)
-                    localStorage.setItem(objAddress.city, JSON.stringify(inputValue))
+                    localStorage.setItem("city", JSON.stringify(inputValue))
                     break
                 case 'street':
                     setErrorStreet(true)
-                    localStorage.setItem(objAddress.street, JSON.stringify(inputValue))
+                    localStorage.setItem("street", JSON.stringify(inputValue))
                     break
                 case 'house':
                     setErrorHouse(true)
-                    localStorage.setItem(objAddress.house, JSON.stringify(inputValue))
+                    localStorage.setItem("house", JSON.stringify(inputValue))
                     break
                 default:
                     break
@@ -75,16 +63,30 @@ export const AdressDelivery = ({
         } else {
             switch (inputType) {
                 case 'country':
-                    country?.toLowerCase() === 'Беларусь'.toLowerCase() ? setErrorCountry(false) : setErrorCountry(true)
+                    if (country.toLowerCase() === 'Беларусь'.toLowerCase()) {
+                        setErrorCountry(false)
+                        localStorage.setItem("country", JSON.stringify(country))
+                    } else {
+                        setErrorCountry(true)
+                        localStorage.setItem("country", JSON.stringify(country))
+                    }
                     break
                 case 'city':
-                    citiesSelect?.find(item => item.city.toLowerCase() === city.toLowerCase()) ? setErrorCity(false) : setErrorCity(true)
+                    if (citiesSelect.find(item => item.city.toLowerCase() === city.toLowerCase())) {
+                        setErrorCity(false)
+                        localStorage.setItem("city", JSON.stringify(city))
+                    } else {
+                        setErrorCity(true)
+                        localStorage.setItem("city", JSON.stringify(city))
+                    }
                     break
                 case 'street':
                     setErrorStreet(false)
+                    localStorage.setItem("street", JSON.stringify(inputValue))
                     break
                 case 'house':
                     setErrorHouse(false)
+                    localStorage.setItem("house", JSON.stringify(inputValue))
                     break
                 default:
                     break
@@ -95,16 +97,20 @@ export const AdressDelivery = ({
     const keyUpCountryHandler = () => {
         if (country.toLowerCase() === 'Беларусь'.toLowerCase()) {
             setErrorCountry(false)
+            localStorage.setItem("country", JSON.stringify(country))
         } else {
             setErrorCountry(true)
+            localStorage.setItem("country", JSON.stringify(country))
         }
     }
 
     const keyUpCityHandler = () => {
         if (citiesSelect.find(item => item.city.toLowerCase() === city.toLowerCase())) {
             setErrorCity(false)
+            localStorage.setItem("city", JSON.stringify(city))
         } else {
             setErrorCity(true)
+            localStorage.setItem("city", JSON.stringify(city))
         }
     }
 
@@ -127,6 +133,7 @@ export const AdressDelivery = ({
                     <option key={countriesSelect[0]?._id}>{countriesSelect[0]?.name}</option>
                 </datalist>
                 {errorCountry && <div className="errors">Поле должно быть заполнено</div>}
+                {errorCountry && <div className="errors">Доставка доступна только по РБ</div>}
             </div>
             <div className="adress-city">
                 <h2>City</h2>

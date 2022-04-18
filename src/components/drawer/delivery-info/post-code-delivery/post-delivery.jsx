@@ -9,11 +9,12 @@ export const PostcodeDelivery = ({ postCodeError, setPostCodeError }) => {
     }
 
     const checkPostCode = () => {
-        localStorage.setItem("postcode", JSON.stringify(postCode))
         if (postCode?.length >= 9) {
             setPostCodeError(false)
+            localStorage.setItem("postcode", JSON.stringify(postCode))
         } else {
             setPostCodeError(true)
+            localStorage.setItem("postcode", JSON.stringify(postCode))
         }
     }
 
