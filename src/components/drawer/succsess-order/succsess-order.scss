@@ -22,3 +22,26 @@
         }
     }
 }
+
+.back-button {
+position: relative;
+width: 80%;
+text-transform: uppercase;
+height: 55px;
+background: #121212;
+border: 0;
+color: #fff;
+font-size: 16px;
+cursor: pointer;
+font-weight: 500;
+margin-top: 40px;
+transition: background 0.2s ease-in-out;
+
+&:hover {
+    background: lighten($color: #9dd558, $amount: 5%);
+}
+
+&:active {
+    background: darken($color: #9dd558, $amount: 5%);
+}
+}
