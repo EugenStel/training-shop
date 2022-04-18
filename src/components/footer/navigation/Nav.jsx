@@ -4,7 +4,6 @@ import locationIcon from './assets/locationIcon.svg'
 import clockIcon from './assets/clockIcon.svg'
 import mailIcon from './assets/mailIcon.svg'
 import phoneIcon from './assets/phoneIcon.svg'
-
 import './nav.scss'
 
 export const FooterNav = () => {

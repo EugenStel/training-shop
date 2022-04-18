@@ -2,7 +2,7 @@ import { MainHeader } from "../../components/main/header/main-header";
 import { ServicesMain } from "../../components/main/services/services";
 import { PRODUCT_TYPES } from "../../constants/main/productTypes";
 import { Clothes } from "../../components/main/clothes/clothes";
-import { Promo } from "../../components/main/promo/Promo";
+import { Promo } from "../../components/main/promo/promo";
 import { MainSubscribe } from "../../components/main/subscribe/subscribe";
 import { Blog } from "../../components/main/blog/Blog";
 

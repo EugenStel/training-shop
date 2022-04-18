@@ -1,15 +1,14 @@
-// import PropTypes from 'prop-types';
-import up from './assets/chevron-left.svg'
-import down from './assets/chevron-right.svg'
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Controller, FreeMode, Navigation, Thumbs } from "swiper";
+import up from './assets/chevron-left.svg'
+import down from './assets/chevron-right.svg'
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-
 import './product-slider.scss';
+
 
 export const ProductSlider = ({ slides }) => {
     const host = 'https://training.cleverland.by/shop';

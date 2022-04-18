@@ -5,9 +5,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getProducts } from '../../../redux/products/productsSelectors';
 import { MAIN_CLOTHES_BLOCK_MENU } from '../../../constants/main/main-clothes-block-menu';
-
 import './clothes.scss'
-
 
 export const Clothes = ({ productType }) => {
     const products = useSelector(getProducts)

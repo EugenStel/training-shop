@@ -1,10 +1,9 @@
 import CartIcon from '../header/user-icons/assets/shoppingCartIcon.svg'
 import { useSelector } from 'react-redux'
 import { getItemsInCart } from '../../redux/cart/cartSelectors'
-
 import './cart.scss'
 
-export const Cart = () => {
+export const CartHeader = () => {
     const items = useSelector(getItemsInCart)
     return (
         <>

@@ -5,9 +5,7 @@ import { sendMainEmail, enableMainButton, disableMainButton, clear } from '../..
 import { useDispatch, useSelector } from 'react-redux';
 import { LoaderButtons } from '../../loader-buttons/loader-buttons'
 import { getEmailMainLoading, getEmailMainError, getEmailMainResponce, getButtonMainStatus } from '../../../redux/email/emailSelectors'
-
 import './subscribe.scss';
-
 
 export const MainSubscribe = () => {
     const [email, setEmail] = useState('')
@@ -22,7 +20,6 @@ export const MainSubscribe = () => {
         setEmail(e.target.value)
     }
 
-
     function isValidEmailAddress(emailAddress) {
         let pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
         if (pattern.test(emailAddress)) {
@@ -36,20 +33,17 @@ export const MainSubscribe = () => {
         }
     }
 
-
     const handleSubmit = (e, email) => {
         e.preventDefault();
         dispatch(disableMainButton())
         dispatch(sendMainEmail(email))
     }
 
-
     useEffect(() => {
         if (emailResponce) {
             setEmail('')
         }
     }, [emailResponce])
-
 
     useEffect(() => {
         dispatch(clear())

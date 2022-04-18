@@ -1,5 +1,4 @@
 import { OPPORTUNITY } from "../../../constants/products/opportunity"
-
 import './opportunity.scss'
 
 export const Opportunity = () => {

@@ -13,7 +13,6 @@ export const Filters = ({
     productType
 }) => {
 
-
     return (
         <div className='filters' data-test-id={`filters-${productType}`}>
             <div className='color' data-test-id='filters-color'>

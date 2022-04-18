@@ -5,8 +5,8 @@ import paypal from './assets/paypal_payment.svg'
 import { PaypalMethod } from './paypal-method/paypal-method'
 import { CardsMethod } from './cards-method/cards-method'
 import { PAYMENT_VALUES } from '../../../constants/order/forms-data'
-
 import './payment.scss'
+
 export const Payment = ({
     setCardNumberError,
     setCardDateError,

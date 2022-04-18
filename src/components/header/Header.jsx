@@ -11,8 +11,8 @@ import { clearErrors } from "../../redux/order/orderActions";
 import { clearCart } from "../../redux/cart/cartActions";
 import { getOrderResponse } from "../../redux/order/orderSelectors";
 import { clearLocalStorage } from "../../utils/clear-local-storage";
-import Logo from './assets/logo-CleverShop.svg'
-import './header.scss'
+import Logo from './assets/logo-CleverShop.svg';
+import './header.scss';
 
 export const Header = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
