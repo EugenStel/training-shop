@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import MaskInput from "react-maskinput";
 import iconEye from './assets/icon-Eye.svg'
 import iconEyeSlash from './assets/icon-EyeSlash.svg'
@@ -13,10 +13,20 @@ export const CardsMethod = ({
     cardDateError,
     cardCVVError
 }) => {
-    const [cardNumber, setCardNumber] = useState(JSON.parse(localStorage.getItem('card')))
-    const [cardDate, setCardDate] = useState(JSON.parse(localStorage.getItem('cardDate')))
-    const [cardCVV, setCardCVV] = useState(JSON.parse(localStorage.getItem('cardCVV')))
+
+    const objCardInfo = JSON.parse(localStorage.getItem('cardInfo'))
+    const [cardNumber, setCardNumber] = useState(objCardInfo?.cardNumber)
+    const [cardDate, setCardDate] = useState(objCardInfo?.cardDate)
+    const [cardCVV, setCardCVV] = useState(objCardInfo?.cardCVV)
     const [isRevealCVV, setIsRevealCVV] = useState(false)
+
+    useEffect(() => {
+        localStorage.setItem('cardInfo', JSON.stringify({
+            "cardNumber": cardNumber,
+            "cardDate": cardDate,
+            "cardCVV": cardCVV,
+        }))
+    }, [cardNumber, cardDate, cardCVV, objCardInfo])
 
     const handleChangeCardNumber = ({ target }) => {
         setCardNumber(target.value)
@@ -31,38 +41,32 @@ export const CardsMethod = ({
     }
 
     const checkCreditCardNumber = () => {
+        localStorage.setItem('cardInfo', JSON.stringify({
+            ...JSON.parse(localStorage.getItem('cardInfo')),
+            cardNumber
+        }))
         let card = cardNumber.split('-').join('')
-        if (card.length === 16) {
-            setCardNumberError(false)
-            localStorage.setItem("card", JSON.stringify(cardNumber))
-        } else {
-            setCardNumberError(true)
-            localStorage.setItem("card", JSON.stringify(cardNumber))
-        }
+        card.length === 16 ? setCardNumberError(false) : setCardNumberError(true)
     }
 
     const checkCreditCardDate = () => {
+        localStorage.setItem('cardInfo', JSON.stringify({
+            ...JSON.parse(localStorage.getItem('cardInfo')),
+            cardDate
+        }))
         const [month, year] = cardDate.split('/')
         const currentYear = parseInt(new Date().getFullYear().toString().substr(2, 2))
         const currentMonth = parseInt(new Date().getMonth())
         const compare = currentYear < +year ? true : currentYear === +year ? currentMonth < +month ? true : false : false
-        if (PATTERN_MONTH.test(month) && compare) {
-            setCardDateError(false)
-            localStorage.setItem("cardDate", JSON.stringify(cardDate))
-        } else {
-            setCardDateError(true)
-            localStorage.setItem("cardDate", JSON.stringify(cardDate))
-        }
+        PATTERN_MONTH.test(month) && compare ? setCardDateError(false) : setCardDateError(true)
     }
 
     const checkCardCVV = () => {
-        if (cardCVV.length >= 3 && cardCVV.length <= 4) {
-            setCardCVVError(false)
-            localStorage.setItem("cardCVV", JSON.stringify(cardCVV))
-        } else {
-            setCardCVVError(true)
-            localStorage.setItem("cardCVV", JSON.stringify(cardCVV))
-        }
+        localStorage.setItem('cardInfo', JSON.stringify({
+            ...JSON.parse(localStorage.getItem('cardInfo')),
+            cardCVV
+        }))
+        cardCVV.length >= 3 && cardCVV.length <= 4 ? setCardCVVError(false) : setCardCVVError(true)
     }
 
     return (

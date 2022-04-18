@@ -1,4 +1,4 @@
-import { SigleServiceItem } from "./single-service/SingleService";
+import { SigleServiceItem } from "./single-service/single-service";
 import { SERVICES } from "../../../constants/main/services";
 
 import './services.scss'

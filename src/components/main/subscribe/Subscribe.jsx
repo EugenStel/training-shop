@@ -3,7 +3,7 @@ import men from './assets/menSubscibe.svg';
 import woman from './assets/womenSubscribe.png';
 import { sendMainEmail, enableMainButton, disableMainButton, clear } from '../../../redux/email/emailActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { LoaderButtons } from '../../loader-buttons/LoaderButtons'
+import { LoaderButtons } from '../../loader-buttons/loader-buttons'
 import { getEmailMainLoading, getEmailMainError, getEmailMainResponce, getButtonMainStatus } from '../../../redux/email/emailSelectors'
 
 import './subscribe.scss';

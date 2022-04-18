@@ -1,4 +1,4 @@
-import { FilterItem } from "./filter-item/FilterItem";
+import { FilterItem } from "./filter-item/filter-item";
 import { FILTERS } from "../../../constants/products/filters";
 import './filters.scss'
 

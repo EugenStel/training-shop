@@ -2,9 +2,7 @@ import './succsess-order.scss'
 
 export const SuccsessOrder = ({ handleCartClose }) => {
 
-    const clickHandler = () => {
-        handleCartClose()
-    }
+
     return (
         <div className="nice-job">
             <div className="info">
@@ -12,7 +10,7 @@ export const SuccsessOrder = ({ handleCartClose }) => {
                 <div>Information about your order will appear in your e-mail.</div>
                 <div>Our manager will call you back.</div>
             </div>
-            <button className='blackButton' onClick={clickHandler}>
+            <button className='blackButton' onClick={handleCartClose}>
                 Back to shopping
             </button>
         </div>

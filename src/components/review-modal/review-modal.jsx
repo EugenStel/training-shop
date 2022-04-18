@@ -5,7 +5,7 @@ import ReactStars from "react-rating-stars-component";
 import { useDispatch, useSelector } from "react-redux";
 import { sendReview } from "../../redux/rewiew/reviewActions";
 import { getReviewLoading, getReviewError } from "../../redux/rewiew/reviewSelectors";
-import { LoaderButtons } from "../loader-buttons/LoaderButtons";
+import { LoaderButtons } from "../loader-buttons/loader-buttons";
 
 import './review-modal.scss'
 

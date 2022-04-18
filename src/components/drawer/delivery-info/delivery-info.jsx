@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import MaskInput from "react-maskinput"
-import { AdressDelivery } from './adress-block-delivery/AdressDelivery'
-import { PostcodeDelivery } from './post-code-delivery/PostDelivery'
-import { StoreDelivery } from './store-delivery/StoreDelivery'
+import { AdressDelivery } from './adress-block-delivery/adress-delivery'
+import { PostcodeDelivery } from './post-code-delivery/post-delivery'
+import { StoreDelivery } from './store-delivery/store-delivery'
 import { PATTERN_EMAIL, PATTERN_PHONE } from '../../../constants/order/patterns'
+import { DELIVERY_VALUES } from '../../../constants/order/forms-data'
 import './delivery-info.scss'
+
 export const Delivery = ({
     emailError,
     phoneError,
@@ -37,11 +39,11 @@ export const Delivery = ({
 
     useEffect(() => {
         if (chosedDelivery === 'office') {
-            localStorage.setItem("deliveryMethod", JSON.stringify('pickup from post offices'))
+            localStorage.setItem("deliveryMethod", JSON.stringify(DELIVERY_VALUES.POST_DELIVERY))
         } else if (chosedDelivery === 'express') {
-            localStorage.setItem("deliveryMethod", JSON.stringify('express delivery'))
+            localStorage.setItem("deliveryMethod", JSON.stringify(DELIVERY_VALUES.EXPRESS_DELIVERY))
         } else {
-            localStorage.setItem("deliveryMethod", JSON.stringify('store pickup'))
+            localStorage.setItem("deliveryMethod", JSON.stringify(DELIVERY_VALUES.STORE_PICKUP))
         }
     }, [chosedDelivery])
 
@@ -54,23 +56,13 @@ export const Delivery = ({
     }
 
     const checkEmail = () => {
-        if (PATTERN_EMAIL.test(email)) {
-            setEmailError(false)
-            localStorage.setItem("email", JSON.stringify(email))
-        } else {
-            setEmailError(true)
-            localStorage.setItem("email", JSON.stringify(email))
-        }
+        localStorage.setItem("email", JSON.stringify(email))
+        PATTERN_EMAIL.test(email) ? setEmailError(false) : setEmailError(true)
     }
 
     const checkPhone = () => {
-        if (PATTERN_PHONE.test(phone)) {
-            setPhoneError(false)
-            localStorage.setItem("phone", JSON.stringify(phone))
-        } else {
-            setPhoneError(true)
-            localStorage.setItem("phone", JSON.stringify(phone))
-        }
+        localStorage.setItem("phone", JSON.stringify(phone))
+        PATTERN_PHONE.test(phone) ? setPhoneError(false) : setPhoneError(true)
     };
 
     return (

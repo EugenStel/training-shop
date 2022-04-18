@@ -1,14 +1,11 @@
 import axios from "axios"
 import { orderActionTypes } from "./orderActionTypes"
-
-const API_COUNTRIES = 'https://training.cleverland.by/shop/countries'
-const API_CITIES = 'https://training.cleverland.by/shop/search/cities'
-const API_ORDER = 'https://training.cleverland.by/shop/cart'
+import { API_LINKS } from "../../constants/api/api"
 
 export const fetchCities = (storeAdress, country) => (dispatch) => {
-    axios.post(API_CITIES, {
-        "city": storeAdress,
-        "country": country
+    axios.post(API_LINKS.CITIES, {
+        city: storeAdress,
+        country: country
     })
         .then((res) => {
             dispatch({
@@ -25,7 +22,7 @@ export const fetchCities = (storeAdress, country) => (dispatch) => {
 }
 
 export const fetchCountries = () => (dispatch) => {
-    axios.get(API_COUNTRIES)
+    axios.get(API_LINKS.COUNTRIES)
         .then((res) => {
             dispatch({
                 type: orderActionTypes.FETCH_COUNTRIES,
@@ -41,7 +38,7 @@ export const fetchCountries = () => (dispatch) => {
 }
 
 export const sendOrder = (order) => (dispatch) => {
-    axios.post(API_ORDER, order).then((res) => {
+    axios.post(API_LINKS.ORDER, order).then((res) => {
         dispatch({
             type: orderActionTypes.SEND_ORDER,
             payload: res.data
