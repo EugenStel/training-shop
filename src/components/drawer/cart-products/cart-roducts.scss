@@ -1,4 +1,4 @@
-.cartItem {
+.cart-item {
     border: 1px solid #f3f3f3;
     border-radius: 20px;
     overflow: hidden;
@@ -40,7 +40,7 @@
         }
     }
 
-    .cartItemImg {
+    .cart-item-img {
         height: 104px;
         width: 83px;
         background-size: contain;
@@ -57,7 +57,7 @@
     b {
         font-size: 14px;
     }
-    .removeBtn {
+    .remove-btn {
         opacity: 0.5;
         cursor: pointer;
         transition: opacity 0.2s ease-in-out;

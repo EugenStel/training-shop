@@ -4,6 +4,7 @@ import { AdressDelivery } from './adress-block-delivery/adress-delivery'
 import { PostcodeDelivery } from './post-code-delivery/post-delivery'
 import { StoreDelivery } from './store-delivery/store-delivery'
 import { PATTERN_EMAIL, PATTERN_PHONE } from '../../../constants/order/patterns'
+import { DELIVERY_VALUES } from '../../../constants/order/forms-data'
 import './delivery-info.scss'
 export const Delivery = ({
     emailError,
@@ -37,11 +38,11 @@ export const Delivery = ({
 
     useEffect(() => {
         if (chosedDelivery === 'office') {
-            localStorage.setItem("deliveryMethod", JSON.stringify('pickup from post offices'))
+            localStorage.setItem("deliveryMethod", JSON.stringify(DELIVERY_VALUES.POST_DELIVERY))
         } else if (chosedDelivery === 'express') {
-            localStorage.setItem("deliveryMethod", JSON.stringify('express delivery'))
+            localStorage.setItem("deliveryMethod", JSON.stringify(DELIVERY_VALUES.EXPRESS_DELIVERY))
         } else {
-            localStorage.setItem("deliveryMethod", JSON.stringify('store pickup'))
+            localStorage.setItem("deliveryMethod", JSON.stringify(DELIVERY_VALUES.STORE_PICKUP))
         }
     }, [chosedDelivery])
 
