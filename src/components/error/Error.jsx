@@ -1,5 +1,5 @@
-
 import './error.scss'
+
 export const Error = () => {
     return (
         <div className="error" data-test-id='error'>
