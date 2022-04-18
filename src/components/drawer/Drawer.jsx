@@ -331,7 +331,16 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
                                         </li>
                                     </ul>
                                 }
-                                {!orderResponse &&
+                                {/* {!orderResponse &&
+                                    <div className="control">
+                                        <button type="button" className='blackButton' onClick={handleFurtherClick}>
+                                            {isItemInCart ? 'Further' : isDelivery ? 'Further' : isPayment ? paymentMethod === 'cash' ? 'Ready' : 'Check out' : 'Back to payment'}
+                                        </button>
+                                        {!isItemInCart && <button className='blackButton' onClick={handleViewCartClick}>View Cart</button>}
+
+                                    </div>
+                                } */}
+                                {orderResponse ? null :
                                     <div className="control">
                                         <button className='blackButton' onClick={handleFurtherClick}>
                                             {isItemInCart ? 'Further' : isDelivery ? 'Further' : isPayment ? paymentMethod === 'cash' ? 'Ready' : 'Check out' : 'Back to payment'}
@@ -340,7 +349,6 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
 
                                     </div>
                                 }
-
                             </div>
                         </>
                         :

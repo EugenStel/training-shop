@@ -10,7 +10,7 @@ export const SuccsessOrder = ({ handleCartClose }) => {
                 <div>Information about your order will appear in your e-mail.</div>
                 <div>Our manager will call you back.</div>
             </div>
-            <button className='blackButton' onClick={handleCartClose}>
+            <button className='back-button' onClick={handleCartClose}>
                 Back to shopping
             </button>
         </div>
