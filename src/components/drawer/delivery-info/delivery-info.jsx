@@ -55,24 +55,14 @@ export const Delivery = ({
     }
 
     const checkEmail = () => {
-        if (PATTERN_EMAIL.test(email)) {
-            setEmailError(false)
-            localStorage.setItem("email", JSON.stringify(email))
-        } else {
-            setEmailError(true)
-            localStorage.setItem("email", JSON.stringify(email))
-        }
+        localStorage.setItem("email", JSON.stringify(email))
+        PATTERN_EMAIL.test(email) ? setEmailError(false) : setEmailError(true)
     }
 
     const checkPhone = () => {
-        if (PATTERN_PHONE.test(phone)) {
-            setPhoneError(false)
-            localStorage.setItem("phone", JSON.stringify(phone))
-        } else {
-            setPhoneError(true)
-            localStorage.setItem("phone", JSON.stringify(phone))
-        }
-    };
+        localStorage.setItem("phone", JSON.stringify(phone))
+        PATTERN_PHONE.test(phone) ? setPhoneError(false) : setPhoneError(true)
+    }
 
     return (
         <>

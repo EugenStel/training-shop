@@ -10,6 +10,7 @@ import { Drawer } from "../drawer/Drawer";
 import { clearErrors } from "../../redux/order/orderActions";
 import { clearCart } from "../../redux/cart/cartActions";
 import { getOrderResponse } from "../../redux/order/orderSelectors";
+import { clearLocalStorage } from "../../utils/clear-local-storage";
 import Logo from './assets/logo-CleverShop.svg';
 import './header.scss';
 
@@ -32,22 +33,6 @@ export const Header = () => {
     const handleCartOpen = () => {
         setCartOpen(!cartOpen)
         !cartOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'visible'
-    }
-
-    const clearLocalStorage = () => {
-        localStorage.setItem('email', JSON.stringify(''))
-        localStorage.setItem('phone', JSON.stringify(''))
-        localStorage.setItem('country', JSON.stringify(''))
-        localStorage.setItem('city', JSON.stringify(''))
-        localStorage.setItem('street', JSON.stringify(''))
-        localStorage.setItem('house', JSON.stringify(''))
-        localStorage.setItem('postcode', JSON.stringify(''))
-        localStorage.setItem('storeAdress', JSON.stringify(''))
-        localStorage.setItem('card', JSON.stringify(''))
-        localStorage.setItem('cardDate', JSON.stringify(''))
-        localStorage.setItem('cardCVV', JSON.stringify(''))
-        localStorage.setItem('cashEmail', JSON.stringify(''))
-        localStorage.setItem('countryStore', JSON.stringify(''))
     }
 
     const handleCartClose = () => {

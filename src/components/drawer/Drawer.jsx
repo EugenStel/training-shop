@@ -10,6 +10,7 @@ import { getCities, getOrderError, getOrderResponse } from "../../redux/order/or
 import { sendOrder, clearErrors } from "../../redux/order/orderActions";
 import { PATTERN_EMAIL, PATTERN_PHONE, PATTERN_MONTH } from "../../constants/order/patterns";
 import { DELIVERY_VALUES, PAYMENT_VALUES } from "../../constants/order/forms-data";
+import { clearLocalStorage } from '../../utils/clear-local-storage'
 
 import close from './assets/close.svg'
 
@@ -60,23 +61,6 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
     const errorsStore = [phoneError, emailError, storeAdressError, rulesAgreeError]
 
     const cardPaymentErros = [cardNumberError, cardDateError, cardCVVError]
-
-
-    const clearLocalStorage = () => {
-        localStorage.setItem('email', JSON.stringify(''))
-        localStorage.setItem('phone', JSON.stringify(''))
-        localStorage.setItem('country', JSON.stringify(''))
-        localStorage.setItem('city', JSON.stringify(''))
-        localStorage.setItem('street', JSON.stringify(''))
-        localStorage.setItem('house', JSON.stringify(''))
-        localStorage.setItem('postcode', JSON.stringify(''))
-        localStorage.setItem('countryStore', JSON.stringify(''))
-        localStorage.setItem('storeAdress', JSON.stringify(''))
-        localStorage.setItem('card', JSON.stringify(''))
-        localStorage.setItem('cardDate', JSON.stringify(''))
-        localStorage.setItem('cardCVV', JSON.stringify(''))
-        localStorage.setItem('cashEmail', JSON.stringify(''))
-    }
 
     const closeCartOnClick = ({ target }) => {
         if (target.className === "overlay") {
@@ -224,7 +208,7 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
         } else {
             setPhoneError(true)
         }
-    };
+    }
 
     const checkInputs = (country, city, street, house) => {
         if (country.toLowerCase() === 'Беларусь'.toLowerCase()) {
@@ -240,19 +224,11 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
     }
 
     const checkPostCode = (postCode) => {
-        if (postCode?.length >= 9) {
-            setPostCodeError(false)
-        } else {
-            setPostCodeError(true)
-        }
+        postCode?.length >= 9 ? setPostCodeError(false) : setPostCodeError(true)
     }
 
     const checkStoreAdress = (storeAdress) => {
-        if (storeAdress && citiesSelect?.find(item => item.city === storeAdress)) {
-            setStoreAdressError(false)
-        } else {
-            setStoreAdressError(true)
-        }
+        storeAdress && citiesSelect?.find(item => item.city === storeAdress) ? setStoreAdressError(false) : setStoreAdressError(true)
     }
 
     const checkCreditCardNumber = (card) => {
@@ -265,11 +241,7 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
         const currentYear = parseInt(new Date().getFullYear().toString().substr(2, 2))
         const currentMonth = parseInt(new Date().getMonth())
         const compare = currentYear < +year ? true : currentYear === +year ? currentMonth < +month ? true : false : false
-        if (PATTERN_MONTH.test(month) && compare) {
-            setCardDateError(false)
-        } else {
-            setCardDateError(true)
-        }
+        PATTERN_MONTH.test(month) && compare ? setCardDateError(false) : setCardDateError(true)
     }
 
     const checkCardCVV = (cardCVV) => {
@@ -283,11 +255,7 @@ export const Drawer = ({ handleCartClose, setCartOpen }) => {
     }
 
     const checkEmailPayment = (cashEmail) => {
-        if (PATTERN_EMAIL.test(cashEmail)) {
-            setPaymentEmailError(false)
-        } else {
-            setPaymentEmailError(true)
-        }
+        PATTERN_EMAIL.test(cashEmail) ? setPaymentEmailError(false) : setPaymentEmailError(true)
     }
 
     const checkAgreeRules = () => {
