@@ -1,5 +1,3 @@
-// import { PROMO_INFO } from "../../../constants/main/promo";
-
 import './promo.scss'
 
 export const Promo = () => {

@@ -2,29 +2,23 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getItemsInCart } from "../../redux/cart/cartSelectors";
-import { ProductHeader } from "../../components/product-head/Product-head";
-import { Checkout } from "../../components/single-product/checkout/Checkout";
-import { Opportunity } from "../../components/single-product/opportunity/Opportunity";
-import { ProductSlider } from "../../components/single-product/slider/ProductSlider";
-import { CardRating } from "../../components/clothes-card-item/card-raiting/CardRaiting";
+import { ProductHeader } from "../../components/product-head/product-header";
+import { Checkout } from "../../components/single-product/checkout/check-out";
+import { Opportunity } from "../../components/single-product/opportunity/opportunities";
+import { ProductSlider } from "../../components/single-product/slider/product-slider-singl";
+import { CardRating } from "../../components/clothes-card-item/card-raiting/card-raiting";
 import { Reviews } from "../../components/single-product/reviews/Reviews";
-import { Related } from "../../components/single-product/related/Related";
-import { ReviewModal } from "../../components/review-modal/ReviewModal";
+import { Related } from "../../components/single-product/related/related-singl";
+import { ReviewModal } from "../../components/review-modal/review-modal";
 import { getModalStatus } from "../../redux/rewiew/reviewSelectors";
 import { showModal, closeModal } from "../../redux/rewiew/reviewActions";
-
 import hanger from '../../components/single-product/assets/clothes-hanger.jpg'
 import favourite from '../../components/single-product/control/assets/heart.svg'
 import compare from '../../components/single-product/control/assets/scale.svg'
 import annotation from '../../components/single-product/reviews/assets/annotation.svg'
 import { getProducts, getErrorByFetch } from "../../redux/products/productsSelectors";
-import { getReviewResponce } from "../../redux/rewiew/reviewSelectors";
-
 import { addItem, deleteItem } from "../../redux/cart/cartActions";
-
-
 import './single-prod.scss'
-
 
 export const SinglePage = ({ productType }) => {
     const dispatch = useDispatch();
@@ -32,19 +26,11 @@ export const SinglePage = ({ productType }) => {
     const products = useSelector(getProducts)
     const error = useSelector(getErrorByFetch)
     const statusModal = useSelector(getModalStatus)
-    const response = useSelector(getReviewResponce)
-    console.log(response)
-
-
     const host = 'https://training.cleverland.by/shop';
-
     const { id } = useParams();
-
     const [product, setProduct] = useState();
     const [size, setSize] = useState('')
     const [color, setColor] = useState('')
-
-
 
     const handleOpenForm = () => {
         dispatch(showModal())
@@ -53,7 +39,6 @@ export const SinglePage = ({ productType }) => {
     const handleCloseForm = () => {
         dispatch(closeModal())
     }
-
 
     statusModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
 

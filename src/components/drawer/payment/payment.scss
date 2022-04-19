@@ -1,0 +1,23 @@
+.radio img {
+    display: inline-block;
+}
+
+.radio {
+    margin: 10px;
+    padding: 10px;
+    border-top: 1px solid #D3D3D3;
+    
+}
+
+.radio label {
+    display: flex;
+    align-items: center;
+}
+
+.radio:last-child {
+    border-bottom: 1px solid #D3D3D3;
+}
+
+.radio input {
+    margin-right: 10px;
+}

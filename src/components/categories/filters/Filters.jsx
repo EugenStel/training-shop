@@ -1,4 +1,4 @@
-import { FilterItem } from "./filter-item/FilterItem";
+import { FilterItem } from "./filter-item/filter-item";
 import { FILTERS } from "../../../constants/products/filters";
 import './filters.scss'
 
@@ -12,7 +12,6 @@ export const Filters = ({
     onPriceChange,
     productType
 }) => {
-
 
     return (
         <div className='filters' data-test-id={`filters-${productType}`}>

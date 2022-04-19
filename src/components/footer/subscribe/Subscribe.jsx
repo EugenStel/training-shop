@@ -1,11 +1,12 @@
-import { SocialIcons } from "../../header/social-networks/Social"
+import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getEmailFooterLoading, getEmailFooterError, getEmailFooterResponce } from "../../../redux/email/emailSelectors";
 import { getButtonFooterStatus } from "../../../redux/email/emailSelectors";
-import { useDispatch, useSelector } from 'react-redux';
-import { LoaderFooterButtons } from "../../loader-buttons/LoaderButtons";
+import { LoaderFooterButtons } from "../../loader-buttons/loader-buttons";
+import { SocialIcons } from "../../header/social-networks/Social"
 import { sendFooterEmail, enableFooterButton, disableFooterButton, clear } from "../../../redux/email/emailActions";
-import { useLocation } from 'react-router-dom';
+
 import './subscribe.scss'
 
 export const FooterSubscribe = () => {
@@ -33,7 +34,6 @@ export const FooterSubscribe = () => {
         setEmail('')
     }, [location]);
 
-
     const handleInputChange = (e) => {
         setEmail(e.target.value)
     }
@@ -57,7 +57,6 @@ export const FooterSubscribe = () => {
         dispatch(sendFooterEmail(email))
     }
 
-
     return (
         <div className='footer_subscriber'>
             <div className='wrapper'>
@@ -71,7 +70,6 @@ export const FooterSubscribe = () => {
                             value={email}
                             onChange={handleInputChange}
                             onKeyUp={() => { isValidEmailAddress(email) }} />
-
                         <button className={`footer_button ${buttonDisable}`} type='submit' disabled={buttonDisable} data-test-id='footer-subscribe-mail-button'>
                             JOIN US
                         </button>

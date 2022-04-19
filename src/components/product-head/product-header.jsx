@@ -1,9 +1,8 @@
 import PropTypes from "prop-types"
 import { Breadcrumbs } from "../categories/header/breadcrumbs/Breadcrumbs"
-import { CardRating } from "../clothes-card-item/card-raiting/CardRaiting"
+import { CardRating } from "../clothes-card-item/card-raiting/card-raiting"
 import shareButton from '../categories/header/assets/share-button.svg'
 import arrow from '../categories/header/breadcrumbs/assets/arrow.svg'
-
 import './prod-head.scss'
 
 export const ProductHeader = ({ productType, name, rating, reviews }) => {

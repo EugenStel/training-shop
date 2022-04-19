@@ -1,0 +1,38 @@
+.input-delivery {
+    margin-top: 10px;
+    width: 100%;
+    background: #f8f8f8;
+    border: none;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: #9c9c9c;
+    outline: 0;
+    margin-bottom: 5px;
+
+    &::placeholder {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 18px;
+        color: #9c9c9c;
+    }
+    &:focus::placeholder {
+        color: transparent;
+    }
+}
+
+.delivery-store {
+    font-weight: 600;
+    font-size: 12px !important;
+    line-height: 18px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    input::-webkit-calendar-picker-indicator {
+        opacity: 0;
+    }
+}

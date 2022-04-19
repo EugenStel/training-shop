@@ -1,7 +1,4 @@
-import { CardRating } from '../../clothes-card-item/card-raiting/CardRaiting'
-
-
-
+import { CardRating } from '../../clothes-card-item/card-raiting/card-raiting'
 import './reviews.scss'
 
 export const Reviews = ({ product }) => {

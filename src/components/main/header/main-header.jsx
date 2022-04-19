@@ -1,7 +1,6 @@
 import { Sliders } from "../../sliders/Sliders";
 import { HEAD_SLIDER } from "../../../constants/main/head-slider";
-import { CategoriesNav } from "./categories/Сategories";
-
+import { CategoriesNav } from "./categories/categories";
 import './main-header.scss'
 
 export const MainHeader = () => {

@@ -1,20 +1,17 @@
 import PropTypes from "prop-types"
 import { useState, useEffect } from "react"
-import { ProductsHeader } from "../../components/categories/header/ProductsHeader"
-import { ProductsControl } from "../../components/categories/control/ProductsControl"
-import { Filters } from "../../components/categories/filters/Filters"
-import { ClothesCardItem } from "../../components/clothes-card-item/ClothesCardItem"
 import { useSelector } from "react-redux"
+import { ProductsHeader } from "../../components/categories/header/products-header"
+import { ProductsControl } from "../../components/categories/control/products-control"
+import { Filters } from "../../components/categories/filters/Filters"
+import { ClothesCardItem } from "../../components/clothes-card-item/clothes-card-item"
 import { getProducts } from "../../redux/products/productsSelectors"
 
 import './products.scss'
 
 export const ProductsPage = ({ productType }) => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-
     const products = useSelector(getProducts)
-
-
     const [color, setColor] = useState("");
     const [size, setSize] = useState("");
     const [brand, setBrand] = useState("");
@@ -48,11 +45,6 @@ export const ProductsPage = ({ productType }) => {
     })
 
     const uniqColors = [...new Set(arrColors.join(',').split(','))]
-
-    const handleColorChange = ({ target: { checked, value } }) => {
-        console.log(value)
-        console.log(checked)
-    }
 
     const onColorChange = ({ target: { checked, value } }) => {
         setColor(
@@ -100,7 +92,6 @@ export const ProductsPage = ({ productType }) => {
         setPrice([])
     }, [productType])
 
-
     const filteredGoods = products[productType]?.filter((n) => {
         return (
             (!color.length ||
@@ -136,7 +127,6 @@ export const ProductsPage = ({ productType }) => {
                         uniqColors={uniqColors}
                         uniqSizes={uniqSizes}
                         uniqBrand={uniqBrand}
-                        handleColorChange={handleColorChange}
                         onColorChange={onColorChange}
                         onSizeChange={onSizeChange}
                         onBrandChange={onBrandChange}

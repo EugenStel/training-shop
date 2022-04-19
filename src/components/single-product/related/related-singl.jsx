@@ -1,12 +1,9 @@
-import { ClothesCardItem } from "../../clothes-card-item/ClothesCardItem"
+import { ClothesCardItem } from "../../clothes-card-item/clothes-card-item"
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Controller } from 'swiper';
-
 import next from '../../sliders/assets/rightButton.svg'
 import prev from '../../sliders/assets/leftButton.svg'
-
-
 import './related.scss'
 
 export const Related = ({ productType, products }) => {

@@ -1,39 +1,49 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { Contacts } from "./contacts/Contacts";
 import { SocialIcons } from "./social-networks/Social";
 import { HeaderMenu } from "./menu/Menu";
-import { UserIconsNav } from "./user-icons/UserIcons";
-import Logo from './assets/logo-CleverShop.svg'
-import { Link } from "react-router-dom";
-import { BurgerMenu } from "../burger-menu/BurgerMenu";
+import { UserIconsNav } from "./user-icons/user-icons";
+import { BurgerMenu } from "../burger-menu/burger-menu";
 import { Drawer } from "../drawer/Drawer";
-import './header.scss'
+import { clearErrors } from "../../redux/order/orderActions";
+import { clearCart } from "../../redux/cart/cartActions";
+import { getOrderResponse } from "../../redux/order/orderSelectors";
+import { clearLocalStorage } from "../../utils/clear-local-storage";
+import Logo from './assets/logo-CleverShop.svg';
+import './header.scss';
 
 export const Header = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [cartOpen, setCartOpen] = useState(false)
-
+    const dispatch = useDispatch()
+    const orderResponse = useSelector(getOrderResponse)
 
     const handleMobileOpen = () => {
-        setMobileOpen(!mobileOpen);
+        setMobileOpen(!mobileOpen)
         !mobileOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'visible'
-    };
+    }
 
     const handleMobileClose = () => {
-        setMobileOpen(false);
+        setMobileOpen(false)
         document.body.style.overflow = 'visible'
-    };
+    }
 
     const handleCartOpen = () => {
-        setCartOpen(!cartOpen);
+        setCartOpen(!cartOpen)
         !cartOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'visible'
-    };
+    }
 
     const handleCartClose = () => {
-        setCartOpen(false);
+        setCartOpen(false)
+        clearLocalStorage()
         document.body.style.overflow = 'visible'
+        if (orderResponse) {
+            dispatch(clearCart())
+            dispatch(clearErrors())
+        }
     };
-
 
     return (
         <div className='header' data-test-id='header'>
@@ -56,7 +66,11 @@ export const Header = () => {
                 </div>
             </div>
             {mobileOpen && <BurgerMenu handleMobileClose={handleMobileClose} onClickOutside={() => { setMobileOpen(false) }} />}
-            {cartOpen && <Drawer setCartOpen={setCartOpen} handleCartOpen={handleCartOpen} onClickOutside={() => { handleCartClose(false) }} handleCartClose={handleCartClose} />}
+            {cartOpen && <Drawer
+                setCartOpen={setCartOpen}
+                handleCartOpen={handleCartOpen}
+                onClickOutside={() => { handleCartClose(false) }}
+                handleCartClose={handleCartClose} />}
         </div>
     )
 }

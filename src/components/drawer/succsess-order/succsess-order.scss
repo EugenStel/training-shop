@@ -1,0 +1,47 @@
+.nice-job {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    .info {
+        text-align: center;
+
+        h1 {
+            font-weight: 600;
+            font-size: 26px !important;
+            color: #121212;
+            line-height: 150%;
+            margin-bottom: 15px;
+        }
+        div {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 22px;
+        }
+    }
+}
+
+.back-button {
+position: relative;
+width: 80%;
+text-transform: uppercase;
+height: 55px;
+background: #121212;
+border: 0;
+color: #fff;
+font-size: 16px;
+cursor: pointer;
+font-weight: 500;
+margin-top: 40px;
+transition: background 0.2s ease-in-out;
+
+&:hover {
+    background: lighten($color: #9dd558, $amount: 5%);
+}
+
+&:active {
+    background: darken($color: #9dd558, $amount: 5%);
+}
+}

@@ -41,9 +41,10 @@
 }
 
 .drawer {
-    position: absolute;
-    max-width: 420px;
-    height: 100%;
+    z-index: 1000;
+    position: fixed;
+    width: 450px;
+    height: 100vh;
     right: 0;
     background: #ffffff;
     box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
@@ -90,77 +91,6 @@
     }
 }
 
-.cartItem {
-    border: 1px solid #f3f3f3;
-    border-radius: 20px;
-    overflow: hidden;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 0.2fr 1fr;
-    margin-bottom: 20px;
-    .cart-item-info {
-        .cart-item-title {
-            color: #e6e6e6;
-        }
-        .cart-item-details {
-            color: #121212;
-        }
-    }
-    .cart-item-control {
-        margin-top: 15px;
-        display: flex;
-        align-items: center;
-
-        input {
-            width: 30px;
-            text-align: center;
-            background-color: #e6e6e6;
-            outline: none;
-            border: none;
-        }
-        .minus,
-        .plus {
-            height: 24px;
-            border: none;
-        }
-        .cart-price {
-            margin-left: 15px;
-            font-weight: 900;
-        }
-        .cart-price {
-            display: flex;
-        }
-    }
-
-    .cartItemImg {
-        height: 104px;
-        width: 83px;
-        background-size: contain;
-        background-position: 0 -3px;
-        background-repeat: no-repeat;
-        margin-right: 20px;
-    }
-
-    p {
-        font-size: 16px;
-        margin: 0;
-    }
-
-    b {
-        font-size: 14px;
-    }
-    .removeBtn {
-        opacity: 0.5;
-        cursor: pointer;
-        transition: opacity 0.2s ease-in-out;
-        margin-left: 40px;
-
-        &:hover {
-            opacity: 1;
-        }
-    }
-}
-
 .cartTotalBLock {
     padding: 20px;
     .control {
@@ -185,31 +115,17 @@
             margin: 0 10px;
         }
     }
-    .blackButton {
-        position: relative;
-
-        &:hover {
-            img {
-                transform: translateX(5px);
-            }
-        }
-
-        img {
-            position: absolute;
-            right: 30px;
-            top: 20px;
-            transition: transform 0.2s ease-in-out;
-        }
-    }
 }
 
 .blackButton {
+    position: relative;
+    z-index: 1000;
     width: 80%;
     text-transform: uppercase;
     height: 55px;
     background: #121212;
     border: 0;
-    color: #fff;
+    color: #ffffff;
     font-size: 16px;
     cursor: pointer;
     font-weight: 500;

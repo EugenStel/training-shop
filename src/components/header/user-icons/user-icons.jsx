@@ -1,5 +1,5 @@
 import { USER_ICONS_NAV } from "../../../constants/header/user-icons-nav";
-import { Cart } from "../../cart/Cart";
+import { CartHeader } from "../../cart/Cart";
 import { BurgerIcon } from "../burger-icon/BurgerIcon";
 
 import './user-icons.scss'
@@ -14,7 +14,7 @@ export const UserIconsNav = ({ handleMobileOpen, mobileOpen, handleCartOpen, car
                     </a>
                 ))}
                 <div onClick={handleCartOpen}>
-                    <Cart cartOpen={cartOpen} />
+                    <CartHeader cartOpen={cartOpen} />
                 </div>
             </div>
             <div onClick={handleMobileOpen} data-test-id='burger-menu-btn'>

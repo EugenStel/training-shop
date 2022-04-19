@@ -5,8 +5,6 @@ import americanExpress from './assets/americanExpress.svg'
 import discover from './assets/discover.svg'
 import mastercard from './assets/mastercard.svg'
 import paypal from './assets/paypal.svg'
-
-
 import './copyrighting.scss'
 
 export const FooterCopy = () => {
