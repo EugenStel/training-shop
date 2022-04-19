@@ -32,13 +32,8 @@ export const CardsMethod = ({
 
     const checkCreditCardNumber = () => {
         let card = cardNumber.split('-').join('')
-        if (card.length === 16) {
-            setCardNumberError(false)
-            localStorage.setItem("card", JSON.stringify(cardNumber))
-        } else {
-            setCardNumberError(true)
-            localStorage.setItem("card", JSON.stringify(cardNumber))
-        }
+        localStorage.setItem("card", JSON.stringify(cardNumber))
+        card.length === 16 ? setCardNumberError(false) : setCardNumberError(true)
     }
 
     const checkCreditCardDate = () => {
@@ -46,23 +41,13 @@ export const CardsMethod = ({
         const currentYear = parseInt(new Date().getFullYear().toString().substr(2, 2))
         const currentMonth = parseInt(new Date().getMonth())
         const compare = currentYear < +year ? true : currentYear === +year ? currentMonth < +month ? true : false : false
-        if (PATTERN_MONTH.test(month) && compare) {
-            setCardDateError(false)
-            localStorage.setItem("cardDate", JSON.stringify(cardDate))
-        } else {
-            setCardDateError(true)
-            localStorage.setItem("cardDate", JSON.stringify(cardDate))
-        }
+        localStorage.setItem("cardDate", JSON.stringify(cardDate))
+        PATTERN_MONTH.test(month) && compare ? setCardDateError(false) : setCardDateError(true)
     }
 
     const checkCardCVV = () => {
-        if (cardCVV.length >= 3 && cardCVV.length <= 4) {
-            setCardCVVError(false)
-            localStorage.setItem("cardCVV", JSON.stringify(cardCVV))
-        } else {
-            setCardCVVError(true)
-            localStorage.setItem("cardCVV", JSON.stringify(cardCVV))
-        }
+        localStorage.setItem("cardCVV", JSON.stringify(cardCVV))
+        cardCVV.length >= 3 && cardCVV.length <= 4 ? setCardCVVError(false) : setCardCVVError(true)
     }
 
     return (

@@ -63,22 +63,12 @@ export const AdressDelivery = ({
         } else {
             switch (inputType) {
                 case 'country':
-                    if (country.toLowerCase() === 'Беларусь'.toLowerCase()) {
-                        setErrorCountry(false)
-                        localStorage.setItem("country", JSON.stringify(country))
-                    } else {
-                        setErrorCountry(true)
-                        localStorage.setItem("country", JSON.stringify(country))
-                    }
+                    localStorage.setItem("country", JSON.stringify(country))
+                    country.toLowerCase() === 'Беларусь'.toLowerCase() ? setErrorCountry(false) : setErrorCountry(true)
                     break
                 case 'city':
-                    if (citiesSelect.find(item => item.city.toLowerCase() === city.toLowerCase())) {
-                        setErrorCity(false)
-                        localStorage.setItem("city", JSON.stringify(city))
-                    } else {
-                        setErrorCity(true)
-                        localStorage.setItem("city", JSON.stringify(city))
-                    }
+                    localStorage.setItem("city", JSON.stringify(city))
+                    citiesSelect.find(item => item.city.toLowerCase() === city.toLowerCase()) ? setErrorCity(false) : setErrorCity(true)
                     break
                 case 'street':
                     setErrorStreet(false)
@@ -95,23 +85,13 @@ export const AdressDelivery = ({
     }
 
     const keyUpCountryHandler = () => {
-        if (country.toLowerCase() === 'Беларусь'.toLowerCase()) {
-            setErrorCountry(false)
-            localStorage.setItem("country", JSON.stringify(country))
-        } else {
-            setErrorCountry(true)
-            localStorage.setItem("country", JSON.stringify(country))
-        }
+        localStorage.setItem("country", JSON.stringify(country))
+        country.toLowerCase() === 'Беларусь'.toLowerCase() ? setErrorCountry(false) : setErrorCountry(true)
     }
 
     const keyUpCityHandler = () => {
-        if (citiesSelect.find(item => item.city.toLowerCase() === city.toLowerCase())) {
-            setErrorCity(false)
-            localStorage.setItem("city", JSON.stringify(city))
-        } else {
-            setErrorCity(true)
-            localStorage.setItem("city", JSON.stringify(city))
-        }
+        localStorage.setItem("city", JSON.stringify(city))
+        citiesSelect.find(item => item.city.toLowerCase() === city.toLowerCase()) ? setErrorCity(false) : setErrorCity(true)
     }
 
     return (
@@ -133,7 +113,6 @@ export const AdressDelivery = ({
                     <option key={countriesSelect[0]?._id}>{countriesSelect[0]?.name}</option>
                 </datalist>
                 {errorCountry && <div className="errors">Поле должно быть заполнено</div>}
-                {errorCountry && <div className="errors">Доставка доступна только по РБ</div>}
             </div>
             <div className="adress-city">
                 <h2>City</h2>

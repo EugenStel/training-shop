@@ -32,23 +32,13 @@ export const StoreDelivery = ({ storeAdressError, setStoreAdressError, errorCoun
     }
 
     const checkCountry = () => {
-        if (!country) {
-            setErrorCountry(true)
-            localStorage.setItem("country", JSON.stringify(country))
-        } else {
-            setErrorCountry(false)
-            localStorage.setItem("country", JSON.stringify(country))
-        }
+        localStorage.setItem("country", JSON.stringify(country))
+        !country ? setErrorCountry(true) : setErrorCountry(false)
     }
 
     const checkStoreAdress = () => {
-        if (storeAdress && citiesSelect.find(item => item.city === storeAdress)) {
-            setStoreAdressError(false)
-            localStorage.setItem("storeAdress", JSON.stringify(storeAdress))
-        } else {
-            setStoreAdressError(true)
-            localStorage.setItem("storeAdress", JSON.stringify(storeAdress))
-        }
+        localStorage.setItem("storeAdress", JSON.stringify(storeAdress))
+        storeAdress && citiesSelect.find(item => item.city === storeAdress) ? setStoreAdressError(false) : setStoreAdressError(true)
     }
 
     return (

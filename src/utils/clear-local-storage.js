@@ -1,12 +1,15 @@
-import { INITIAL_CARD_INFO, INITIAL_ADDRESS_INFO } from "../constants/order/initial-values"
-
 export const clearLocalStorage = () => {
-    localStorage.setItem('cardInfo', JSON.stringify(INITIAL_CARD_INFO))
-    localStorage.setItem('addressInfo', JSON.stringify(INITIAL_ADDRESS_INFO))
     localStorage.setItem('email', JSON.stringify(''))
     localStorage.setItem('phone', JSON.stringify(''))
+    localStorage.setItem('country', JSON.stringify(''))
+    localStorage.setItem('city', JSON.stringify(''))
+    localStorage.setItem('street', JSON.stringify(''))
+    localStorage.setItem('house', JSON.stringify(''))
     localStorage.setItem('postcode', JSON.stringify(''))
     localStorage.setItem('countryStore', JSON.stringify(''))
     localStorage.setItem('storeAdress', JSON.stringify(''))
+    localStorage.setItem('card', JSON.stringify(''))
+    localStorage.setItem('cardDate', JSON.stringify(''))
+    localStorage.setItem('cardCVV', JSON.stringify(''))
     localStorage.setItem('cashEmail', JSON.stringify(''))
 }
